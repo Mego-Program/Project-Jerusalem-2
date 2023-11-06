@@ -1,0 +1,32 @@
+.MuiFormControl-root{
+    display: flex;
+    flex-direction: column;
+}
+
+
+
+/* Amir Iqbal */
+.div-filter>em{
+
+font-family: 'Poppins';
+font-style: normal;
+font-weight: 300;
+font-size: 14px;
+line-height: 21px;
+letter-spacing: 0.05em;
+
+color: #FFFFFF;
+
+}
+
+/* Assignee */
+.div-filter>p{
+
+font-family: 'Poppins';
+font-style: normal;
+font-weight: 500;
+font-size: 15px;
+line-height: 22px;
+
+color: #FFFFFF;
+}
