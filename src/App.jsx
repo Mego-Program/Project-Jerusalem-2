@@ -1,15 +1,15 @@
-import { useState } from 'react'
-
+import DivFilters from './components/to-brunch/Show-filters&massion'
 import './App.css'
+import { DndProvider } from 'react-dnd'
+import { HTML5Backend } from 'react-dnd-html5-backend';
 
-function App() {
-  const [count, setCount] = useState(0)
 
-  return (
-    <>
 
-    </>
-  )
+function App(){
+    return(
+      <DndProvider backend={HTML5Backend}>
+        <DivFilters />
+        </DndProvider>
+    )
 }
-
 export default App
