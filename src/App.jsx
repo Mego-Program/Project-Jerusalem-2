@@ -1,4 +1,4 @@
-import DivFilters from './components/to-brunch/Show-filters&massion'
+import DivFilters from './filter-massions-dnd-func-data/Show-filters&massion'
 import './App.css'
 import { DndProvider } from 'react-dnd'
 import { HTML5Backend } from 'react-dnd-html5-backend';
