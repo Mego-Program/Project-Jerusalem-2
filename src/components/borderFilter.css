@@ -1,0 +1,19 @@
+/* borderFilter.css */
+.dropdown {
+    background-color: #121231;
+    width: 1461px;
+    height: 83px;
+    border-radius: 10px;
+  }
+  
+  .select {
+    font-family: 'Poppins';
+    font-weight: 600;
+    font-size: 23px;
+    line-height: 34.5px;
+  }
+
+.MuiMenu-list .MuiMenuItem-root {
+    color: #FFFFFF;
+  }
+    
