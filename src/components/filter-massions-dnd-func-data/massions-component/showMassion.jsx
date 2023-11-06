@@ -1,12 +1,10 @@
 import Massion from './Massion-card'
-
 import { useDrop } from 'react-dnd';
-import { useState } from 'react';
+import './showMassion.css'
 
 
 
 export default function Show(props){
-    // const [data, setData] = useState(props.datafiltered);
     const data=props.datafiltered
     const [{isOver},drop] = useDrop(()=>({
             accept:'MASSION',
