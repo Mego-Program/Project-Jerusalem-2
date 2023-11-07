@@ -1,6 +1,6 @@
 .container {
     height: 400px; /* Set the desired height */
-    overflow-y: auto; /* Enable vertical scrolling when content overflows */
+    /* overflow-y: auto; Enable vertical scrolling when content overflows */
   }
   
   /* Styling for the individual cards */
@@ -10,3 +10,20 @@
     width: 200px; /* Set the width of the cards as needed */
     /* You can add more styles to customize the appearance of your cards */
   }
+  /* showMassion.css */
+.container::-webkit-scrollbar {
+  width: 12px; /* Width of the vertical scrollbar */
+}
+
+.container::-webkit-scrollbar-track {
+  background: #17174b; /* Background color of the track */
+}
+
+.container::-webkit-scrollbar-thumb {
+  background: #28286e;; /* Color of the scrollbar thumb */
+  border-radius: 6px; /* Rounded corners */
+}
+
+.container::-webkit-scrollbar-thumb:hover {
+  background: #2d2d75; /* Color of the scrollbar thumb on hover */
+}
