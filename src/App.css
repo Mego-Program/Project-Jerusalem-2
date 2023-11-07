@@ -20,10 +20,10 @@
 }
 .header{
     background-color: #21213E;
-    width: 70%;
+    /* width: 70%;
     border-radius: 10px, 10px, 0px, 0px;
     margin-top: 10px ;
-    margin-bottom: 20px;
+    margin-bottom: 20px; */
 }
 .sum-massion{
     border-radius:50%;
@@ -72,9 +72,11 @@ letter-spacing: 0em;
 .mission-card .middle-content .header {
     font-weight: bold;
 }
-
+.mission-card .header{
+    color: #F6C927;
+}
 .mission-card .middle-content .content {
-    color: #333;
+    color:white;
 }
 
 /* Styling for the date */

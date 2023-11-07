@@ -12,14 +12,7 @@ let obFilter = {'category':'', 'milestone':'','issue_type':'','assignee':''}
 
 // let DataFiltered = Data
 export default function DivFilters(props){
-  const [{isOver},drop] = useDrop(()=>({
-    accept:'MASSION',
-    drop:((itm)=>{itm.massion=props.cat;console.log(itm.massion);}),
-    collect:((monitor)=>({
-        isOver:!!monitor.isOver()
-    }))
-})
-)
+  
    //  create object of all the filters  
    
 const [DataFiltered,setDataFiltered]=useState(Data)
@@ -51,18 +44,15 @@ function filterStatus(data, DivStatus) {
     return data.filter((itm) => itm.status === DivStatus);
   }
   function updateDND(id1, stat) {
-    setDataFiltered((prevData) => {
-        return prevData.map((itemInData) => {
-            if (itemInData.id === id1) {
-                // Update the status of the chosen item
-                return { ...itemInData, status: stat };
-            } else {
-                // Return the item as is if it doesn't match the ID
-                return itemInData;
-            }
-        });
+    const newdata = DataFiltered.map((itemInData) => {
+      if (itemInData.id === id1) {
+        itemInData.status = stat;
+      }
+      return itemInData; 
     });
-}
+    setDataFiltered(newdata);
+  }
+  
 
 return (
     <div>
@@ -74,10 +64,10 @@ return (
     </div>
     
     <div className='div-massions status-columns'>
-        <Show func={updateDND} datafiltered={filterStatus(DataFiltered, 'Not Started')} cat={'Not Started'} forwardRef={drop}/>
-        <Show  func={updateDND}datafiltered={filterStatus(DataFiltered, 'In Progress')} cat={'In Progress'} forwardRef={drop} />
-        <Show func={updateDND} datafiltered={filterStatus(DataFiltered, 'Completed')} cat={'Completed'} forwardRef={drop} />
-        <Show func={updateDND} datafiltered={filterStatus(DataFiltered, 'Close')} cat={'Close'} forwardRef={drop} />
+        <Show func={updateDND} datafiltered={filterStatus(DataFiltered, 'Not Started')} cat={'Not Started'} />
+        <Show  func={updateDND}datafiltered={filterStatus(DataFiltered, 'In Progress')} cat={'In Progress'}  />
+        <Show func={updateDND} datafiltered={filterStatus(DataFiltered, 'Completed')} cat={'Completed'}  />
+        <Show func={updateDND} datafiltered={filterStatus(DataFiltered, 'Close')} cat={'Close'}  />
       </div>
 </div>
   );
