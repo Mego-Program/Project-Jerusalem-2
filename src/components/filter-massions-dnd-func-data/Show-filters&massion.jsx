@@ -43,6 +43,7 @@ function filterInput(filt){
 function filterStatus(data, DivStatus) {
     return data.filter((itm) => itm.status === DivStatus);
   }
+//   function to update the status object that been draging
   function updateDND(id1, stat) {
     const newdata = DataFiltered.map((itemInData) => {
       if (itemInData.id === id1) {

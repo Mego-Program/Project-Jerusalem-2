@@ -2,20 +2,16 @@ import MassionCard from "./Massion-card";
 import { useDrop } from "react-dnd";
 import "./showMassion.css";
 import { Paper } from "@mui/material";
-import { useRef, useState } from "react";
+
 
 export default function Show(props) {
-  
-  
-  const [dataDrop,setDataDrop] = useState(props.datafiltered)
-  let data = props.datafiltered
+  const data = props.datafiltered
+  // make the drop erea 
   const [{ isOver }, drop] = useDrop(() => ({
     accept: "MASSION",
     drop: (item) => {  
-
+      // using the prop function that updating the status according the drop erea status 
         props.func(item.id, props.cat)
-        // console.log(dataDrop);
-        
     },
 
     collect: (monitor) => ({
@@ -23,8 +19,7 @@ export default function Show(props) {
     }),
   }));
   
-// console.log(data);
-  //
+  // sum missions to display and set of colors  
   const sum = data.length;
   const colorset = {
     "In Progress": "#3685B1",
@@ -52,8 +47,8 @@ export default function Show(props) {
           <div className="sum-massion">{sum}</div>
         </div>
       </div>
-      {data.map((prop, index) => (
-        <div key={index} className={`massion ${name + index}`}>
+      {data.map((prop) => (
+        <div key={prop.id} className={`massion ${prop.name + prop.id}`}>
           <MassionCard obj={prop} />
         </div>
       ))}
