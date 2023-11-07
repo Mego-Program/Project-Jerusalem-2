@@ -1,83 +1,78 @@
+/* Status columns */
 .status-columns {
     display: flex;
-    /* justify-content: space-between; */
     max-width: 100%;
     margin-top: 50px;
+    justify-content: space-between;
 }
 
 .status-column {
     flex: 1;
-    background: #121231;
+    background: #121231; /* שמור על הרקע הכהה */
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-right: 10px; /* Add margin to create space between columns */
+    margin-right: 10px;
+    border-radius: 10px;
+    color: #fff; /* שנה צבע הטקסט ללבן */
 }
 
-/* Ensure the last column doesn't have margin to prevent extra space */
 .status-column:last-child {
     margin-right: 0;
 }
-.header{
+
+.header {
     background-color: #21213E;
-    width: 70%;
-    border-radius: 10px, 10px, 0px, 0px;
-    margin-top: 10px ;
+    width: 100%;
+    border-radius: 10px 10px 0 0;
+    margin-top: 10px;
     margin-bottom: 20px;
-}
-.sum-massion{
-    border-radius:50%;
-    height:25px;
-    width:25px;
-    color: white;
-    font-family: Poppins;
-font-size: 14px;
-font-weight: 400;
-line-height: 21px;
-letter-spacing: 0em;
     text-align: center;
-    background: #131331;
-
-}
-.circle{
-    border-radius:50%;
-    height:10px;
-    width:10px
+    padding: 10px;
+    font-family: Arial, sans-serif;
+    font-size: 18px;
+    font-weight: bold;
+    color: #fff;
 }
 
-/* Mission card style */
+.sum-massion {
+    border-radius: 50%;
+    height: 25px;
+    width: 25px;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 25px;
+    text-align: center;
+    background: #131331; /* שמור על הרקע הכהה */
+    margin: 10px;
+}
+
 .mission-card {
     background: #21213E;
     border-radius: 5px;
-    margin-bottom: 10px; /* Add space between mission cards */
-    width: 70%; /* Make the cards rectangular and full width */
+    margin-bottom: 10px;
+    width: 100%;
     display: flex;
     align-items: center;
-    justify-content: space-between; /* Space between avatar and text */
+    justify-content: space-between;
     padding: 10px;
 }
 
-/* Styling for the avatar */
-/* .mission-card .left-content svg {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-} */
-.text{
+.text {
     display: flex;
     flex-direction: column;
     margin-left: 20px;
 }
-/* Styling for the text */
+
 .mission-card .middle-content .header {
     font-weight: bold;
+    color: #fff;
 }
 
 .mission-card .middle-content .content {
-    color: #333;
+    color: #eee;
 }
 
-/* Styling for the date */
 .mission-card .date {
     color: #999;
     font-size: 12px;
