@@ -28,11 +28,7 @@ const AssigneeSelector = (props) => {
     // Hide the scrollbars when the container is no longer being hovered over
     
   };
-  const choose=(event,person)=>{
-    console.log(person.name);
-    console.log(props.missionId);
-    handleClose()
-  }
+
 
   // Define a custom theme with desired colors
   const theme = createTheme({
@@ -71,6 +67,7 @@ const AssigneeSelector = (props) => {
               maxHeight: 200,
               overflow: 'auto', // Initially hide the scrollbars
               background: '#121230',
+              outline:0
             }}
             onMouseLeave={handleMouseLeave}
           >

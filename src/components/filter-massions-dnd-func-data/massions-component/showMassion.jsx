@@ -42,10 +42,10 @@ export default function Show(props) {
       <div
         style={{ position: "sticky", top: "0", zIndex: 1, right: 0, left: 0 }}
       >
-        <div className="header">
-          <div className="circle" style={{ background: colorset[props.cat] }} />
+        <div className="header" style={{borderRadius:'10px 10px 0 0',width:'22vw', marginTop:'10px', height:'6vh'}}>
+          <div className="circle" style={{ background: colorset[props.cat], float:'left' }} />
           {props.cat}
-          <div className="sum-massion">{sum}</div>
+          <div className="sum-massion" style={{float:'right'}}>{sum}</div>
         </div>
       </div>
       {data.map((prop) => (

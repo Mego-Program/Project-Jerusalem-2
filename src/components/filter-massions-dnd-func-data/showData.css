@@ -1,8 +1,31 @@
-.filters{
-    display: flex;
+
+
+.filters {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* רספונסיביות עם רוחב מינימלי של 200px */
+    grid-gap: 10px; 
+    margin-left: -2px;
     
-    max-height: 6.12vh;
 }
+.Inp{
+    background-color: #007bff;
+    color: #fff;
+    padding: 15px 25px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    text-align: center;
+    white-space: nowrap;
+    width: calc(100% - 20px); 
+    
+}
+
+@media (max-width: 768px) {
+    .Inp {
+        grid-column: span 2; 
+    }
+}
+
 /* .div-massions{
     display: flex;
     margin-top: 50px;

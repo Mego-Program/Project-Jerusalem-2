@@ -19,7 +19,7 @@ const customStyles = {
     svg: { color: 'white' },
     fieldset: { border: 'none' },
     maxHeight: '3.17vh', // Change the height of menu items
-    width: '19.9vw',
+    width: '24vw',
     background: '#121231',
     color: 'white',
   },
@@ -43,9 +43,9 @@ export default function Inp(props) {
   };
 
   return (
-    <div className='div-filter' style={{ minHeight: '6.12vh', background:'#21213E' }}>
+    <div className='div-filter' style={{ minHeight: '6.12vh' }}>
       <p style={{ color: 'white' }}>{props.name}</p>
-      <FormControl sx={{ mr: 2, ml: -1, width: 352, mt: 0 }}>
+      <FormControl sx={{ mr: 2, ml: 0, width: 352, mt: 0 }}>
         <Select
           displayEmpty
           value={filterName}
