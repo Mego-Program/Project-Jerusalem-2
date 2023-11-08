@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import Avatar from "@mui/material/Avatar";
 import { useDrag } from "react-dnd";
 import { colors } from "@mui/material";
+import AssigneeSelector from "../change assigne/ChangeAsignee";
 
 export default function MassionCard(props) {
   const [{ isDraging }, drag] = useDrag(() => ({
@@ -11,17 +12,13 @@ export default function MassionCard(props) {
       isDraging: !!monitor.isDragging(),
     }),
   }));
-let s = (event)=>{
-  console.log(props.obj.id);
-}
+
+
+
   return (
-    <div className="mission-card" ref={drag} onClick={s}>
+    <div className="mission-card" ref={drag} >
       <div className="left-content">
-        <Avatar
-          alt={props.obj.man_in_charge}
-          src=""
-          sx={{ width: 40, height: 40 }}
-        />
+        <AssigneeSelector names={props.names} missionId={props.missionId}  funcChange={props.funcChange}/>
       </div>
       <div className="text">
         <div className="middle-content">

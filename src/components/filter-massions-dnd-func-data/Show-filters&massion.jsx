@@ -10,11 +10,11 @@ import { DndProvider,useDrop } from 'react-dnd'
 
 let obFilter = {'category':'', 'milestone':'','issue_type':'','assignee':''}
 
+
 // let DataFiltered = Data
 export default function DivFilters(props){
-  
-   //  create object of all the filters  
-   
+const names =[... new Set(Data.map((obj) => ({ id: obj.id, name: obj.assignee })))]
+
 const [DataFiltered,setDataFiltered]=useState(Data)
 
 
@@ -26,9 +26,17 @@ function handleObFilter(obFilter1,input,type){
     filterInput(obFilter1)
     // filterInput(obFilter1)
     
-    console.log(obFilter1);
 }
-
+function changeAssignee(name,id1,close){
+  const newdata = DataFiltered.map((itemInData) => {
+    if (itemInData.id === id1) {
+      itemInData.assignee = name;
+    }
+    return itemInData; 
+  });
+  setDataFiltered(newdata);
+  close
+}
 
 // filter by txt( לשנות את ה includes)
 function filterInput(filt){
@@ -65,10 +73,10 @@ return (
     </div>
     
     <div className='div-massions status-columns'>
-        <Show func={updateDND} datafiltered={filterStatus(DataFiltered, 'Not Started')} cat={'Not Started'} />
-        <Show  func={updateDND}datafiltered={filterStatus(DataFiltered, 'In Progress')} cat={'In Progress'}  />
-        <Show func={updateDND} datafiltered={filterStatus(DataFiltered, 'Completed')} cat={'Completed'}  />
-        <Show func={updateDND} datafiltered={filterStatus(DataFiltered, 'Close')} cat={'Close'}  />
+        <Show func={updateDND} datafiltered={filterStatus(DataFiltered, 'Not Started')} cat={'Not Started'} names={names} funcChange={changeAssignee}/>
+        <Show  func={updateDND}datafiltered={filterStatus(DataFiltered, 'In Progress')} cat={'In Progress'}   names={names} funcChange={changeAssignee}/>
+        <Show func={updateDND} datafiltered={filterStatus(DataFiltered, 'Completed')} cat={'Completed'}  names={names} funcChange={changeAssignee} />
+        <Show func={updateDND} datafiltered={filterStatus(DataFiltered, 'Close')} cat={'Close'}  names={names} funcChange={changeAssignee}/>
       </div>
 </div>
   );

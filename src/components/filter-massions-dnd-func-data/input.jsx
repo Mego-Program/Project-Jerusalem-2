@@ -64,7 +64,7 @@ export default function Inp(props) {
           }}
         >
           <MenuItem value=''>
-            <em>{props.name}</em>
+            <em>{'all'}</em>
           </MenuItem>
           {names.map((name) => (
             <MenuItem key={name} value={name} style={customStyles.menuItem}>
