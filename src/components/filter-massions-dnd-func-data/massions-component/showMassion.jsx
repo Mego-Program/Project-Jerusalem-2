@@ -5,6 +5,7 @@ import { Paper } from "@mui/material";
 
 
 export default function Show(props) {
+  
   const data = props.datafiltered
   // make the drop erea 
   const [{ isOver }, drop] = useDrop(() => ({
@@ -49,7 +50,7 @@ export default function Show(props) {
       </div>
       {data.map((prop) => (
         <div key={prop.id} className={`massion ${prop.name + prop.id}`}>
-          <MassionCard obj={prop} />
+          <MassionCard obj={prop} names={props.names} missionId={prop.id} funcChange={props.funcChange}/>
         </div>
       ))}
     </Paper>
