@@ -41,18 +41,22 @@ export default function Show(props) {
     >
       <div
         style={{ position: "sticky", top: "0", zIndex: 1, right: 0, left: 0 }}
-      >
-        <div className="header" style={{borderRadius:'10px 10px 0 0',width:'22vw', marginTop:'10px', height:'6vh'}}>
-          <div className="circle" style={{ background: colorset[props.cat], float:'left' }} />
-          {props.cat}
-          <div className="sum-massion" style={{float:'right'}}>{sum}</div>
-        </div>
+      ><div className="hedear-container">
+        <div className="header" style={{ borderRadius: '10px 10px 0 0', width: '22vw', marginTop: '10px', height: '6vh', display: 'flex', justifyContent: 'space-between' }}>
+  <div className="circle" style={{ background: colorset[props.cat], flex: '0 0 auto' }} />
+  <p className="status-name" style={{ flex: '0 1 auto' }}>{props.cat}</p>
+  <div className="sum-massion" style={{ marginLeft: 'auto', marginRight:'3%', textAlign:'center' }}>{sum}</div>
+</div></div>
+
       </div>
+      <div className="mission-cont">
       {data.map((prop) => (
         <div key={prop.id} className={`massion ${prop.name + prop.id}`}>
           <MassionCard obj={prop} names={props.names} missionId={prop.id} funcChange={props.funcChange}/>
         </div>
+        
       ))}
+      </div>
     </Paper>
   );
 }

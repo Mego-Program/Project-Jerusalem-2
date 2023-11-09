@@ -46,7 +46,7 @@ const AssigneeSelector = (props) => {
   return (
     <ThemeProvider theme={theme}>
       <div >
-        <Avatar onClick={handleOpen}>A</Avatar>
+        <Avatar onClick={handleOpen} src={props.src} alt='not found'></Avatar>
         <Modal
           open={isOpen}
           onClose={handleClose}
@@ -77,7 +77,7 @@ const AssigneeSelector = (props) => {
               </Typography>
               {names.map((person) => (
                 <ListItem key={person.id} button onClick={(e)=>{props.funcChange(person.name,props.missionId);handleClose()}}>
-                  <Avatar sx={{ mr: 3 }} />
+                  <Avatar sx={{ mr: 3,  }} />
                   <ListItemText primary={person.name} style={{ color: 'white' }} />
                 </ListItem>
               ))}

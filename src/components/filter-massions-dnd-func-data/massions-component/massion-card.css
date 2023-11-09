@@ -1,0 +1,27 @@
+.mission-card {
+    background: #21213E;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    width: 21vw;
+    margin:10px 10px 0px 0px;
+}
+.text{
+flex-direction: column;
+}
+/* Styling for the text */
+.mission-card .middle-content .header {
+    font-weight: bold;
+}
+.mission-card .header{
+    color: #F6C927;
+}
+.mission-card .middle-content .content {
+    color:white;
+}
+
+/* Styling for the date */
+.mission-card .date {
+    color: #999;
+    font-size: 12px;
+}

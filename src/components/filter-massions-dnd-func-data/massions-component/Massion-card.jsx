@@ -4,6 +4,7 @@ import { DndProvider, useDrag } from "react-dnd";
 import { colors } from "@mui/material";
 import AssigneeSelector from "../change assigne/ChangeAsignee";
 import DateSelector from "../due-date/DatePicker";
+import './massion-card.css'
 
 
 export default function MassionCard(props) {
@@ -19,24 +20,22 @@ export default function MassionCard(props) {
 
 
   return (
-    <div className="mission-card" ref={drag} >
-      <div className="left-content">
-        <AssigneeSelector names={props.names} missionId={props.missionId}  funcChange={props.funcChange}/>
-      </div>
-      <div className="text">
-        <div className="middle-content">
-          <div className="header">
-            <p>{props.obj.header}</p>
-          </div>
-          <div className="content">
-            <p>{props.obj.content}</p>
-          </div>
-        </div>
-       
-      <div className="date">
-        <DateSelector date={props.obj.deadline}/>
-        </div>
-      </div>
+    <div className="mission-card" ref={drag}>
+  <div className="left-content">
+    <AssigneeSelector names={props.names} missionId={props.missionId} funcChange={props.funcChange} />
+  </div>
+  <div className="text">
+    <div className="header">
+      <p >{props.obj.header}</p>
     </div>
+    <div className="content" >
+      <p>{props.obj.content}</p>
+    </div>
+  <div className="date">
+    <DateSelector date={props.obj.deadline} />
+  </div>
+  </div>
+</div>
+
   );
 }
