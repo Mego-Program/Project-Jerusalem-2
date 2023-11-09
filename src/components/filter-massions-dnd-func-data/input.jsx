@@ -3,25 +3,26 @@ import OutlinedInput from '@mui/material/OutlinedInput';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
-import './input.css';
+// import './input.css';
 
 
 
 const customStyles = {
-  select: {
-    fontFamily: 'Poppins',
-    fontWeight: 600,
-    fontSize: '23px',
-    lineHeight: '34.5px',
-    color: '#FFFFFF',
-  },
+ 
   menuItem: {
     svg: { color: 'white' },
     fieldset: { border: 'none' },
-    maxHeight: '3.17vh', // Change the height of menu items
+    maxHeight: '5.17vh', // Change the height of menu items
     width: '24vw',
     background: '#121231',
     color: 'white',
+    // fontFamily: 'Poppins',
+fontSize: '14px',
+fontWeight: '300',
+lineHeight: '21px',
+letterSpacing: '5%',
+textAlign: 'left',
+
   },
   dropdownMenu:{
     background:'#121231'

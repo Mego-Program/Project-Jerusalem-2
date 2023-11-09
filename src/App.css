@@ -47,16 +47,6 @@ letter-spacing: 0em;
 }
 
 /* Mission card style */
-.mission-card {
-    background: #21213E;
-    border-radius: 5px;
-    margin-bottom: 10px; /* Add space between mission cards */
-    width: 70%; /* Make the cards rectangular and full width */
-    display: flex;
-    align-items: center;
-    justify-content: space-between; /* Space between avatar and text */
-    padding: 10px;
-}
 
 /* Styling for the avatar */
 /* .mission-card .left-content svg {
@@ -64,24 +54,3 @@ letter-spacing: 0em;
     height: 50px;
     border-radius: 50%;
 } */
-.text{
-    display: flex;
-    flex-direction: column;
-    margin-left: 20px;
-}
-/* Styling for the text */
-.mission-card .middle-content .header {
-    font-weight: bold;
-}
-.mission-card .header{
-    color: #F6C927;
-}
-.mission-card .middle-content .content {
-    color:white;
-}
-
-/* Styling for the date */
-.mission-card .date {
-    color: #999;
-    font-size: 12px;
-}
