@@ -8,7 +8,7 @@ import { HTML5Backend } from 'react-dnd-html5-backend';
 
 function App(){
     return(<div>
-      {/* <BorderFilter/> */}
+      <BorderFilter/>
       <DndProvider backend={HTML5Backend}>
         <DivFilters />
         </DndProvider>

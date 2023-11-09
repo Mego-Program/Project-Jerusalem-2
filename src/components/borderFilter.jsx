@@ -5,17 +5,17 @@ import './borderFilter.css';
 
 
 const borderFilterStyles = {
-  position: 'absolute',
   width: '100%',
-  height: '83px',
-  top: '242px',
-  background: '#21213E', 
+  marginTop:'10vh',
+  marginBottom:'5vh',
+  height: '70px',
+  background: '#121231', 
   boxShadow: '0px 20px 70px rgba(86, 89, 146, 0.1)',
   borderRadius: '10px',
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'space-between',
-  padding: '0 16px',
+  // padding: '0 16px',
 };
 
 const displayStyles = {

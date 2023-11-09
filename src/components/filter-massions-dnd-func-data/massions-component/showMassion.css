@@ -6,10 +6,11 @@
   overflow-y: auto; /* Enable vertical scrolling when content overflows */
   /* Add scrollbar styles for Webkit-based browsers */
   scrollbar-width: auto;
-  scrollbar-color: #28286e #17174b;
+  scrollbar-color: #28286e #28286e ;
 
   &::-webkit-scrollbar{
       width: 8px; /* Width of the vertical scrollbar */
+      height: 8px;
   }
 
   &::-webkit-scrollbar-track {

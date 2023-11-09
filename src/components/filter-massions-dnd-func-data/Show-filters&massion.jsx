@@ -4,6 +4,7 @@ import Data from './data-massion/data';
 import Inp from './input';
 import Options from './data-massion/lst-options';
 import Show from './massions-component/showMassion'
+import { Grid } from '@mui/material';
 import { DndProvider,useDrop } from 'react-dnd'
 
 
@@ -65,19 +66,24 @@ function filterStatus(data, DivStatus) {
 
 return (
     <div>
+    {/* Filters section */}
+    {/* <Grid item xs={12} > */}
     <div className='filters'>
         <Inp func={handleObFilter} func1={filterInput} type={'category'} filters={obFilter} lstOptions={Options.category} name={'Category'}/>
         <Inp func={handleObFilter} func1={filterInput} type={'milestone'} filters={obFilter} lstOptions={Options.milestone} name={'Milestone'}/>
         <Inp func={handleObFilter} func1={filterInput} type={'issue_type'} filters={obFilter} lstOptions={Options.issue_type} name={'Issue Type'}/>
         <Inp func={handleObFilter} func1={filterInput} type={'assignee'} filters={obFilter} lstOptions={Options.assignee} name={'Assignee'}/>
     </div>
-    
+    {/* </Grid> */}
+{/* <Grid/> */}
+
     <div className='div-massions status-columns'>
         <Show func={updateDND} datafiltered={filterStatus(DataFiltered, 'Not Started')} cat={'Not Started'} names={names} funcChange={changeAssignee}/>
         <Show  func={updateDND}datafiltered={filterStatus(DataFiltered, 'In Progress')} cat={'In Progress'}   names={names} funcChange={changeAssignee}/>
         <Show func={updateDND} datafiltered={filterStatus(DataFiltered, 'Completed')} cat={'Completed'}  names={names} funcChange={changeAssignee} />
         <Show func={updateDND} datafiltered={filterStatus(DataFiltered, 'Close')} cat={'Close'}  names={names} funcChange={changeAssignee}/>
       </div>
+ 
 </div>
   );
 }

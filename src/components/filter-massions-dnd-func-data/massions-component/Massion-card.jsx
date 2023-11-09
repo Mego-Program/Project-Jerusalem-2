@@ -1,10 +1,13 @@
-import React, { useEffect } from "react";
+import React, { useEffect ,useState} from "react";
 import Avatar from "@mui/material/Avatar";
-import { useDrag } from "react-dnd";
+import { DndProvider, useDrag } from "react-dnd";
 import { colors } from "@mui/material";
 import AssigneeSelector from "../change assigne/ChangeAsignee";
+import DateSelector from "../due-date/DatePicker";
+
 
 export default function MassionCard(props) {
+
   const [{ isDraging }, drag] = useDrag(() => ({
     type: "MASSION",
     item: { massion: props.obj.status, id: props.obj.id },
@@ -29,8 +32,9 @@ export default function MassionCard(props) {
             <p>{props.obj.content}</p>
           </div>
         </div>
-        <div className="date">
-          <p>{props.obj.deadline}</p>
+       
+      <div className="date">
+        <DateSelector date={props.obj.deadline}/>
         </div>
       </div>
     </div>
