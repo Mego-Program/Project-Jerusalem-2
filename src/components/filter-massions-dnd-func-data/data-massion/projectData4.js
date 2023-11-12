@@ -12,7 +12,7 @@ const ProjectData4 = [
       "assignee": "Judy Harris - Project 4",
       "milestone": "Bug Milestone - Project 4",
       "issue_type": "Bug"
-    },,
+    },
   
     {
       "id": "2",
@@ -26,7 +26,7 @@ const ProjectData4 = [
       "assignee": "Carl Benz - Project 4",
       "milestone": "Feature Milestone - Project 4",
       "issue_type": "Feature"
-    },,
+    },
   
     {
       "id": "3",
@@ -40,7 +40,7 @@ const ProjectData4 = [
       "assignee": "Monica Bellucci - Project 4",
       "milestone": "Enhancement Milestone - Project 4",
       "issue_type": "Enhancement"
-    },,
+    },
   
     {
       "id": "4",
@@ -54,7 +54,7 @@ const ProjectData4 = [
       "assignee": "Ethan Hunt - Project 4",
       "milestone": "Project Milestone - Project 4",
       "issue_type": "Project"
-    },,
+    },
   
     {
       "id": "5",
@@ -68,7 +68,7 @@ const ProjectData4 = [
       "assignee": "Diana Barry - Project 4",
       "milestone": "Campaign Milestone - Project 4",
       "issue_type": "Campaign"
-    },,
+    },
   
     {
       "id": "6",
@@ -82,7 +82,7 @@ const ProjectData4 = [
       "assignee": "Peter Parker - Project 4",
       "milestone": "Strategy Milestone - Project 4",
       "issue_type": "Strategy"
-    },,
+    },
   
     {
       "id": "7",
@@ -96,7 +96,7 @@ const ProjectData4 = [
       "assignee": "Lois Lane - Project 4",
       "milestone": "Security Milestone - Project 4",
       "issue_type": "Security"
-    },,
+    },
   
     {
       "id": "8",
@@ -110,7 +110,7 @@ const ProjectData4 = [
       "assignee": "Steve Rogers - Project 4",
       "milestone": "Training Milestone - Project 4",
       "issue_type": "Training"
-    },,
+    },
   
     {
       "id": "9",
@@ -124,7 +124,7 @@ const ProjectData4 = [
       "assignee": "Natasha Romanoff - Project 4",
       "milestone": "UI/UX Milestone - Project 4",
       "issue_type": "UI/UX"
-    },,
+    },
   
     {
       "id": "10",
@@ -138,7 +138,7 @@ const ProjectData4 = [
       "assignee": "Wanda Maximoff - Project 4",
       "milestone": "Task Milestone - Project 4",
       "issue_type": "Task"
-    },,
+    },
   
     {
       "id": "11",
@@ -152,7 +152,7 @@ const ProjectData4 = [
       "assignee": "Tony Halme - Project 4",
       "milestone": "Bug Milestone - Project 4",
       "issue_type": "Bug"
-    },,
+    },
   
     {
       "id": "12",
@@ -166,7 +166,7 @@ const ProjectData4 = [
       "assignee": "Peggy Carter - Project 4",
       "milestone": "Feature Milestone - Project 4",
       "issue_type": "Feature"
-    },,
+    },
   
     {
       "id": "13",
@@ -180,7 +180,7 @@ const ProjectData4 = [
       "assignee": "Bruce Banner - Project 4",
       "milestone": "Enhancement Milestone - Project 4",
       "issue_type": "Enhancement"
-    },,
+    },
   
     {
       "id": "14",
@@ -194,7 +194,7 @@ const ProjectData4 = [
       "assignee": "Jean Grey - Project 4",
       "milestone": "Project Milestone - Project 4",
       "issue_type": "Project"
-    },,
+    },
   
     {
       "id": "15",
@@ -208,7 +208,7 @@ const ProjectData4 = [
       "assignee": "Scott Summers - Project 4",
       "milestone": "Campaign Milestone - Project 4",
       "issue_type": "Campaign"
-    },,
+    },
   
     {
       "id": "16",
@@ -222,7 +222,7 @@ const ProjectData4 = [
       "assignee": "Nancy Carter - Project 4",
       "milestone": "Strategy Milestone - Project 4",
       "issue_type": "Strategy"
-    },,
+    },
   
     {
       "id": "17",
@@ -236,7 +236,7 @@ const ProjectData4 = [
       "assignee": "Gary Stewart - Project 4",
       "milestone": "Security Milestone - Project 4",
       "issue_type": "Security"
-    },,
+    },
   
     {
       "id": "18",
@@ -250,7 +250,7 @@ const ProjectData4 = [
       "assignee": "Rachel Evans - Project 4",
       "milestone": "Training Milestone - Project 4",
       "issue_type": "Training"
-    },,
+    },
   
     {
       "id": "19",
@@ -264,7 +264,7 @@ const ProjectData4 = [
       "assignee": "Anna Walker - Project 4",
       "milestone": "UI/UX Milestone - Project 4",
       "issue_type": "UI/UX"
-    },,
+    },
   
     {
       "id": "20",

@@ -10,20 +10,13 @@
     "preview": "vite preview"
   },
   "dependencies": {
-<<<<<<< HEAD
+    "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
     "@mui/icons-material": "^5.14.16",
     "@mui/lab": "^5.0.0-alpha.152",
     "@mui/material": "^5.14.17",
     "@mui/x-date-pickers": "^6.18.0",
     "dayjs": "^1.11.10",
-=======
-    "@emotion/react": "^11.11.1",
-    "@emotion/styled": "^11.11.0",
-    "@mui/icons-material": "^5.14.16",
-    "@mui/material": "^5.14.16",
-    "@mui/styled-engine": "^5.14.16",
->>>>>>> 4e992f4280db1db454816ef0ad9696d2ad834367
     "react": "^18.2.0",
     "react-dnd": "^16.0.1",
     "react-dnd-html5-backend": "^16.0.1",
