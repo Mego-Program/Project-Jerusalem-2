@@ -95,8 +95,8 @@ const ProjectData2 = [
     'deadline': '2023-009-009', 
     'status': 'Completed', 
     'category': 'Category', 
-    'assignee': 'Monica Bellucci - Project 2', 'milestone': 
-    'Milestone 8 - Project 2', 
+    'assignee': 'Monica Bellucci - Project 2', 
+    'milestone': 'Milestone 8 - Project 2', 
     'issue_type': 'Other'
 }, 
 {

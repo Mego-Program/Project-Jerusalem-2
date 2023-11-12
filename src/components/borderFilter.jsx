@@ -4,19 +4,11 @@ import FilterListIcon from '@mui/icons-material/FilterList';
 import './borderFilter.css';
 
 const borderFilterStyles = {
-<<<<<<< HEAD
   width: '100%',
   marginTop:'10vh',
   marginBottom:'5vh',
   height: '70px',
   background: '#121231', 
-=======
-  position: 'relative',
-  width: '100%',
-  height: '83px',
-  // top: '242px',
-  background: '#21213E', 
->>>>>>> 4e992f4280db1db454816ef0ad9696d2ad834367
   boxShadow: '0px 20px 70px rgba(86, 89, 146, 0.1)',
   borderRadius: '10px',
   display: 'flex',
