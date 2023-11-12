@@ -62,6 +62,17 @@ function filterStatus(data, DivStatus) {
     });
     setDataFiltered(newdata);
   }
+
+  function dueDate(date,id1){
+const newdata = DataFiltered.map((itemInData) => {
+      if (itemInData.id === id1) {
+        itemInData.deadline = date;
+      }
+      return itemInData; 
+    });
+    setDataFiltered(newdata);
+    console.log(DataFiltered);
+  }
   
 
 return (
@@ -78,10 +89,10 @@ return (
 {/* <Grid/> */}
 
     <div className='div-massions status-columns'>
-        <Show func={updateDND} datafiltered={filterStatus(DataFiltered, 'Not Started')} cat={'Not Started'} names={names} funcChange={changeAssignee}/>
-        <Show  func={updateDND}datafiltered={filterStatus(DataFiltered, 'In Progress')} cat={'In Progress'}   names={names} funcChange={changeAssignee}/>
-        <Show func={updateDND} datafiltered={filterStatus(DataFiltered, 'Completed')} cat={'Completed'}  names={names} funcChange={changeAssignee} />
-        <Show func={updateDND} datafiltered={filterStatus(DataFiltered, 'Close')} cat={'Close'}  names={names} funcChange={changeAssignee}/>
+        <Show func={updateDND} datafiltered={filterStatus(DataFiltered, 'Not Started')} cat={'Not Started'} names={names} funcChange={changeAssignee} dueDate={dueDate}/>
+        <Show  func={updateDND}datafiltered={filterStatus(DataFiltered, 'In Progress')} cat={'In Progress'}   names={names} funcChange={changeAssignee} dueDate={dueDate}/>
+        <Show func={updateDND} datafiltered={filterStatus(DataFiltered, 'Completed')} cat={'Completed'}  names={names} funcChange={changeAssignee} dueDate={dueDate}/>
+        <Show func={updateDND} datafiltered={filterStatus(DataFiltered, 'Close')} cat={'Close'}  names={names} funcChange={changeAssignee} dueDate={dueDate}/>
       </div>
  
 </div>
