@@ -12,7 +12,7 @@ const ProjectData3 = [
       "assignee": "Frank Wright - Project 3",
       "milestone": "Bug Milestone - Project 3",
       "issue_type": "Bug"
-    },,
+    },
   
     {
       "id": "2",
@@ -26,8 +26,7 @@ const ProjectData3 = [
       "assignee": "Judy Harris - Project 3",
       "milestone": "Feature Milestone - Project 3",
       "issue_type": "Feature"
-    },,
-  
+    },
     {
       "id": "3",
       "pic": "/project3-picture3.jpg",
@@ -40,7 +39,7 @@ const ProjectData3 = [
       "assignee": "Carl Benz - Project 3",
       "milestone": "Enhancement Milestone - Project 3",
       "issue_type": "Enhancement"
-    },,
+    },
   
     {
       "id": "4",
@@ -54,7 +53,7 @@ const ProjectData3 = [
       "assignee": "Monica Bellucci - Project 3",
       "milestone": "Project Milestone - Project 3",
       "issue_type": "Project"
-    },,
+    },
   
     {
       "id": "5",
@@ -68,7 +67,7 @@ const ProjectData3 = [
       "assignee": "Ethan Hunt - Project 3",
       "milestone": "Campaign Milestone - Project 3",
       "issue_type": "Campaign"
-    },,
+    },
   
     {
       "id": "6",
@@ -82,7 +81,7 @@ const ProjectData3 = [
       "assignee": "Diana Barry - Project 3",
       "milestone": "Strategy Milestone - Project 3",
       "issue_type": "Strategy"
-    },,
+    },
   
     {
       "id": "7",
@@ -96,7 +95,7 @@ const ProjectData3 = [
       "assignee": "Peter Parker - Project 3",
       "milestone": "Security Milestone - Project 3",
       "issue_type": "Security"
-    },,
+    },
   
     {
       "id": "8",
@@ -110,7 +109,7 @@ const ProjectData3 = [
       "assignee": "Lois Lane - Project 3",
       "milestone": "Training Milestone - Project 3",
       "issue_type": "Training"
-    },,
+    },
   
     {
       "id": "9",
@@ -124,7 +123,7 @@ const ProjectData3 = [
       "assignee": "Steve Rogers - Project 3",
       "milestone": "UI/UX Milestone - Project 3",
       "issue_type": "UI/UX"
-    },,
+    },
   
     {
       "id": "10",
@@ -138,7 +137,7 @@ const ProjectData3 = [
       "assignee": "Natasha Romanoff - Project 3",
       "milestone": "Task Milestone - Project 3",
       "issue_type": "Task"
-    },,
+    },
   
     {
       "id": "11",
@@ -152,7 +151,7 @@ const ProjectData3 = [
       "assignee": "Wanda Maximoff - Project 3",
       "milestone": "Bug Milestone - Project 3",
       "issue_type": "Bug"
-    },,
+    },
   
     {
       "id": "12",
@@ -166,7 +165,7 @@ const ProjectData3 = [
       "assignee": "Tony Halme - Project 3",
       "milestone": "Feature Milestone - Project 3",
       "issue_type": "Feature"
-    },,
+    },
   
     {
       "id": "13",
@@ -180,7 +179,7 @@ const ProjectData3 = [
       "assignee": "Peggy Carter - Project 3",
       "milestone": "Enhancement Milestone - Project 3",
       "issue_type": "Enhancement"
-    },,
+    },
   
     {
       "id": "14",
@@ -194,7 +193,7 @@ const ProjectData3 = [
       "assignee": "Bruce Banner - Project 3",
       "milestone": "Project Milestone - Project 3",
       "issue_type": "Project"
-    },,
+    },
   
     {
       "id": "15",
@@ -208,7 +207,7 @@ const ProjectData3 = [
       "assignee": "Jean Grey - Project 3",
       "milestone": "Campaign Milestone - Project 3",
       "issue_type": "Campaign"
-    },,
+    },
   
     {
       "id": "16",
@@ -222,7 +221,7 @@ const ProjectData3 = [
       "assignee": "Scott Summers - Project 3",
       "milestone": "Strategy Milestone - Project 3",
       "issue_type": "Strategy"
-    },,
+    },
   
     {
       "id": "17",
@@ -236,7 +235,7 @@ const ProjectData3 = [
       "assignee": "Nancy Carter - Project 3",
       "milestone": "Security Milestone - Project 3",
       "issue_type": "Security"
-    },,
+    },
   
     {
       "id": "18",
@@ -250,7 +249,7 @@ const ProjectData3 = [
       "assignee": "Gary Stewart - Project 3",
       "milestone": "Training Milestone - Project 3",
       "issue_type": "Training"
-    },,
+    },
   
     {
       "id": "19",
@@ -264,7 +263,7 @@ const ProjectData3 = [
       "assignee": "Rachel Evans - Project 3",
       "milestone": "UI/UX Milestone - Project 3",
       "issue_type": "UI/UX"
-    },,
+    },
   
     {
       "id": "20",

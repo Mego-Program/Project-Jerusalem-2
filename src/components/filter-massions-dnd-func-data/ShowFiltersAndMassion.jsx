@@ -1,11 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import './showData.css'
-import Data from './data-massion/data';
+
 import Inp from './input';
-import Options from './data-massion/lst-options';
+
 import Show from './massions-component/showMassion'
-import { Grid } from '@mui/material';
-import { DndProvider,useDrop } from 'react-dnd'
 
 
 
@@ -14,8 +12,14 @@ let obFilter = {'category':'', 'milestone':'','issue_type':'','assignee':''}
 
 // let DataFiltered = Data
 export default function DivFilters(props){
-const names =[... new Set(Data.map((obj) => ({ id: obj.id, name: obj.assignee })))]
+const names =[... new Set(props.projectData.map((obj) => ({ id: obj.id, name: obj.assignee })))]
 
+const Options = {
+  'category':[...(new Set(props.projectData.map((item)=>item.category)))],
+  'assignee':[...(new Set(props.projectData.map((item)=>item.assignee)))],
+  'milestone':[...(new Set (props.projectData.map((item)=>item.milestone)))],
+  'issue_type':[...(new Set(props.projectData.map((item)=>item.issue_type)))],
+}
 const [DataFiltered,setDataFiltered]=useState(props.projectData)
 
 useEffect(() => {
@@ -44,7 +48,7 @@ function changeAssignee(name,id1,close){
 
 function filterInput(filt){
     // filter the data with all the filters type at once
-    setDataFiltered(Data.filter((itm) => itm['category'].includes(filt['category'])
+    setDataFiltered(props.projectData.filter((itm) => itm['category'].includes(filt['category'])
     && itm['milestone'].includes(filt['milestone'])
     && itm['issue_type'].includes(filt['issue_type'])
     && itm['assignee'].includes(filt['assignee'])

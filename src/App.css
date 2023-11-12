@@ -8,12 +8,10 @@
 
 .status-column {
     flex: 1;
-<<<<<<< HEAD
+
     color: rgb(16, 16, 95);
     background: #121231;
-=======
-    background: #121231; /* שמור על הרקע הכהה */
->>>>>>> 4e992f4280db1db454816ef0ad9696d2ad834367
+
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -28,7 +26,7 @@
 
 .header {
     background-color: #21213E;
-<<<<<<< HEAD
+
     /* width: 70%;
     border-radius: 10px, 10px, 0px, 0px;
     margin-top: 10px ;
@@ -44,12 +42,12 @@ font-size: 14px;
 font-weight: 400;
 line-height: 21px;
 letter-spacing: 0em;
-=======
+
     width: 100%;
     border-radius: 10px 10px 0 0;
     margin-top: 10px;
     margin-bottom: 20px;
->>>>>>> 4e992f4280db1db454816ef0ad9696d2ad834367
+
     text-align: center;
     padding: 10px;
     font-family: Arial, sans-serif;
@@ -70,7 +68,7 @@ letter-spacing: 0em;
     margin: 10px;
 }
 
-<<<<<<< HEAD
+
 /* Mission card style */
 
 /* Styling for the avatar */
@@ -79,7 +77,7 @@ letter-spacing: 0em;
     height: 50px;
     border-radius: 50%;
 } */
-=======
+
 .mission-card {
     background: #21213E;
     border-radius: 5px;
@@ -110,4 +108,4 @@ letter-spacing: 0em;
     color: #999;
     font-size: 12px;
 }
->>>>>>> 4e992f4280db1db454816ef0ad9696d2ad834367
+
