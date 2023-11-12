@@ -2,10 +2,12 @@
 import React, { useState } from 'react';
 import DivFilters from './components/filter-massions-dnd-func-data/ShowFiltersAndMassion';
 
+
 import BorderFilter from './components/borderFilter';
 import './App.css';
 import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
+
 import ProjectData1 from './components/filter-massions-dnd-func-data/data-massion/projectData1'; 
 import ProjectData2 from './components/filter-massions-dnd-func-data/data-massion/projectData2'; 
 import ProjectData3 from './components/filter-massions-dnd-func-data/data-massion/projectData3';
@@ -24,6 +26,8 @@ function App() {
   const [currentProject, setCurrentProject] = useState('Project A');
   const [currentData, setCurrentData] = useState(projectDataMapping[currentProject]);
 
+
+
   const handleProjectChange = (projectName) => {
     setCurrentProject(projectName);
     setCurrentData(projectDataMapping[projectName]);
@@ -36,7 +40,6 @@ function App() {
         <DivFilters projectData={currentData} />
       </DndProvider>
     </div>
-  );
-}
+  );}
 
 export default App;

@@ -5,14 +5,15 @@ import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import Modal from '@mui/material/Modal';
 import Box from '@mui/material/Box';
+import './datePicker.css'
 import Typography from '@mui/material/Typography';
 import styled from '@emotion/styled';
+import dayjs from 'dayjs'; // Import dayjs
 
 function DateSelector(props) {
   const [isDatePickerOpen, setIsDatePickerOpen] = React.useState(false);
   const [position, setPosition] = React.useState({ top: 0, left: 0 });
-
-
+  const [selectedDate, setSelectedDate] = React.useState( null); // State to store the selected date
   const openDatePicker = (event) => {
     setIsDatePickerOpen(true);
     setPosition({
@@ -20,55 +21,76 @@ function DateSelector(props) {
       left: event.clientX,
     });
   };
-  const modalStyle = {
-    border: 'none', // Remove the modal border
+  const isdatevalid = (date) => {
+    return (dayjs(date).isAfter(corruntDay(), 'day')||dayjs(date).isSame(corruntDay(), 'day'))
+    &&dayjs(date).isValid()
+    && dayjs(date).year()<3000;
   };
+
 
   const closeDatePicker = () => {
     setIsDatePickerOpen(false);
   };
 
+  const handleDateChange = (date) => {
+    if (isdatevalid(date)) {
+      setSelectedDate((prevDate) => {
+        props.DueDate(dayjs(date).format('MMMM DD, YYYY'), props.id);
+        closeDatePicker();
+        return dayjs(date);
+      });
+    } else {
+      // Handle the case where the date format is invalid
+      console.error('Invalid date format:', date);
+    }
+  };
+  
+  const corruntDay=()=>dayjs()
+
   return (
     <div>
-      <p onClick={openDatePicker}>{props.date}</p>
+      <p onClick={openDatePicker}>{selectedDate?(dayjs(selectedDate).format('MMMM DD, YYYY')):props.date}</p>
       {isDatePickerOpen && (
         <Modal
-        
           open={isDatePickerOpen}
           onClose={closeDatePicker}
           aria-labelledby="date-picker-modal"
-
         >
           <Box
             sx={{
-
-              outline:0,
+              outline: 0,
+              color:'white',
               position: 'absolute',
               top: position.top,
               left: position.left,
               transform: 'translate(-50%, -50%)',
               width: 300,
-              fontSize:'30px'
+              fontSize: '30px',
             }}
             onMouseLeave={closeDatePicker}
           >
-            {/* <Typography variant="h6" id="date-picker-modal">
-            </Typography> */}
-            <LocalizationProvider dateAdapter={AdapterDayjs} >
+            <LocalizationProvider dateAdapter={AdapterDayjs}>
               <DatePicker
-              
-              sx={{background:'rgb(16, 16, 95)',borderRadius:'8px',color:'white'}}
-                label={props.date}
-                value={null}
-                onChange={(date) => {
-                  // Handle the selected date
-                  closeDatePicker();
+                sx={{ background: 'rgb(16, 16, 95)', borderRadius: '8px', color: 'white',"& .MuiInputLabel-root": {
+                  color: 'white', // Change placeholder text color
+                },".muiInputLabel":{color:'white'}
                 }}
+                label={props.date}
+                value={selectedDate} // Set the value to the selected date
+                shouldDisableDate={(date)=>!isdatevalid(date)}
+                onChange={(date) => {
+                  if(isdatevalid(date)){
+                  handleDateChange(date)}
+                }}
+                
+                
               />
             </LocalizationProvider>
           </Box>
         </Modal>
       )}
+        
+      
     </div>
   );
 }

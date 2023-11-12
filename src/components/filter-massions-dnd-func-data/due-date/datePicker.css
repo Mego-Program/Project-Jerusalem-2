@@ -1,0 +1,19 @@
+/* DatePickerStyles.css *
+/* Customize the day cell */
+.MuiPickersDay-day {
+    font-size: 14px; /* Change the font size */
+    background-color: white; /* Change the background color */
+  }
+  
+  /* Customize the selected day cell */
+  .MuiPickersDay-daySelected {
+    background-color: darkblue; /* Change the selected day background color */
+    color: white; /* Change the selected day text color */
+  }
+  
+  /* Customize the disabled day cell */
+  .MuiPickersDay-dayDisabled {
+    background-color: lightgray; /* Change the disabled day background color */
+    color: gray; /* Change the disabled day text color */
+  }
+  

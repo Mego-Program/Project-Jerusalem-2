@@ -1,7 +1,8 @@
 import React, { useState, useRef } from 'react';
 import { Avatar, List, ListItem, ListItemText, Modal, Typography, createTheme, ThemeProvider, Paper } from '@mui/material';
 import '../massions-component/showMassion.css';
-import Data from '../data-massion/data';
+// import Data from '../data-massion/data';
+
 
 
 
