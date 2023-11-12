@@ -16,9 +16,11 @@ let obFilter = {'category':'', 'milestone':'','issue_type':'','assignee':''}
 export default function DivFilters(props){
 const names =[... new Set(Data.map((obj) => ({ id: obj.id, name: obj.assignee })))]
 
-const [DataFiltered,setDataFiltered]=useState(Data)
+const [DataFiltered,setDataFiltered]=useState(props.projectData)
 
-
+useEffect(() => {
+  setDataFiltered(props.projectData);
+}, [props.projectData]);
 
 function handleObFilter(obFilter1,input,type){
     // change every filter value to the input
@@ -39,7 +41,7 @@ function changeAssignee(name,id1,close){
   close
 }
 
-// filter by txt( לשנות את ה includes)
+
 function filterInput(filt){
     // filter the data with all the filters type at once
     setDataFiltered(Data.filter((itm) => itm['category'].includes(filt['category'])
@@ -87,3 +89,4 @@ return (
 </div>
   );
 }
+
