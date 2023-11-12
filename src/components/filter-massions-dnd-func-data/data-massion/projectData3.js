@@ -27,6 +27,7 @@ const ProjectData3 = [
       "milestone": "Feature Milestone - Project 3",
       "issue_type": "Feature"
     },
+  
     {
       "id": "3",
       "pic": "/project3-picture3.jpg",

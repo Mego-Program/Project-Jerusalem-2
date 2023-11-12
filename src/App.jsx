@@ -14,9 +14,6 @@ import ProjectData3 from './components/filter-massions-dnd-func-data/data-massio
 import ProjectData4 from './components/filter-massions-dnd-func-data/data-massion/projectData4';  
 import ProjectData5 from './components/filter-massions-dnd-func-data/data-massion/projectData5';
 
- 
-
-
 const projectDataMapping = {
   'Project A': ProjectData1,
   'Project B': ProjectData2,
@@ -28,6 +25,7 @@ const projectDataMapping = {
 function App() {
   const [currentProject, setCurrentProject] = useState('Project A');
   const [currentData, setCurrentData] = useState(projectDataMapping[currentProject]);
+
 
 
   const handleProjectChange = (projectName) => {
@@ -42,6 +40,6 @@ function App() {
         <DivFilters projectData={currentData} />
       </DndProvider>
     </div>
-  );
- }
+  );}
+
 export default App;
