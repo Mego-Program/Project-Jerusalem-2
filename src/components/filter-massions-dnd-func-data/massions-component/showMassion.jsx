@@ -48,7 +48,7 @@ export default function Show(props) {
       <div className="mission-cont">
       {data.map((prop) => (
         <div key={prop.id} className={`massion ${prop.name + prop.id}`}>
-          <MassionCard obj={prop} names={props.names} missionId={prop.id} funcChange={props.funcChange} SueDate={props.DueDate}/>
+          <MassionCard obj={prop} names={props.names} missionId={prop.id} funcChange={props.funcChange} DueDate={props.dueDate}/>
         </div>
         
       ))}
