@@ -28,4 +28,14 @@
     color: #F6C927;
     margin-top: -10px; 
   }
-  
+
+
+.mission-card .header {
+  margin-bottom: -25px; 
+}
+
+
+.mission-card .text {
+  margin-top: 10px;
+  margin-left: 15px;
+}
