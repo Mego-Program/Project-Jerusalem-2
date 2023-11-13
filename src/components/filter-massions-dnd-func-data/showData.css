@@ -1,13 +1,11 @@
 
-
-.filters {
+ .filters {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* רספונסיביות עם רוחב מינימלי של 200px */
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); 
     grid-gap: 10px; 
-    margin-left: -2px;
-    
-}
-.Inp{
+}  
+
+.Inp {
     background-color: #007bff;
     color: #fff;
     padding: 15px 25px;
@@ -17,7 +15,6 @@
     text-align: center;
     white-space: nowrap;
     width: calc(100% - 20px); 
-    
 }
 
 @media (max-width: 768px) {
@@ -26,18 +23,8 @@
     }
 }
 
-/* .div-massions{
-    display: flex;
-    margin-top: 50px;
-    justify-content: space-between;
-    
-}
-.container{
-    align-content: space-around;
-    background-color: #121231;   
-}
-.massion{
-    box-shadow: 0px 20px 70px 0px #5659921A;
-    background: #21213E;
 
-} */
+
+
+
+  
