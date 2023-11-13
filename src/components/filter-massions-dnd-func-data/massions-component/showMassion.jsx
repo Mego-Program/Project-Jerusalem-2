@@ -8,17 +8,13 @@ export default function Show(props) {
   
   const data = props.datafiltered
   // make the drop erea 
-  const [{ isOver }, drop] = useDrop(() => ({
+  const [, drop] = useDrop({
     accept: "MASSION",
-    drop: (item) => {  
-      // using the prop function that updating the status according the drop erea status 
-        props.func(item.id, props.cat)
+    drop: (item) => {
+      // Update the state based on the drop action
+      props.func(item.id, props.cat);
     },
-
-    collect: (monitor) => ({
-      isOver: !!monitor.isOver(),
-    }),
-  }));
+  });
   
   // sum missions to display and set of colors  
   const sum = data.length;
@@ -52,7 +48,7 @@ export default function Show(props) {
       <div className="mission-cont">
       {data.map((prop) => (
         <div key={prop.id} className={`massion ${prop.name + prop.id}`}>
-          <MassionCard obj={prop} names={props.names} missionId={prop.id} funcChange={props.funcChange} DueDate={props.dueDate}/>
+          <MassionCard obj={prop} names={props.names} missionId={prop.id} funcChange={props.funcChange} SueDate={props.DueDate}/>
         </div>
         
       ))}
