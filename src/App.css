@@ -24,60 +24,6 @@
     margin-right: 0;
 }
 
-.header {
-    background-color: #21213E;
-
-    /* width: 70%;
-    border-radius: 10px, 10px, 0px, 0px;
-    margin-top: 10px ;
-    margin-bottom: 20px; */
-}
-.sum-massion{
-    border-radius:50%;
-    height:25px;
-    width:25px;
-    color: white;
-    font-family: Poppins;
-font-size: 14px;
-font-weight: 400;
-line-height: 21px;
-letter-spacing: 0em;
-
-    width: 100%;
-    border-radius: 10px 10px 0 0;
-    margin-top: 10px;
-    margin-bottom: 20px;
-
-    text-align: center;
-    padding: 10px;
-    font-family: Arial, sans-serif;
-    font-size: 18px;
-    font-weight: bold;
-    color: #fff;
-}
-
-.sum-massion {
-    border-radius: 50%;
-    height: 25px;
-    width: 25px;
-    font-size: 14px;
-    font-weight: 400;
-    line-height: 25px;
-    text-align: center;
-    background: #131331; /* שמור על הרקע הכהה */
-    margin: 10px;
-}
-
-
-/* Mission card style */
-
-/* Styling for the avatar */
-/* .mission-card .left-content svg {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-} */
-
 .mission-card {
     background: #21213E;
     border-radius: 5px;

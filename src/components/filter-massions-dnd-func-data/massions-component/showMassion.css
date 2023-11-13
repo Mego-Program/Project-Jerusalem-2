@@ -34,11 +34,15 @@
 .header{
   display: flex;
   align-items: center;
-  background-color: #121230;
+  background-color: #21213E;
+
 }
 .circle{
   margin-left: 5%;
   margin-right: 5%;
+  height: 2vh;
+  width: 2vh;
+  border-radius: 50%;
 }
 .status-name{
   color: white;
@@ -52,8 +56,15 @@
   margin-right: 0px;
   background-color: #121230;
 }
-/* .mission-cont{
-  display: flex;
-  flex-direction: column;
-  margin-right: -10px;
-} */
+.sum-massion {
+  border-radius: 50%;
+  height: 5vh;
+  width: 5vh;
+  font-size: 14px;
+  font-weight: 100;
+  line-height: 5vh;
+  text-align: center;
+  background: #131331; 
+  font-family: Arial, sans-serif;
+  color: #fff;
+}
