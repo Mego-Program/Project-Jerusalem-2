@@ -3,25 +3,39 @@
     border-radius: 5px;
     display: flex;
     align-items: center;
-    width: 21vw;
-    margin:10px 10px 0px 0px;
-}
-.text{
-flex-direction: column;
-}
-/* Styling for the text */
-.mission-card .middle-content .header {
-    font-weight: bold;
-}
-.mission-card .header{
-    color: #F6C927;
-}
-.mission-card .middle-content .content {
-    color:white;
-}
-
-/* Styling for the date */
-.mission-card .date {
+    width: 20vw;
+    height: 15vh;
+    margin: 5px 5px 10px 0px;
+    color: beige;
+    padding: 10px;
+  }
+  
+  .mission-card .text {
+    color: white;
+    flex: 1;
+    margin-right: 20px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+  
+  .mission-card .date {
     color: #999;
     font-size: 12px;
+  }
+  
+  .mission-card .header {
+    color: #F6C927;
+    margin-top: -10px; 
+  }
+
+
+.mission-card .header {
+  margin-bottom: -25px; 
+}
+
+
+.mission-card .text {
+  margin-top: 10px;
+  margin-left: 15px;
 }
