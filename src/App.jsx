@@ -29,7 +29,7 @@ function App() {
 
 
   const handleProjectChange = (projectName) => {
-    setCurrentProject(projectName);
+    setCurrentProject((prev)=>{return projectName});
     setCurrentData(projectDataMapping[projectName]);
   };
 
