@@ -1,13 +1,11 @@
 // App.jsx
 import React, { useState } from 'react';
 import DivFilters from './components/filter-massions-dnd-func-data/ShowFiltersAndMassion';
-
-
 import BorderFilter from './components/borderFilter';
 import './App.css';
 import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
-
+import AddBoard from './components/add board/addBoard';
 import ProjectData1 from './components/filter-massions-dnd-func-data/data-massion/projectData1'; 
 import ProjectData2 from './components/filter-massions-dnd-func-data/data-massion/projectData2'; 
 import ProjectData3 from './components/filter-massions-dnd-func-data/data-massion/projectData3';
@@ -36,6 +34,7 @@ function App() {
   return (
     <div>
       <BorderFilter onProjectChange={handleProjectChange} />
+      <AddBoard/>
       <DndProvider backend={HTML5Backend}>
         <DivFilters projectData={currentData} />
       </DndProvider>
