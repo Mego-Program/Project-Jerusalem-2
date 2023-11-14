@@ -12,7 +12,6 @@ import axios from 'axios'
 function App() {
   // states for list boards, current board and data
   const [listBoards,setListBoards]=useState(null)
-  const [currentProject, setCurrentProject] = useState('project1');
   const [currentData, setCurrentData] = useState(null);
 
 // use effect in loop until board list is exsist
