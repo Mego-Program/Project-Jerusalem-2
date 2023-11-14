@@ -1,5 +1,5 @@
 // App.jsx
-import React, { useState } from 'react';
+import React, {useEffect, useState } from 'react';
 import DivFilters from './components/filter-massions-dnd-func-data/ShowFiltersAndMassion';
 import BorderFilter from './components/borderFilter';
 import './App.css';
@@ -9,40 +9,57 @@ import AddBoard from './components/add board/addBoard';
 import axios from 'axios'
 
 
-
-import ProjectData1 from './components/filter-massions-dnd-func-data/data-massion/projectData1'; 
-import ProjectData2 from './components/filter-massions-dnd-func-data/data-massion/projectData2'; 
-import ProjectData3 from './components/filter-massions-dnd-func-data/data-massion/projectData3';
-import ProjectData4 from './components/filter-massions-dnd-func-data/data-massion/projectData4';  
-import ProjectData5 from './components/filter-massions-dnd-func-data/data-massion/projectData5';
-
-const projectDataMapping = {
-  'Project A': ProjectData1,
-  'Project B': ProjectData2,
-  'Project C': ProjectData3,
-  'Project D': ProjectData4,
-  'Project E': ProjectData5, 
-};
-
-
-// 
-
-
 function App() {
-  const listProjects = ['Project1','Project2','Projects','ProjectD','ProjectE']
-  const [currentProject, setCurrentProject] = useState('Project A');
-  const [currentData, setCurrentData] = useState(projectDataMapping[currentProject]);
+  // states for list boards, current board and data
+  const [listBoards,setListBoards]=useState(null)
+  const [currentData, setCurrentData] = useState(null);
+
+// use effect in loop until board list is exsist
+  useEffect(() => {
+    const getDataBoards = async () => {
+      console.log('wait to the data to load');
+      try {
+        const response = await axios.get('http://127.0.0.1:3000/projects/listOfProjects');
+        setListBoards(response.data);
+      } catch (error) {
+        console.log('list not loading:', error);
+      }
+    };
+  
+    // Call getDataBoards once when the component mounts
+    getDataBoards();
+  }, []);
+  // use effect in loop until the data load
+  useEffect(() => {
+    // start the currwnt board an the first one 
+    const firstBoard =  listBoards && listBoards.length > 0 ? listBoards[0] : null;
+    async function fetchData() {
+      try {
+        const response = await axios.get(`http://127.0.0.1:3000/projects/${firstBoard}`);
+        setCurrentData(response.data);
+      } catch (error) {
+        console.error('Error fetching project data:', error);
+      }
+    }
+  
+    // Check if currentProject is not null before making the API call
+    if (firstBoard !== null) {
+      fetchData();
+    }
+  }, [listBoards]);
+  // sow somthing before data and board list are load
+  if (currentData === null||listBoards===null) {
+    return <div>Loading...</div>;
+  }
 // request to fetch the project needed
 async function fetchProjectData (projectName){
   try {
     const response = await axios.get(`http://127.0.0.1:3000/projects/${projectName}`);
-    console.log(projectName);
     setCurrentData(response.data)
   } catch (error) {
     console.error('Error fetching project data:', error);
   }
 };
-
 
 async function addBoard(name) {
   try {
@@ -65,23 +82,9 @@ async function addBoard1(name) {
 }
 
 
-
-
-function addNewBoard(name){
-const newP = []
-  projectDataMapping[name] = newP
-  listProjects.push(name)
-}
-
-  const handleProjectChange = (projectName) => {
-    
-    setCurrentProject((prev)=>{return projectName});
-    setCurrentData(projectDataMapping[projectName]);
-  };
-
   return (
     <div>
-      <BorderFilter onProjectChange={fetchProjectData} listProjects={listProjects} />
+      <BorderFilter onProjectChange={fetchProjectData} listProjects={listBoards} />
       <AddBoard func={addBoard1}/>
       <DndProvider backend={HTML5Backend}>
         <DivFilters projectData={currentData} />

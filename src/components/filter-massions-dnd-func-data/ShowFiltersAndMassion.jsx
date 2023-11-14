@@ -10,6 +10,7 @@ import Show from './massions-component/showMassion'
 let obFilter = {'category':'', 'milestone':'','issue_type':'','assignee':''}
 
 export default function DivFilters(props){
+  
 
 const names =[... new Set(props.projectData.map((obj) => ({ id: obj.id, name: obj.assignee })))]
 const [DataFiltered,setDataFiltered]=useState([...props.projectData])
@@ -25,6 +26,7 @@ useEffect(() => {
   setDataFiltered(props.projectData);
   resetFilters();
 }, [props.projectData]);
+
 // reset the filter every project change
 const [dummyState, setDummyState] = useState(false);
 function resetFilters() {
@@ -114,4 +116,3 @@ return (
 </div>
   );
 }
-
