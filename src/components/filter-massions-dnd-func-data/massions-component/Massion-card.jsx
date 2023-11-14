@@ -32,7 +32,7 @@ export default function MassionCard(props) {
       <p>{props.obj.content}</p>
     </div>
   <div className="date">
-    <DateSelector date={props.obj.deadline} DueDate={props.DueDate} id={props.obj.id} />
+    <DateSelector date={props.obj.deadline} DueDate={props.DueDate} id={props.obj.id}/>
   </div>
   </div>
 </div>

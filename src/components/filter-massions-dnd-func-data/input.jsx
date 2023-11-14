@@ -3,7 +3,7 @@ import OutlinedInput from '@mui/material/OutlinedInput';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
-// import './input.css';
+import './input.css';
 
 
 
@@ -16,11 +16,10 @@ const customStyles = {
     width: '24vw',
     background: '#121231',
     color: 'white',
-    // fontFamily: 'Poppins',
+
 fontSize: '14px',
 fontWeight: '300',
 lineHeight: '21px',
-letterSpacing: '5%',
 textAlign: 'left',
 
   },
@@ -40,7 +39,7 @@ export default function Inp(props) {
     } = event;
 
     setFilterName(value);
-    props.func(props.filters, value, props.type);
+    props.func(value, props.type);
   };
 
   return (

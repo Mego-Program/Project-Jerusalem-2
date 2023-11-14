@@ -49,7 +49,7 @@ function DateSelector(props) {
 
   return (
     <div>
-      <p onClick={openDatePicker}>{selectedDate?(dayjs(selectedDate).format('MMMM DD, YYYY')):props.date}</p>
+      <p onClick={openDatePicker} style={{cursor:'pointer'}}>{selectedDate?(dayjs(selectedDate).format('MMMM DD, YYYY')):props.date}</p>
       {isDatePickerOpen && (
         <Modal
           open={isDatePickerOpen}

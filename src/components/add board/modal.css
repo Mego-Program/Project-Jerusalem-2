@@ -1,0 +1,19 @@
+.btns{
+    margin-top: 20px;
+}
+input{
+    width: 19vw;
+    height: 8vh;
+    font-size:4vh;
+    color: white;
+    border: none;
+}
+
+.btns>button{
+    background-color: #121231;
+    height: 5vh;
+    width: 8vw;
+    color: white;
+    border: none;
+    box-shadow: 0 2px 9px #121231
+}
