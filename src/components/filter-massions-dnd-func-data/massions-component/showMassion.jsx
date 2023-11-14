@@ -2,6 +2,7 @@ import MassionCard from "./Massion-card";
 import { useDrop } from "react-dnd";
 import "./showMassion.css";
 import { Paper } from "@mui/material";
+import AddTaskButton from "../../AddTaskButton.js";
 
 
 export default function Show(props) {
@@ -46,6 +47,9 @@ export default function Show(props) {
   <p className="status-name" style={{ flex: '0 1 auto' }}>{props.cat}</p>
   <div className="sum-massion" style={{ marginLeft: 'auto', marginRight:'3%', textAlign:'center' }}>{sum}</div>
 </div></div>
+<div className="add_task">
+  <AddTaskButton/>
+</div>
 
       </div>
       <div className="mission-cont">

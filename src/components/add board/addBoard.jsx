@@ -22,7 +22,7 @@ import { useState } from 'react';
       </svg>
     );
      
-    export default function AddBoard(){
+    export default function AddBoard(props){
         const [isModalOpen, setModalOpen] = useState(false);
 
   const addNewBoard = () => {
@@ -30,7 +30,7 @@ import { useState } from 'react';
     setModalOpen(true);
   };
   function handleNewBoard(input){
-    console.log(input);
+    props.func(input)
   }
 
   const closeModal = () => {
