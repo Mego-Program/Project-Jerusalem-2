@@ -7,9 +7,16 @@ import AddTaskButton from "../../AddTaskButton.js";
 
 export default function Show(props) {
   
-  const data = props.datafiltered
-  // make the drop erea 
- 
+
+  const data = props.datafiltered;
+  
+  // Function to handle new task data
+  const handleNewTask = (taskData) => {
+    setNewTaskData(taskData);
+  
+    // add info of DB to store new task data 
+  };
+
   const [{ isOver }, drop] = useDrop({
     accept: "MASSION",
     drop: (item) => {
