@@ -45,8 +45,9 @@ const iconCircleStyles = {
 
 
 // onProjectChange prop is passed from the App component
-const BorderFilter = ({ onProjectChange ,listProjects}) => {
-  const projects = listProjects
+const BorderFilter =({ onProjectChange ,listProjects}) => {
+  
+  const projects =listProjects
   const [selectedProject, setSelectedProject] = useState(projects[0]);
   const [anchorEl, setAnchorEl] = useState(null);
 
@@ -95,3 +96,4 @@ const BorderFilter = ({ onProjectChange ,listProjects}) => {
 };
 
 export default BorderFilter;
+
