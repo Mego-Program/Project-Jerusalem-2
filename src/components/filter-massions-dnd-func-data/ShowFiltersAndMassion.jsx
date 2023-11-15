@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './showData.css'
-
+import axios from 'axios';
 import Inp from './input';
 
 import Show from './massions-component/showMassion'
@@ -13,6 +13,7 @@ export default function DivFilters(props){
   
 
 const names =[... new Set(props.projectData.map((obj) => ({ id: obj.id, name: obj.assignee })))]
+
 const [DataFiltered,setDataFiltered]=useState([...props.projectData])
 
 const Options = {
@@ -37,12 +38,25 @@ function resetFilters() {
 function handleObFilter(input,type){
     // change every filter value to the input
     obFilter[type]=input
-    console.log(obFilter);
     filterInput(obFilter)
     // filterInput(obFilter1)
     
 }
+
+// function to update missions
+async function updatefields(id,field,update){
+const url = `http://127.0.0.1:3000/changeMission/${props.collection}/${field}`
+try{
+const respone = await axios.post(url , {id,update })
+}
+catch(error){console.log('error while update-'+id+':'+error);}
+}
+// get the right collection name
+
+
 function changeAssignee(name,id1,close){
+  updatefields(id1,'assignee',name)
+// function to update the assignee
   const newdata = DataFiltered.map((itemInData) => {
     if (itemInData.id === id1) {
       itemInData.assignee = name;
@@ -70,6 +84,7 @@ function filterStatus(data, DivStatus) {
   }
 //   function to update the status object that been draging
   function updateDND(id1, stat) {
+    updatefields(id1,'status',stat)
     const newdata = DataFiltered.map((itemInData) => {
       if (itemInData.id === id1) {
         itemInData.status = stat;
@@ -83,6 +98,7 @@ function filterStatus(data, DivStatus) {
   }
 
   function dueDate(date,id1){
+    updatefields(id1,'deadline',date)
 const newdata = DataFiltered.map((itemInData) => {
       if (itemInData.id === id1) {
         itemInData.deadline = date;
