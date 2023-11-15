@@ -1,4 +1,3 @@
-// App.jsx
 import React, {useEffect, useState } from 'react';
 import DivFilters from './components/filter-massions-dnd-func-data/ShowFiltersAndMassion';
 import BorderFilter from './components/borderFilter';
@@ -12,7 +11,9 @@ import axios from 'axios'
 function App() {
   // states for list boards, current board and data
   const [listBoards,setListBoards]=useState(null)
+  const [currentProject,setCurrentProject]=useState(null)
   const [currentData, setCurrentData] = useState(null);
+// 
 
 // use effect in loop until board list is exsist
   useEffect(() => {
@@ -21,13 +22,16 @@ function App() {
       try {
         const response = await axios.get('http://127.0.0.1:3000/projects/listOfProjects');
         setListBoards(response.data);
+        setCurrentProject(listBoards && listBoards.length > 0 ? listBoards[0] : null)
+        console.log(currentProject);
       } catch (error) {
         console.log('list not loading:', error);
       }
     };
-  
+      getDataBoards();
+    
     // Call getDataBoards once when the component mounts
-    getDataBoards();
+    
   }, []);
   // use effect in loop until the data load
   useEffect(() => {
@@ -56,6 +60,7 @@ async function fetchProjectData (projectName){
   try {
     const response = await axios.get(`http://127.0.0.1:3000/projects/${projectName}`);
     setCurrentData(response.data)
+    setCurrentProject(projectName)
   } catch (error) {
     console.error('Error fetching project data:', error);
   }
@@ -87,7 +92,7 @@ async function addBoard1(name) {
       <BorderFilter onProjectChange={fetchProjectData} listProjects={listBoards} />
       <AddBoard func={addBoard1}/>
       <DndProvider backend={HTML5Backend}>
-        <DivFilters projectData={currentData} />
+        <DivFilters projectData={currentData} collection={currentProject} />
       </DndProvider>
       
     </div>
