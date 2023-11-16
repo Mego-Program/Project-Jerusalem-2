@@ -9,6 +9,7 @@ import axios from 'axios'
 
 
 function App() {
+  
   // states for list boards, current board and data
   const [listBoards,setListBoards]=useState(null)
   const [currentProject,setCurrentProject]=useState(null)
@@ -22,8 +23,7 @@ function App() {
       try {
         const response = await axios.get('http://127.0.0.1:3000/projects/listOfProjects');
         setListBoards(response.data);
-        setCurrentProject(listBoards && listBoards.length > 0 ? listBoards[0] : null)
-        console.log(currentProject);
+        setCurrentProject(listBoards[0])
       } catch (error) {
         console.log('list not loading:', error);
       }
@@ -36,10 +36,11 @@ function App() {
   // use effect in loop until the data load
   useEffect(() => {
     // start the currwnt board an the first one 
-    const firstBoard =  listBoards && listBoards.length > 0 ? listBoards[0] : null;
+    const firstBoard =  'Project_A'
+    setCurrentProject(firstBoard)
     async function fetchData() {
       try {
-        const response = await axios.get(`http://127.0.0.1:3000/projects/${firstBoard}`);
+        const response = await axios.get(`http://127.0.0.1:3000/projects/${currentProject}`);
         setCurrentData(response.data);
       } catch (error) {
         console.error('Error fetching project data:', error);
@@ -65,6 +66,7 @@ async function fetchProjectData (projectName){
     console.error('Error fetching project data:', error);
   }
 };
+
 
 async function addBoard(name) {
   try {
