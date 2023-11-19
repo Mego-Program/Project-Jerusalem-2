@@ -2,20 +2,27 @@ import React, { useState, useEffect } from 'react';
 import './showData.css'
 import axios from 'axios';
 import Inp from './input';
-
 import Show from './massions-component/showMassion'
+import { Login } from '@mui/icons-material';
 
 
-
+// -----------------bug: when new itm show it doens get id from mongo deb until the reload the page---------
+let serverBaseUrl
+if (process.env.NODE_ENV === 'development') {
+  // אם הקוד רץ בסביבת פיתוח, השתמש בשרת הלוקאלי
+  serverBaseUrl = 'http://localhost:3000/';
+} else {
+  // אחרת, השתמש בשרת הרשמי
+  serverBaseUrl = 'https://project-jerusalem-2-server.vercel.app/';
+}
 let obFilter = {'category':'', 'milestone':'','issue_type':'','assignee':''}
 
 export default function DivFilters(props){
   
 
-const names =[... new Set(props.projectData.map((obj) => ({ id: obj.id, name: obj.assignee })))]
+const names = props.names
 
 const [DataFiltered,setDataFiltered]=useState([...props.projectData])
-
 const Options = {
   'category':[...(new Set(props.projectData.map((item)=>item.category)))],
   'assignee':[...(new Set(props.projectData.map((item)=>item.assignee)))],
@@ -45,21 +52,12 @@ function handleObFilter(input,type){
 
 // function to update missions
 async function updatefields(id, field, update) {
-  const url = `http://127.0.0.1:3000/projects/post/${props.collection}/${field}`;
+  const url = `${serverBaseUrl}projects/post/${props.collection}/${field}`;
 
   try {
     const response = await axios.post(url, { id, update })
     // Check if the condition is met
-    if (update === response.data) {
-      console.log('Condition met. Stop retrying.');
-      return;
-    }
 
-    // If the condition is not met, retry after a delay
-    console.log('Condition not met. Retrying...');
-    setTimeout(() => {
-      updatefields(id, field, update);
-    }, 1000); // Adjust the delay (in milliseconds) as needed
   } catch (error) {
     console.log('Error while updating:', error);
 
@@ -68,14 +66,21 @@ async function updatefields(id, field, update) {
 }
 
 
-// get the right collection name
+async function deleteFunc(id){
+  try{
+const respone = await axios.post(`${serverBaseUrl}projects/delete/${props.collection}`,{id})
+  }catch(error){console.log('error while delete mission:',error);}
+  const newdata = DataFiltered.filter((itemInData) => {return itemInData._id!==id})
+setDataFiltered((prev)=>prev=newdata);
+
+}
 
 
 function changeAssignee(name,id1,close){
   updatefields(id1,'assignee',name)
 // function to update the assignee
   const newdata = DataFiltered.map((itemInData) => {
-    if (itemInData.id === id1) {
+    if (itemInData._id === id1) {
       itemInData.assignee = name;
     }
     return itemInData; 
@@ -87,7 +92,7 @@ function changeAssignee(name,id1,close){
 function filterInput(filt) {
   // filter the data with all the filters type at once
   setDataFiltered(
-      props.projectData.filter((itm) => 
+      DataFiltered.filter((itm) => 
           (filt['category'] ? itm['category'].includes(filt['category']) : true) &&
           (filt['milestone'] ? itm['milestone'].includes(filt['milestone']) : true) &&
           (filt['issue_type'] ? itm['issue_type'].includes(filt['issue_type']) : true) &&
@@ -103,7 +108,7 @@ function filterStatus(data, DivStatus) {
   function updateDND(id1, stat) {
     updatefields(id1,'status',stat)
     const newdata = DataFiltered.map((itemInData) => {
-      if (itemInData.id === id1) {
+      if (itemInData._id === id1) {
         itemInData.status = stat;
       }
       return itemInData; 
@@ -117,14 +122,29 @@ function filterStatus(data, DivStatus) {
   function dueDate(date,id1){
     updatefields(id1,'deadline',date)
 const newdata = DataFiltered.map((itemInData) => {
-      if (itemInData.id === id1) {
+      if (itemInData._id === id1) {
         itemInData.deadline = date;
       }
       return itemInData; 
     });
     setDataFiltered(newdata);
   }
-  
+async function addTask(data){
+  try{
+  const response = await axios.post(`${serverBaseUrl}projects/addMission/${props.collection}`,data)
+
+}catch(error){console.log('error while add new task:',error);}
+// reload the data to get the new itm with it id 
+async function fetchData(){
+  try {
+    const response = await axios.get(`${serverBaseUrl}projects/${props.collection}`);
+    setDataFiltered(response.data)
+  } catch (error) {
+    console.error('Error fetching project data:', error);
+  }}
+  fetchData()
+  }
+
 
 return (
     <div>
@@ -140,10 +160,10 @@ return (
 {/* <Grid/> */}
 
     <div className='div-massions status-columns'>
-        <Show  func={updateDND} datafiltered={filterStatus(DataFiltered, 'Not Started')} cat={'Not Started'} names={names} funcChange={changeAssignee} dueDate={dueDate}/>
-        <Show  func={updateDND}datafiltered={filterStatus(DataFiltered, 'In Progress')} cat={'In Progress'}   names={names} funcChange={changeAssignee} dueDate={dueDate}/>
-        <Show func={updateDND} datafiltered={filterStatus(DataFiltered, 'Completed')} cat={'Completed'}  names={names} funcChange={changeAssignee} dueDate={dueDate}/>
-        <Show func={updateDND} datafiltered={filterStatus(DataFiltered, 'Close')} cat={'Close'}  names={names} funcChange={changeAssignee} dueDate={dueDate}/>
+        <Show  func={updateDND} datafiltered={filterStatus(DataFiltered, 'Not Started')} cat={'Not Started'} names={names} funcChange={changeAssignee} dueDate={dueDate} addTask ={addTask} deleteFunc={deleteFunc}/>
+        <Show  func={updateDND}datafiltered={filterStatus(DataFiltered, 'In Progress')} cat={'In Progress'}   names={names} funcChange={changeAssignee} dueDate={dueDate} addTask ={addTask} deleteFunc={deleteFunc}/>
+        <Show func={updateDND} datafiltered={filterStatus(DataFiltered, 'Completed')} cat={'Completed'}  names={names} funcChange={changeAssignee} dueDate={dueDate} addTask ={addTask} deleteFunc={deleteFunc}/>
+        <Show func={updateDND} datafiltered={filterStatus(DataFiltered, 'Close')} cat={'Close'}  names={names} funcChange={changeAssignee} dueDate={dueDate} addTask ={addTask} deleteFunc={deleteFunc}/>
       </div>
  
 </div>
