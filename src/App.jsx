@@ -8,15 +8,17 @@ import AddBoard from './components/add board/addBoard';
 import axios from 'axios';
 
 function App() {
-  const [listBoards, setListBoards] = useState(null);
-  const [currentProject, setCurrentProject] = useState(null);
+  
+  // states for list boards, current board and data
+  const [listBoards,setListBoards]=useState(null)
+  const [currentProject,setCurrentProject]=useState(null)
   const [currentData, setCurrentData] = useState(null);
 
   let serverBaseUrl;
 
   if (process.env.NODE_ENV === 'development') {
     // אם הקוד רץ בסביבת פיתוח, השתמש בשרת הלוקאלי
-    serverBaseUrl = 'http://localhost:5173/';
+    serverBaseUrl = 'http://localhost:3000/';
   } else {
     // אחרת, השתמש בשרת הרשמי
     serverBaseUrl = 'https://project-jerusalem-2-server.vercel.app/';
@@ -28,20 +30,21 @@ function App() {
       try {
         const response = await axios.get(`${serverBaseUrl}projects/listOfProjects`);
         setListBoards(response.data);
-        setCurrentProject(listBoards && listBoards.length > 0 ? listBoards[0] : null);
-        console.log(currentProject);
+        setCurrentProject(listBoards[0])
       } catch (error) {
         console.log('List not loading:', error);
       }
     };
     getDataBoards();
-  }, [listBoards]);
+  }, []);
 
   useEffect(() => {
-    const firstBoard = listBoards && listBoards.length > 0 ? listBoards[0] : null;
+    // start the currwnt board an the first one 
+    const firstBoard =  'Project_A'
+    setCurrentProject(firstBoard)
     async function fetchData() {
       try {
-        const response = await axios.get(`${serverBaseUrl}projects/${firstBoard}`);
+        const response = await axios.get(`${serverBaseUrl}projects/${currentProject}`);
         setCurrentData(response.data);
       } catch (error) {
         console.error('Error fetching project data:', error);

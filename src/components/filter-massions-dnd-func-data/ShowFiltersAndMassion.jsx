@@ -25,8 +25,8 @@ const Options = {
 // handle every project change
 useEffect(() => {
   setDataFiltered(props.projectData);
-  resetFilters();
-}, [props.projectData]);
+  resetFilters()
+} ,[props.projectData]);
 
 // reset the filter every project change
 const [dummyState, setDummyState] = useState(false);
@@ -44,13 +44,30 @@ function handleObFilter(input,type){
 }
 
 // function to update missions
-async function updatefields(id,field,update){
-const url = `http://127.0.0.1:3000/changeMission/${props.collection}/${field}`
-try{
-const respone = await axios.post(url , {id,update })
+async function updatefields(id, field, update) {
+  const url = `http://127.0.0.1:3000/projects/post/${props.collection}/${field}`;
+
+  try {
+    const response = await axios.post(url, { id, update })
+    // Check if the condition is met
+    if (update === response.data) {
+      console.log('Condition met. Stop retrying.');
+      return;
+    }
+
+    // If the condition is not met, retry after a delay
+    console.log('Condition not met. Retrying...');
+    setTimeout(() => {
+      updatefields(id, field, update);
+    }, 1000); // Adjust the delay (in milliseconds) as needed
+  } catch (error) {
+    console.log('Error while updating:', error);
+
+    // Handle errors or stop retrying after a certain number of attempts
+  }
 }
-catch(error){console.log('error while update-'+id+':'+error);}
-}
+
+
 // get the right collection name
 
 
