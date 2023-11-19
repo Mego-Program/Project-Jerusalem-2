@@ -13,7 +13,7 @@
   .mission-card .text {
     color: white;
     flex: 1;
-    margin-right: 20px;
+    /* margin-right: 20px; */
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
@@ -38,4 +38,8 @@
 .mission-card .text {
   margin-top: 10px;
   margin-left: 15px;
+}
+.delete{
+position: relative;
+margin-top: 30%;  
 }

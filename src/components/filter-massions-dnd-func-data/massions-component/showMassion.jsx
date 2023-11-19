@@ -3,6 +3,7 @@ import { useDrop } from "react-dnd";
 import "./showMassion.css";
 import { Paper } from "@mui/material";
 import AddTaskButton from "../../AddTaskButton.js";
+import axios from "axios";
 
 
 export default function Show(props) {
@@ -11,10 +12,10 @@ export default function Show(props) {
   const data = props.datafiltered;
   
   // Function to handle new task data
-  const handleNewTask = (taskData) => {
-    setNewTaskData(taskData);
-  
-    // add info of DB to store new task data 
+  const handleNewTask = (data) => {
+    data.status=props.cat 
+    data.assignee=''
+      props.addTask(data)
   };
 
   const [{ isOver }, drop] = useDrop({
@@ -26,7 +27,7 @@ export default function Show(props) {
       isOver: !!monitor.isOver(),
     }),
   });
-  
+
   // sum missions to display and set of colors  
   const sum = data.length;
   const colorset = {
@@ -55,14 +56,14 @@ export default function Show(props) {
   <div className="sum-massion" style={{ marginLeft: 'auto', marginRight:'3%', textAlign:'center' }}>{sum}</div>
 </div></div>
 <div className="add_task">
-  <AddTaskButton/>
+  <AddTaskButton func = {handleNewTask} />
 </div>
 
       </div>
       <div className="mission-cont">
       {data.map((prop) => (
-        <div key={prop.id} className={`massion ${prop.name + prop.id}`}>
-          <MassionCard obj={prop} names={props.names} missionId={prop.id} funcChange={props.funcChange} DueDate={props.dueDate}/>
+        <div key={prop._id} className={`massion ${prop.name + prop._id}`}>
+          <MassionCard obj={prop} names={props.names} missionId={prop._id} funcChange={props.funcChange} DueDate={props.dueDate} deleteFunc={props.deleteFunc}/>
         </div>
         
       ))}

@@ -6,6 +6,8 @@ import AssigneeSelector from "../change assigne/ChangeAsignee";
 import DateSelector from "../due-date/DatePicker";
 import './massion-card.css'
 import axios from "axios";
+import DeleteMission from "./deleteMission";
+
 
 
 export default function MassionCard(props) {
@@ -13,12 +15,11 @@ export default function MassionCard(props) {
 
   const [{ isDraging }, drag] = useDrag(() => ({
     type: "MASSION",
-    item: { massion: props.obj.status, id: props.obj.id },
+    item: { massion: props.obj.status, id: props.missionId},
     collect: (monitor) => ({
       isDraging: !!monitor.isDragging(),
     }),
   }));
-
 
 
   return (
@@ -34,8 +35,11 @@ export default function MassionCard(props) {
       <p>{props.obj.content}</p>
     </div>
   <div className="date">
-    <DateSelector date={props.obj.deadline} DueDate={props.DueDate} id={props.obj.id}/>
+    <DateSelector date={props.obj.deadline} DueDate={props.DueDate} id={props.missionId}/>
   </div>
+  </div>
+  <div className="delete" >
+    <DeleteMission deleteFunc={props.deleteFunc} id={props.missionId}/>
   </div>
 </div>
 

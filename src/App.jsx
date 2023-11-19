@@ -7,12 +7,16 @@ import { HTML5Backend } from 'react-dnd-html5-backend';
 import AddBoard from './components/add board/addBoard';
 import axios from 'axios';
 
+
 function App() {
-  
+
+  // consider make new collection for the assignee options
   // states for list boards, current board and data
   const [listBoards,setListBoards]=useState(null)
   const [currentProject,setCurrentProject]=useState(null)
   const [currentData, setCurrentData] = useState(null);
+  const [names,setNames] = useState([])
+  
 
   let serverBaseUrl;
 
@@ -23,14 +27,14 @@ function App() {
     // אחרת, השתמש בשרת הרשמי
     serverBaseUrl = 'https://project-jerusalem-2-server.vercel.app/';
   }
-
+// use effect until names of boards load
   useEffect(() => {
     const getDataBoards = async () => {
       console.log('Wait for the data to load');
       try {
         const response = await axios.get(`${serverBaseUrl}projects/listOfProjects`);
         setListBoards(response.data);
-        setCurrentProject(listBoards[0])
+        
       } catch (error) {
         console.log('List not loading:', error);
       }
@@ -38,25 +42,40 @@ function App() {
     getDataBoards();
   }, []);
 
+// use effect until current board can declare
   useEffect(() => {
-    // start the currwnt board an the first one 
-    const firstBoard =  'Project_A'
-    setCurrentProject(firstBoard)
-    async function fetchData() {
-      try {
-        const response = await axios.get(`${serverBaseUrl}projects/${currentProject}`);
-        setCurrentData(response.data);
-      } catch (error) {
-        console.error('Error fetching project data:', error);
-      }
-    }
-
-    if (firstBoard !== null) {
-      fetchData();
+    if (listBoards && listBoards.length > 0) {
+      const firstBoard = listBoards[0];
+      setCurrentProject(firstBoard);
     }
   }, [listBoards]);
 
-  if (currentData === null || listBoards === null) {
+  // use effect every changes in board
+  useEffect(() => {
+    if (currentProject !== null) {
+      fetchData();
+    }
+  }, [currentProject]);
+  
+  async function fetchData() {
+    try {
+      const response = await axios.get(`${serverBaseUrl}projects/${currentProject}`);
+      setCurrentData(response.data);
+      async function getNames() {
+        try {
+          const response = await axios.get(`${serverBaseUrl}projects/names`);
+          setNames(response.data);
+        } catch (err) {
+          console.log('error try to get names:', { err });
+        }
+      }
+      getNames();
+    } catch (error) {
+      console.error('Error fetching project data:', error);
+    }
+  }
+
+  if (currentData === null || listBoards === null||names.length===0) {
     return <div>Loading...</div>;
   }
 
@@ -94,7 +113,7 @@ function App() {
       <BorderFilter onProjectChange={fetchProjectData} listProjects={listBoards} />
       <AddBoard func={addBoard1}/>
       <DndProvider backend={HTML5Backend}>
-        <DivFilters projectData={currentData} collection={currentProject} />
+        <DivFilters projectData={currentData} collection={currentProject} names = {names} />
       </DndProvider>
     </div>
   );

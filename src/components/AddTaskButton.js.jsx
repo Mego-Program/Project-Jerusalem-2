@@ -1,13 +1,12 @@
 import React, { useState } from 'react';
 import { Button, Dialog, DialogActions, DialogContent, DialogTitle, TextField } from '@mui/material';
 
-function AddTaskButton({ onAddTask }) {
+function AddTaskButton(props) {
   const [open, setOpen] = useState(false);
   const [taskDetails, setTaskDetails] = useState({
-    taskName: '',
+    header: '',
     content: '',
     deadline: '',
-    status: '',
     category: '',
     milestone: '',
     issueType: ''
@@ -20,10 +19,9 @@ function AddTaskButton({ onAddTask }) {
   const handleClose = () => {
     setOpen(false);
     setTaskDetails({
-      taskName: '',
+      header: '',
       content: '',
       deadline: '',
-      status: '',
       category: '',
       milestone: '',
       issueType: ''
@@ -40,14 +38,13 @@ function AddTaskButton({ onAddTask }) {
 
   const handleAddTask = () => {
     // Validation for all fields
-    const { taskName, content, deadline, status, category, milestone, issueType } = taskDetails;
-    if ([taskName, content, deadline, status, category, milestone, issueType].some(field => field.trim() === '')) {
+    const { header, content, deadline, category, milestone, issueType } = taskDetails;
+    if ([header, content, deadline, category, milestone, issueType].some(field => field.trim() === '')) {
       alert('All fields must be filled!');
       return;
     }
-
+    props.func(taskDetails)
     handleClose();
-    onAddTask(taskDetails);
   };
 
   return (
@@ -61,11 +58,11 @@ function AddTaskButton({ onAddTask }) {
           <TextField
             autoFocus
             margin="dense"
-            name="taskName"
-            label="Task Name"
+            name="header"
+            label="header"
             type="text"
             fullWidth
-            value={taskDetails.taskName}
+            value={taskDetails.header}
             onChange={handleInputChange}
           />
           {/* Additional fields */}
@@ -86,15 +83,6 @@ function AddTaskButton({ onAddTask }) {
             fullWidth
             InputLabelProps={{ shrink: true }}
             value={taskDetails.deadline}
-            onChange={handleInputChange}
-          />
-          <TextField
-            margin="dense"
-            name="status"
-            label="Status"
-            type="text"
-            fullWidth
-            value={taskDetails.status}
             onChange={handleInputChange}
           />
           <TextField
