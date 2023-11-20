@@ -78,9 +78,9 @@ const AssigneeSelector = (props) => {
               <Typography variant="h6" gutterBottom style={{ color: 'white' }}>
                 Assign to:
               </Typography>
-              {names.map((person) => (
+              {names.map((person,i) => (
                 // when the names list will be object remined to add fields to person
-                <ListItem key={person.id} button onClick={(e)=>{props.funcChange(person,props.missionId);handleClose()}}>
+                <ListItem key={i} button onClick={(e)=>{props.funcChange(person,props.missionId);handleClose()}}>
                   <Avatar sx={{ mr: 3, cursor:'pointer'  }} />
                   <ListItemText primary={person} style={{ color: 'white' }} />
                 </ListItem>
