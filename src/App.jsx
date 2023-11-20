@@ -10,24 +10,24 @@ import axios from 'axios';
 
 function App() {
 
-  // consider make new collection for the assignee options
-  // states for list boards, current board and data
+  
+  
   const [listBoards,setListBoards]=useState(null)
   const [currentProject,setCurrentProject]=useState(null)
   const [currentData, setCurrentData] = useState(null);
-  const [names,setNames] = useState([])
+  
   
 
   let serverBaseUrl;
 
   if (process.env.NODE_ENV === 'development') {
-    // אם הקוד רץ בסביבת פיתוח, השתמש בשרת הלוקאלי
+    
     serverBaseUrl = 'http://localhost:3000/';
   } else {
-    // אחרת, השתמש בשרת הרשמי
+    
     serverBaseUrl = 'https://project-jerusalem-2-server.vercel.app/';
   }
-// use effect until names of boards load
+
   useEffect(() => {
     const getDataBoards = async () => {
       console.log('Wait for the data to load');
@@ -42,7 +42,7 @@ function App() {
     getDataBoards();
   }, []);
 
-// use effect until current board can declare
+
   useEffect(() => {
     if (listBoards && listBoards.length > 0) {
       const firstBoard = listBoards[0];
@@ -50,10 +50,11 @@ function App() {
     }
   }, [listBoards]);
 
-  // use effect every changes in board
+  
   useEffect(() => {
     if (currentProject !== null) {
       fetchData();
+      
     }
   }, [currentProject]);
   
@@ -61,21 +62,15 @@ function App() {
     try {
       const response = await axios.get(`${serverBaseUrl}projects/${currentProject}`);
       setCurrentData(response.data);
-      async function getNames() {
-        try {
-          const response = await axios.get(`${serverBaseUrl}projects/names`);
-          setNames(response.data);
-        } catch (err) {
-          console.log('error try to get names:', { err });
-        }
-      }
-      getNames();
+      
+      
     } catch (error) {
       console.error('Error fetching project data:', error);
     }
   }
 
-  if (currentData === null || listBoards === null||names.length===0) {
+
+  if (currentData === null || listBoards === null) {
     return <div>Loading...</div>;
   }
 
@@ -113,7 +108,7 @@ function App() {
       <BorderFilter onProjectChange={fetchProjectData} listProjects={listBoards} />
       <AddBoard func={addBoard1}/>
       <DndProvider backend={HTML5Backend}>
-        <DivFilters projectData={currentData} collection={currentProject} names = {names} />
+        <DivFilters projectData={currentData} collection={currentProject}/>
       </DndProvider>
     </div>
   );

@@ -1,7 +1,7 @@
 import React, { useState, useRef } from 'react';
 import { Avatar, List, ListItem, ListItemText, Modal, Typography, createTheme, ThemeProvider, Paper } from '@mui/material';
 import '../massions-component/showMassion.css';
-// import Data from '../data-massion/data';
+
 
 
 
@@ -28,20 +28,20 @@ const AssigneeSelector = (props) => {
 
   const handleMouseLeave = () => {
     setIsOpen(false);
-    // Hide the scrollbars when the container is no longer being hovered over
+    
     
   };
 
 
-  // Define a custom theme with desired colors
+  
   const theme = createTheme({
     palette: {
       primary: {
-        main: '#121230', // Change the primary color
+        main: '#121230', 
         
       },
       secondary: {
-        main: '#121230', // Change the secondary color
+        main: '#121230', 
       },
     },
     
@@ -68,7 +68,7 @@ const AssigneeSelector = (props) => {
             style={{
               padding: '16px',
               maxHeight: 200,
-              overflow: 'auto', // Initially hide the scrollbars
+              overflow: 'auto', 
               background: '#121230',
               outline:0
             }}
@@ -79,9 +79,10 @@ const AssigneeSelector = (props) => {
                 Assign to:
               </Typography>
               {names.map((person) => (
-                <ListItem key={person.id} button onClick={(e)=>{props.funcChange(person.name,props.missionId);handleClose()}}>
+                // when the names list will be object remined to add fields to person
+                <ListItem key={person.id} button onClick={(e)=>{props.funcChange(person,props.missionId);handleClose()}}>
                   <Avatar sx={{ mr: 3, cursor:'pointer'  }} />
-                  <ListItemText primary={person.name} style={{ color: 'white' }} />
+                  <ListItemText primary={person} style={{ color: 'white' }} />
                 </ListItem>
               ))}
             </List>
