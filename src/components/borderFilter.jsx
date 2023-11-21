@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect,useState } from 'react';
 import { Select, MenuItem } from '@mui/material';
 import FilterListIcon from '@mui/icons-material/FilterList';
 import './borderFilter.css';
@@ -44,13 +44,17 @@ const iconCircleStyles = {
 
 
 
-// onProjectChange prop is passed from the App component
-const BorderFilter =({ onProjectChange ,listProjects}) => {
-  
-  const projects =listProjects
-  const [selectedProject, setSelectedProject] = useState(projects[0]);
-  const [anchorEl, setAnchorEl] = useState(null);
 
+const BorderFilter =({ onProjectChange ,listProjects,newboard}) => {
+  const projects =listProjects
+  let currentProject=listProjects[0]
+  const [selectedProject, setSelectedProject] = useState(currentProject);
+  useEffect(() => {
+    if(newboard!==null&&newboard!==selectedProject){
+    setSelectedProject(newboard)}
+  },[newboard])
+
+  const [anchorEl, setAnchorEl] = useState(null);
   const dropdownMenuStyles = {
     backgroundColor: '#121231',
   };
@@ -58,7 +62,7 @@ const BorderFilter =({ onProjectChange ,listProjects}) => {
   const handleProjectSelectionChange = (event) => {
     const newSelectedProject = event.target.value;
     setSelectedProject(newSelectedProject);
-    onProjectChange(newSelectedProject); // This callback informs App of the change
+    onProjectChange(newSelectedProject); 
   };
 
   return (
@@ -81,7 +85,7 @@ const BorderFilter =({ onProjectChange ,listProjects}) => {
           value={selectedProject}
           onChange={handleProjectSelectionChange}
           sx={selectStyles}
-          anchorEl={anchorEl}
+          anchorel={anchorEl}
           MenuProps={{ PaperProps: { style: dropdownMenuStyles } }}
         >
           {projects.map((project) => (
@@ -96,4 +100,3 @@ const BorderFilter =({ onProjectChange ,listProjects}) => {
 };
 
 export default BorderFilter;
-
