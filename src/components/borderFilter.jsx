@@ -81,7 +81,7 @@ const BorderFilter =({ onProjectChange ,listProjects}) => {
           value={selectedProject}
           onChange={handleProjectSelectionChange}
           sx={selectStyles}
-          anchorEl={anchorEl}
+          anchorel={anchorEl}
           MenuProps={{ PaperProps: { style: dropdownMenuStyles } }}
         >
           {projects.map((project) => (
