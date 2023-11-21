@@ -15,7 +15,7 @@ function App() {
   const [listBoards,setListBoards]=useState(null)
   const [currentProject,setCurrentProject]=useState(null)
   const [currentData, setCurrentData] = useState(null);
-  
+  const [addedBoard,setAddedBoard] = useState(null)
   
 
   let serverBaseUrl;
@@ -29,6 +29,7 @@ function App() {
   }
 
   useEffect(() => {
+  
     const getDataBoards = async () => {
       console.log('Wait for the data to load');
       try {
@@ -40,14 +41,15 @@ function App() {
       }
     };
     getDataBoards();
-  }, []);
+  }, [addedBoard]);
 
 
   useEffect(() => {
+    if(addedBoard===null){
     if (listBoards && listBoards.length > 0) {
       const firstBoard = listBoards[0];
       setCurrentProject(firstBoard);
-    }
+    }}
   }, [listBoards]);
 
   
@@ -76,9 +78,8 @@ function App() {
 
   async function fetchProjectData(projectName) {
     try {
-      const response = await axios.get(`${serverBaseUrl}projects/${projectName}`);
-      setCurrentData(response.data);
       setCurrentProject(projectName);
+      fetchData()
     } catch (error) {
       console.error('Error fetching project data:', error);
     }
@@ -86,27 +87,22 @@ function App() {
 
   async function addBoard(name) {
     try {
-      const response = await axios.post(`${serverBaseUrl}projects/addNewProject`, { name });
-      return response.data;
+      const response = await axios.post(`${serverBaseUrl}projects/addNewProject`, { name });     
+      setAddedBoard(name)
+      setCurrentProject(name)
+      fetchData()
+      
     } catch (error) {
       console.error('Error adding new project:', error);
       throw error;
     }
   }
 
-  async function addBoard1(name) {
-    try {
-      const result = await addBoard(name);
-      console.log('Project added successfully:', result);
-    } catch (error) {
-      console.error('Error adding project:', error.message);
-    }
-  }
-
+  
   return (
     <div>
-      <BorderFilter onProjectChange={fetchProjectData} listProjects={listBoards} />
-      <AddBoard func={addBoard1}/>
+      <BorderFilter onProjectChange={fetchProjectData} listProjects={listBoards} newboard={addedBoard} />
+      <AddBoard func={addBoard}/>
       <DndProvider backend={HTML5Backend}>
         <DivFilters projectData={currentData} collection={currentProject}/>
       </DndProvider>

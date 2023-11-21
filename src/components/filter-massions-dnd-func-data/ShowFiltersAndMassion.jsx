@@ -17,9 +17,6 @@ let obFilter = {'category':'', 'milestone':'','issue_type':'','assignee':''}
 
 export default function DivFilters(props){
   
-
-
-
 const [DataFiltered,setDataFiltered]=useState([...props.projectData])
 const [names,setNames] = useState([])
 const Options = {
