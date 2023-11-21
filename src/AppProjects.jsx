@@ -8,7 +8,7 @@ import AddBoard from './components/add board/addBoard';
 import axios from 'axios';
 
 
-function App() {
+function AppProjects() {
 
   
   
@@ -110,4 +110,4 @@ function App() {
   );
 }
 
-export default App;
+export default AppProjects;
