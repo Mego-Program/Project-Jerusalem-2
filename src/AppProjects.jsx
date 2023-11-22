@@ -9,7 +9,7 @@ import axios from 'axios';
 import BoardOptions from './components/add board/boardOptions';
 
 
-function App() {
+function AppProjects() {
 
   
   
@@ -123,4 +123,4 @@ function App() {
   );
 }
 
-export default App;
+export default AppProjects;
