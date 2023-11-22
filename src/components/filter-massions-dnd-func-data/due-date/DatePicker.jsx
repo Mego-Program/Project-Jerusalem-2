@@ -8,12 +8,12 @@ import Box from '@mui/material/Box';
 import './datePicker.css'
 import Typography from '@mui/material/Typography';
 import styled from '@emotion/styled';
-import dayjs from 'dayjs'; // Import dayjs
+import dayjs from 'dayjs'; 
 
 function DateSelector(props) {
   const [isDatePickerOpen, setIsDatePickerOpen] = React.useState(false);
   const [position, setPosition] = React.useState({ top: 0, left: 0 });
-  const [selectedDate, setSelectedDate] = React.useState( null); // State to store the selected date
+  const [selectedDate, setSelectedDate] = React.useState( null); 
   const openDatePicker = (event) => {
     setIsDatePickerOpen(true);
     setPosition({
@@ -40,7 +40,7 @@ function DateSelector(props) {
         return dayjs(date);
       });
     } else {
-      // Handle the case where the date format is invalid
+      
       console.error('Invalid date format:', date);
     }
   };
@@ -72,11 +72,11 @@ function DateSelector(props) {
             <LocalizationProvider dateAdapter={AdapterDayjs}>
               <DatePicker
                 sx={{ background: 'rgb(16, 16, 95)', borderRadius: '8px', color: 'white',"& .MuiInputLabel-root": {
-                  color: 'white', // Change placeholder text color
+                  color: 'white', 
                 },".muiInputLabel":{color:'white'}
                 }}
                 label={props.date}
-                value={selectedDate} // Set the value to the selected date
+                value={selectedDate} 
                 shouldDisableDate={(date)=>!isdatevalid(date)}
                 onChange={(date) => {
                   if(isdatevalid(date)){

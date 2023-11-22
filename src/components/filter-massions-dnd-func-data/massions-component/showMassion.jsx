@@ -11,7 +11,7 @@ export default function Show(props) {
 
   const data = props.datafiltered;
   
-  // Function to handle new task data
+  
   const handleNewTask = (data) => {
     data.status=props.cat 
     data.assignee=''
@@ -21,14 +21,14 @@ export default function Show(props) {
   const [{ isOver }, drop] = useDrop({
     accept: "MASSION",
     drop: (item) => {
-      // Update the state based on the drop action
+      
       props.func(item.id, props.cat);
     },collect: (monitor) => ({
       isOver: !!monitor.isOver(),
     }),
   });
 
-  // sum missions to display and set of colors  
+  
   const sum = data.length;
   const colorset = {
     "In Progress": "#3685B1",

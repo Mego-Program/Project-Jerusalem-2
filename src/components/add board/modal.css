@@ -2,12 +2,15 @@
     margin-top: 20px;
 }
 input{
-    width: 19vw;
+    width: 49vw;
     height: 8vh;
     font-size:4vh;
     color: white;
     border: none;
+    text-align: center;
+    outline-color: aqua;
 }
+
 
 .btns>button{
     background-color: #121231;

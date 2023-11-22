@@ -1,0 +1,23 @@
+/* CustomAutocomplete.css */
+/* Add this style in your global CSS file or in the head of your HTML */
+
+
+.MuiAutocomplete-input {
+  color: aliceblue;
+  background-color: #343476; /* Set the background color for the input field */
+}
+
+.MuiAutocomplete-listbox {
+  color: aliceblue;
+  background-color: #343476; /* Set the background color for the dropdown menu */
+}
+
+.MuiAutocomplete-option {
+  color: aliceblue;
+  background-color: #343476; /* Set the background color for the dropdown menu options */
+}
+
+.MuiAutocomplete-option:hover {
+  color: aliceblue;
+  background-color: #343476; /* Set the same background color during hover to maintain consistency */
+}

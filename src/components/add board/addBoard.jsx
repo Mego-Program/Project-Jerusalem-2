@@ -31,15 +31,15 @@ import { useState } from 'react';
        
 
   const addNewBoard = () => {
-    // Handle the click event and toggle the modal state
+    
     setModalOpen(true);
   };
-  function handleNewBoard(input){
-    props.func(input)
+  function handleNewBoard(input,names){
+    props.func(input,names)
   }
 
   const closeModal = () => {
-    // Close the modal by setting the modal state to false
+    
     setModalOpen(false);
   };
       return(<div >

@@ -6,6 +6,7 @@ import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 import AddBoard from './components/add board/addBoard';
 import axios from 'axios';
+import BoardOptions from './components/add board/boardOptions';
 
 
 function App() {
@@ -29,7 +30,6 @@ function App() {
   }
 
   useEffect(() => {
-  
     const getDataBoards = async () => {
       console.log('Wait for the data to load');
       try {
@@ -85,9 +85,9 @@ function App() {
     }
   }
 
-  async function addBoard(name) {
+  async function addBoard(name,names) {
     try {
-      const response = await axios.post(`${serverBaseUrl}projects/addNewProject`, { name });     
+      const response = await axios.post(`${serverBaseUrl}projects/addNewProject`, { name,names });   
       setAddedBoard(name)
       setCurrentProject(name)
       fetchData()
@@ -97,12 +97,25 @@ function App() {
       throw error;
     }
   }
+  async function deleteBoard(projectName) {
+    const name = listBoards[0] 
+    try {
+      
+      console.log('deleting');
+      const response = await axios.post(`${serverBaseUrl}projects/deleteProject`, { projectName }).then(
+        setAddedBoard(name)).then(setCurrentProject(name)).then(fetchData())
+        await new Promise(resolve => setTimeout(resolve, 10000));
+        console.log(response);
+    }catch(err){console.log(err);}
+  }
+  
 
   
   return (
     <div>
       <BorderFilter onProjectChange={fetchProjectData} listProjects={listBoards} newboard={addedBoard} />
-      <AddBoard func={addBoard}/>
+      <BoardOptions addfunc={addBoard} deleteBoardFunc={deleteBoard} projectName={currentProject}/>
+      
       <DndProvider backend={HTML5Backend}>
         <DivFilters projectData={currentData} collection={currentProject}/>
       </DndProvider>

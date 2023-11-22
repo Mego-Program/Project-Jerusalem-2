@@ -82,7 +82,7 @@ const AssigneeSelector = (props) => {
                 // when the names list will be object remined to add fields to person
                 <ListItem key={i} button onClick={(e)=>{props.funcChange(person,props.missionId);handleClose()}}>
                   <Avatar sx={{ mr: 3, cursor:'pointer'  }} />
-                  <ListItemText primary={person} style={{ color: 'white' }} />
+                  <ListItemText primary={person.name} style={{ color: 'white' }} />
                 </ListItem>
               ))}
             </List>

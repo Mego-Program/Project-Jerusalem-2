@@ -3,7 +3,6 @@ import './showData.css'
 import axios from 'axios';
 import Inp from './input';
 import Show from './massions-component/showMassion'
-import { Login } from '@mui/icons-material';
 
 
 let serverBaseUrl
@@ -19,21 +18,20 @@ export default function DivFilters(props){
   
 const [DataFiltered,setDataFiltered]=useState([...props.projectData])
 const [names,setNames] = useState([])
+const [dummyState, setDummyState] = useState(false);
 const Options = {
   'category':[...(new Set(props.projectData.map((item)=>item.category)))],
-  'assignee':[...(new Set(props.projectData.map((item)=>item.assignee)))],
   'milestone':[...(new Set (props.projectData.map((item)=>item.milestone)))],
   'issue_type':[...(new Set(props.projectData.map((item)=>item.issue_type)))],
 }
-
 useEffect(() => {
-  setDataFiltered(props.projectData);
-  getNames()
-  resetFilters()
-  if(names.length===0){
-    getNames()
-  }
-} ,[props.projectData]);
+    setDataFiltered(props.projectData);
+    getNames();
+    resetFilters();
+    if (names.length === 0) {
+      getNames();
+    }
+}, [props.projectData]);
 
 
 async function getNames() {
@@ -47,18 +45,36 @@ async function getNames() {
 }
 
 
-const [dummyState, setDummyState] = useState(false);
+
+
 function resetFilters() {
   obFilter = { 'category': '', 'milestone': '', 'issue_type': '', 'assignee': '' };
+  
   setDummyState((prev) => !prev);
 }
 
 function handleObFilter(input,type){
-
+  obFilter[type]=input
+  const saveFilter = obFilter
+  if(input===''){
+setDataFiltered(fetchData())
+obFilter = saveFilter
+filterInput(obFilter)
+  }
+  else{
     obFilter[type]=input
-    filterInput(obFilter)
+    filterInput(obFilter)}
+}
 
-    
+function filterInput(filt) {
+  setDataFiltered(
+      DataFiltered.filter((itm) => 
+          (filt['category'] ? itm['category'].includes(filt['category']) : true) &&
+          (filt['milestone'] ? itm['milestone'].includes(filt['milestone']) : true) &&
+          (filt['issue_type'] ? itm['issue_type'].includes(filt['issue_type']) : true) &&
+          (filt['assignee'] ? itm['assignee']['name'].includes(filt['assignee']) : true)
+      )
+  );
 }
 
 
@@ -67,7 +83,7 @@ async function updatefields(id, field, update) {
 
   try {
     const response = await axios.post(url, { id, update })
-   
+   if (response.status!==200){console.log('server error to updae try again');}
 
   } catch (error) {
     console.log('Error while updating:', error);
@@ -86,9 +102,8 @@ setDataFiltered((prev)=>prev=newdata);
 }
 
 
-function changeAssignee(name,id1,close){
+function changeAssignee(name,id1){
   updatefields(id1,'assignee',name)
-
   const newdata = DataFiltered.map((itemInData) => {
     if (itemInData._id === id1) {
       itemInData.assignee = name;
@@ -99,17 +114,6 @@ function changeAssignee(name,id1,close){
 
 }
 
-function filterInput(filt) {
-
-  setDataFiltered(
-      DataFiltered.filter((itm) => 
-          (filt['category'] ? itm['category'].includes(filt['category']) : true) &&
-          (filt['milestone'] ? itm['milestone'].includes(filt['milestone']) : true) &&
-          (filt['issue_type'] ? itm['issue_type'].includes(filt['issue_type']) : true) &&
-          (filt['assignee'] ? itm['assignee'].includes(filt['assignee']) : true)
-      )
-  );
-}
 
 function filterStatus(data, DivStatus) {
     return data.filter((itm) => itm.status === DivStatus);
@@ -142,18 +146,17 @@ const newdata = DataFiltered.map((itemInData) => {
 async function addTask(data){
   try{
   const response = await axios.post(`${serverBaseUrl}projects/addMission/${props.collection}`,data)
-
 }catch(error){console.log('error while add new task:',error);}
-
-async function fetchData(){
+// setRerender(data)
+fetchData()
+  }
+  async function fetchData(){
   try {
     const response = await axios.get(`${serverBaseUrl}projects/${props.collection}`);
     setDataFiltered(response.data)
   } catch (error) {
     console.error('Error fetching project data:', error);
   }}
-  fetchData()
-  }
 
 
 return (
@@ -164,7 +167,7 @@ return (
         <Inp key={`1-${dummyState}`} func={handleObFilter} func1={filterInput} type={'category'} filters={obFilter} lstOptions={Options.category} name={'Category'} />
         <Inp key={`2-${dummyState}`} func={handleObFilter} func1={filterInput} type={'milestone'} filters={obFilter} lstOptions={Options.milestone} name={'Milestone'} />
         <Inp key={`3-${dummyState}`} func={handleObFilter} func1={filterInput} type={'issue_type'} filters={obFilter} lstOptions={Options.issue_type} name={'Issue Type'} />
-        <Inp key={`4-${dummyState}`} func={handleObFilter} func1={filterInput} type={'assignee'} filters={obFilter} lstOptions={Options.assignee} name={'Assignee'} />
+        <Inp key={`4-${dummyState}`} func={handleObFilter} func1={filterInput} type={'assignee'} filters={obFilter} lstOptions={names.map((name)=>name.name)} name={'Assignee'} />
       </div>
     {/* </Grid> */}
 {/* <Grid/> */}

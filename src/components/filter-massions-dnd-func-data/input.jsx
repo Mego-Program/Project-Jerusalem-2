@@ -12,7 +12,7 @@ const customStyles = {
   menuItem: {
     svg: { color: 'white' },
     fieldset: { border: 'none' },
-    maxHeight: '5.17vh', // Change the height of menu items
+    maxHeight: '5.17vh', 
     width: '24vw',
     background: '#121231',
     color: 'white',
@@ -57,6 +57,7 @@ export default function Inp(props) {
             }
             return selected;
           }}
+          
           MenuProps={{
             PaperProps: {
               style: customStyles.dropdownMenu,
@@ -76,5 +77,3 @@ export default function Inp(props) {
     </div>
   );
 }
-
-

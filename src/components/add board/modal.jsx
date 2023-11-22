@@ -1,16 +1,19 @@
 import React, { useState } from 'react';
 import './modal.css'
+import MultipleSelect from './choosePerson';
 
 export default function Modal1({ isOpen, onClose ,func}) {
   const [inputText, setInputText] = useState('');
+  const [selected,setSelected]=React.useState([])
+
   const overlayStyle = {
     position: 'fixed',
     top: 0,
     left: 0,
     width: '100%',
     height: '100%',
-    background: 'rgba(0, 0, 0, 0.7)', // Adjust the transparency here
-    zIndex: 998, // Place it behind the modal (one layer below)
+    background: 'rgba(0, 0, 0, 0.7)', 
+    zIndex: 998, 
   };
   const modalStyle = {
     position: 'fixed',
@@ -24,31 +27,37 @@ export default function Modal1({ isOpen, onClose ,func}) {
     display:'flex',
     flexDirection: 'column',
     alignItems: 'center',
-    width:'20vw',
-    height:'15vh',
-    borderRadius:'10px'
-    
+    width:'50vw',
+    height:'35vh',
+    borderRadius:'10px',
+    justifyContent:'space-between',
   };
 
   const handleInputChange = (event) => {
     setInputText(event.target.value);
   };
 
-  const getText = () => {
-    func(inputText)
+  const getTextAndNames = () => {
+    func(inputText,selected)
     setInputText('')
     onClose()
-    // You can use the inputText state wherever you need it
+    
   };
+function handleChoose(listPerson){
+    setSelected(listPerson)
+}
+
 
   return isOpen ? (
 
     <div style={overlayStyle}>
     <div style={modalStyle}>
-      {/* Your modal content goes here */}
-      <input type="text" value={inputText} onChange={handleInputChange} placeholder='Project name' style={{background:'#343476'}}/>
-      <div className='btns'>
-      <button onClick={getText}>Create</button>
+      <input type="text" value={inputText} onChange={handleInputChange} placeholder='Project name'  style={{background:'#343476', }} />
+      <div>
+      <MultipleSelect choosePersones={handleChoose}/>
+      </div>
+      <div className='btns' >
+      <button onClick={getTextAndNames}>Create</button>
       <button onClick={()=>{setInputText('');onClose()}} style={{marginLeft:'3vw'}}>Cancel</button>
       </div>
     </div>
@@ -57,4 +66,3 @@ export default function Modal1({ isOpen, onClose ,func}) {
    ) : null;
   
 }
-
