@@ -37,7 +37,7 @@ function AddTaskButton(props) {
   };
 
   const handleAddTask = () => {
-    // Validation for all fields
+    
     const { header, content, deadline, category, milestone, issueType } = taskDetails;
     if ([header, content, deadline, category, milestone, issueType].some(field => field.trim() === '')) {
       alert('All fields must be filled!');

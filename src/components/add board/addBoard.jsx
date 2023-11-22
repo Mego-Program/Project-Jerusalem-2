@@ -2,9 +2,9 @@
 import React from 'react';
 import Modal1 from './modal';
 import { useState } from 'react';
-import axios from 'axios'; // יש לוודא שהספרייה מותקנת
-
+import axios from 'axios'; 
 export default function AddBoard(props) {
+  
   const [isModalOpen, setModalOpen] = useState(false);
 
   const PlusIcon = () => (
@@ -31,23 +31,17 @@ export default function AddBoard(props) {
   );
 
   const addNewBoard = () => {
+
+    
     setModalOpen(true);
   };
-
-  function handleNewBoard(input) {
-    // אתה יכול להוסיף בדיקות ולעבוד עם הנתונים כפי שתרצה
-    // כרגע אני משלים את המידע המועבר כפרמטר ישירות לפונקציה
-    // וגם שולף את הנתונים מהמודל ישירות
-    props.func(input);
-
-    // לא בטוח אם אתה רוצה לסגור את המודל גם כשיש טעינת מידע מהשרת
-    // אם כן, תצטרך לשדר הודעה מהשרת כאשר המידע מוכן
-    // ובהמשך להסתיר את המודל
-    // לדוג', תשדר יודע שהוספת הפרויקט הושלמה והתסתיים
-    setModalOpen(false);
+  function handleNewBoard(input,names){
+    props.func(input,names)
   }
 
   const closeModal = () => {
+    
+
     setModalOpen(false);
   };
 

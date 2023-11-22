@@ -1,0 +1,12 @@
+.options{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-left: 30px;
+    margin-right: 30px;
+    margin-bottom: 50px;
+    margin-top: -25px;
+    padding: 10px;
+    border-radius: 15px;
+    
+}

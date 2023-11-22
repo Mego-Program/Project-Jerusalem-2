@@ -15,8 +15,8 @@ export default function DeleteMission(props) {
     left: 0,
     width: '100%',
     height: '100%',
-    background: 'rgba(0, 0, 0, 0.7)', // Adjust the transparency here
-    zIndex: 998, // Place it behind the modal (one layer below)
+    background: 'rgba(0, 0, 0, 0.7)', 
+    zIndex: 998, 
   };
   const modalStyle = {
     position: 'fixed',
