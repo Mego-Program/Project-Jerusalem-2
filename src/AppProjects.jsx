@@ -30,6 +30,7 @@ function AppProjects() {
   }
 
   useEffect(() => {
+
     const getDataBoards = async () => {
       console.log('Wait for the data to load');
       try {
@@ -85,9 +86,11 @@ function AppProjects() {
     }
   }
 
+
   async function addBoard(name,names) {
     try {
       const response = await axios.post(`${serverBaseUrl}projects/addNewProject`, { name,names });   
+
       setAddedBoard(name)
       setCurrentProject(name)
       fetchData()
@@ -97,6 +100,7 @@ function AppProjects() {
       throw error;
     }
   }
+
   async function deleteBoard(projectName) {
     const name = listBoards[0] 
     try {
@@ -110,12 +114,15 @@ function AppProjects() {
   }
   
 
+
   
   return (
     <div>
       <BorderFilter onProjectChange={fetchProjectData} listProjects={listBoards} newboard={addedBoard} />
+
       <BoardOptions addfunc={addBoard} deleteBoardFunc={deleteBoard} projectName={currentProject}/>
       
+
       <DndProvider backend={HTML5Backend}>
         <DivFilters projectData={currentData} collection={currentProject}/>
       </DndProvider>
