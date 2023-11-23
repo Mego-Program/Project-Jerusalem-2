@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import './ShowFiltersAndMission.css'
+import './showFiltersAndMission.css'
 import axios from 'axios';
 import Inp from './input';
 import Show from './massions-component/showMassion'
