@@ -5,6 +5,6 @@ import AppProjects from './AppProjects'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <AppProjects />
+    <AppProjects/>
   </React.StrictMode>,
 )
