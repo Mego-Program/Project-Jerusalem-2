@@ -1,0 +1,17 @@
+.filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  
+   .filter-item {
+    flex: 1 0 auto; 
+  box-sizing: border-box; 
+  max-width: calc(25% - 10px);
+  } 
+  
+
+
+
+
+  

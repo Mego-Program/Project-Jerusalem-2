@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import './showData.css'
+import './ShowFiltersAndMission.css'
 import axios from 'axios';
 import Inp from './input';
 import Show from './massions-component/showMassion'
@@ -161,16 +161,14 @@ fetchData()
 
 return (
     <div>
-    {/* Filters section */}
-    {/* <Grid item xs={12} > */}
+
     <div className='filters'>
-        <Inp key={`1-${dummyState}`} func={handleObFilter} func1={filterInput} type={'category'} filters={obFilter} lstOptions={Options.category} name={'Category'} />
-        <Inp key={`2-${dummyState}`} func={handleObFilter} func1={filterInput} type={'milestone'} filters={obFilter} lstOptions={Options.milestone} name={'Milestone'} />
-        <Inp key={`3-${dummyState}`} func={handleObFilter} func1={filterInput} type={'issue_type'} filters={obFilter} lstOptions={Options.issue_type} name={'Issue Type'} />
-        <Inp key={`4-${dummyState}`} func={handleObFilter} func1={filterInput} type={'assignee'} filters={obFilter} lstOptions={names.map((name)=>name.name)} name={'Assignee'} />
+      <div className='filter-item'>
+        <Inp key={`1-${dummyState}`} func={handleObFilter} func1={filterInput} type={'category'} filters={obFilter} lstOptions={Options.category} name={'Category'} /></div>
+        <div className='filter-item'><Inp key={`2-${dummyState}`} func={handleObFilter} func1={filterInput} type={'milestone'} filters={obFilter} lstOptions={Options.milestone} name={'Milestone'} /></div>
+        <div className='filter-item'> <Inp key={`3-${dummyState}`} func={handleObFilter} func1={filterInput} type={'issue_type'} filters={obFilter} lstOptions={Options.issue_type} name={'Issue Type'} /></div>
+        <div className='filter-item'> <Inp key={`4-${dummyState}`} func={handleObFilter} func1={filterInput} type={'assignee'} filters={obFilter} lstOptions={names.map((name)=>name.name)} name={'Assignee'} /></div>
       </div>
-    {/* </Grid> */}
-{/* <Grid/> */}
 
     <div className='div-massions status-columns'>
         <Show  func={updateDND} datafiltered={filterStatus(DataFiltered, 'Not Started')} cat={'Not Started'} names={names} funcChange={changeAssignee} dueDate={dueDate} addTask ={addTask} deleteFunc={deleteFunc}/>
