@@ -79,10 +79,10 @@ function filterInput(filt) {
 
 
 async function updatefields(id, field, update) {
-  const url = `${serverBaseUrl}projects/post/${props.collection}/${field}`;
+  const url = `${serverBaseUrl}missions/${props.collection}/${field}`;
 
   try {
-    const response = await axios.post(url, { id, update })
+    const response = await axios.put(url, { id, update })
    if (response.status!==200){console.log('server error to updae try again');}
 
   } catch (error) {
@@ -94,7 +94,7 @@ async function updatefields(id, field, update) {
 
 async function deleteFunc(id){
   try{
-const respone = await axios.post(`${serverBaseUrl}projects/delete/${props.collection}`,{id})
+const respone = await axios.delete(`${serverBaseUrl}missions/${props.collection}`,{id})
   }catch(error){console.log('error while delete mission:',error);}
   const newdata = DataFiltered.filter((itemInData) => {return itemInData._id!==id})
 setDataFiltered((prev)=>prev=newdata);
@@ -145,14 +145,14 @@ const newdata = DataFiltered.map((itemInData) => {
   }
 async function addTask(data){
   try{
-  const response = await axios.post(`${serverBaseUrl}projects/addMission/${props.collection}`,data)
+  const response = await axios.post(`${serverBaseUrl}missions/${props.collection}`,data)
 }catch(error){console.log('error while add new task:',error);}
 // setRerender(data)
 fetchData()
   }
   async function fetchData(){
   try {
-    const response = await axios.get(`${serverBaseUrl}projects/${props.collection}`);
+    const response = await axios.get(`${serverBaseUrl}missions/${props.collection}`);
     setDataFiltered(response.data)
   } catch (error) {
     console.error('Error fetching project data:', error);
