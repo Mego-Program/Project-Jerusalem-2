@@ -10,7 +10,7 @@ export default defineConfig({
       name: 'AppProjects',
       filename: 'remoteEntry.js',
       exposes: {
-        './AppProjects': './src/AppProjects.jsx', // Adjust this path to your App component
+        './AppProjects': './src/AppProjects', // Adjust this path to your App component
       },
       shared: ['react', 'react-dom' /* other shared dependencies */],
     }),
