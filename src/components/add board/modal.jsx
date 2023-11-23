@@ -39,11 +39,19 @@ export default function Modal1({ isOpen, onClose ,func}) {
   };
 
   const getTextAndNames = () => {
-    func(inputText,selected)
-    setInputText('')
-    onClose()
-    
+    if (inputText && inputText.trim() !== "") {
+      if (/^[a-zA-Z0-9]+$/.test(inputText)) {
+        func(inputText, selected);
+        setInputText('');
+        onClose();
+      } else {
+        alert("The project name can only contain letters and numbers");
+      }
+    } else {
+      alert("The board name cannot be empty!");
+    }
   };
+  
 function handleChoose(listPerson){
     setSelected(listPerson)
 }
