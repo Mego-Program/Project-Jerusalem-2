@@ -1,4 +1,3 @@
-
 .status-columns {
     display: flex;
     max-width: 100%;
@@ -6,9 +5,9 @@
     justify-content: space-between;
 }
 
+
 .status-column {
     flex: 1;
-
     color: rgb(16, 16, 95);
     background: #121231;
 
