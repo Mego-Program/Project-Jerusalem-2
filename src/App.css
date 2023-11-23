@@ -1,4 +1,4 @@
-/* Status columns */
+
 .status-columns {
     display: flex;
     max-width: 100%;
@@ -17,41 +17,10 @@
     align-items: center;
     margin-right: 10px;
     border-radius: 10px;
-    color: #fff; /* שנה צבע הטקסט ללבן */
+    color: #fff; 
 }
 
 .status-column:last-child {
     margin-right: 0;
     
 }
-/* 
-.mission-card {
-    background: #21213E;
-    border-radius: 5px;
-    margin-bottom: 10px;
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 10px;
-}
-
-.text {
-    display: flex;
-    flex-direction: column;
-    margin-left: 20px;
-}
-
-.mission-card .middle-content .header {
-    font-weight: bold;
-    color: #fff;
-}
-
-.mission-card .middle-content .content {
-    color: #eee;
-}
-
-.mission-card .date {
-    color: #999;
-    font-size: 12px;
-} */
