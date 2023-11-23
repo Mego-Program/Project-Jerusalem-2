@@ -4,7 +4,6 @@ import BorderFilter from './components/borderFilter';
 import './App.css';
 import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
-import AddBoard from './components/add board/addBoard';
 import axios from 'axios';
 import BoardOptions from './components/add board/boardOptions';
 
@@ -17,7 +16,6 @@ function AppProjects() {
   const [currentProject,setCurrentProject]=useState(null)
   const [currentData, setCurrentData] = useState(null);
   const [addedBoard,setAddedBoard] = useState(null)
-  
 
   let serverBaseUrl;
 
@@ -30,40 +28,46 @@ function AppProjects() {
   }
 
   useEffect(() => {
-
-    const getDataBoards = async () => {
-      console.log('Wait for the data to load');
-      try {
-        const response = await axios.get(`${serverBaseUrl}projects/listOfProjects`);
-        setListBoards(response.data);
-        
-      } catch (error) {
-        console.log('List not loading:', error);
-      }
-    };
-    getDataBoards();
+    if (addedBoard !== null) {
+      fetchProjectData(addedBoard);
+    }
+    getDataBoards()
   }, [addedBoard]);
 
 
   useEffect(() => {
     if(addedBoard===null){
-    if (listBoards && listBoards.length > 0) {
+    if ( listBoards&&listBoards.length > 0) {
       const firstBoard = listBoards[0];
       setCurrentProject(firstBoard);
-    }}
+    }else if(listBoards&&listBoards.length===0){setCurrentProject('no project found')}}
+    else{setCurrentProject(addedBoard)}
   }, [listBoards]);
 
   
   useEffect(() => {
     if (currentProject !== null) {
       fetchData();
-      
     }
   }, [currentProject]);
   
-  async function fetchData() {
+  const getDataBoards = async () => {
+    console.log('Wait for the data to load');
     try {
-      const response = await axios.get(`${serverBaseUrl}projects/${currentProject}`);
+      const response = await axios.get(`${serverBaseUrl}projects/listofprojects`);
+      setListBoards(response.data);
+      
+    } catch (error) {
+      console.log('List not loading:', error);
+    }
+  };
+
+  async function fetchData() {
+    if(currentProject==='no project found'){
+      return(alert('creat new first project'))
+    }
+    try {
+      const response = await axios.get(`${serverBaseUrl}missions/${currentProject}`);
       setCurrentData(response.data);
       
       
@@ -86,11 +90,9 @@ function AppProjects() {
     }
   }
 
-
   async function addBoard(name,names) {
     try {
-      const response = await axios.post(`${serverBaseUrl}projects/addNewProject`, { name,names });   
-
+      const response = await axios.post(`${serverBaseUrl}projects/`, { name,names })   
       setAddedBoard(name)
       setCurrentProject(name)
       fetchData()
@@ -101,16 +103,35 @@ function AppProjects() {
     }
   }
 
+  async function editBoard(input,namesToAdd,namesToRemove,projectName){
+    if (!input&&namesToAdd.length===0&&namesToRemove.length===0){return}
+    try{
+      const response = await axios.put(`${serverBaseUrl}projects/`,{input,namesToAdd,namesToRemove,projectName})
+      setAddedBoard('')
+      if(input!==''){
+      setAddedBoard(input)
+      setCurrentProject(input)}
+      else{setAddedBoard(projectName);setCurrentProject(projectName)}
+      fetchData()
+      console.log(response.data);
+    }catch(error){console.log('error while edit error',error);}
+  }
+
   async function deleteBoard(projectName) {
-    const name = listBoards[0] 
-    try {
-      
-      console.log('deleting');
-      const response = await axios.post(`${serverBaseUrl}projects/deleteProject`, { projectName }).then(
-        setAddedBoard(name)).then(setCurrentProject(name)).then(fetchData())
-        await new Promise(resolve => setTimeout(resolve, 10000));
-        console.log(response);
-    }catch(err){console.log(err);}
+
+      try {
+        console.log('deleting');
+        const response = await axios.delete(`${serverBaseUrl}projects/`, {
+          params: { projectName },
+        });
+        setAddedBoard(listBoards[0]!==projectName?listBoards[0]:listBoards[1])
+      } catch (err) {
+        console.log(err);
+      }
+    
+    
+    
+    
   }
   
 
@@ -120,7 +141,7 @@ function AppProjects() {
     <div>
       <BorderFilter onProjectChange={fetchProjectData} listProjects={listBoards} newboard={addedBoard} />
 
-      <BoardOptions addfunc={addBoard} deleteBoardFunc={deleteBoard} projectName={currentProject}/>
+      <BoardOptions addfunc={addBoard} editFunc={editBoard} deleteBoardFunc={deleteBoard} projectName={currentProject} />
       
 
       <DndProvider backend={HTML5Backend}>

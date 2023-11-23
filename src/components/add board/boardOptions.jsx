@@ -7,7 +7,7 @@ export default function BoardOptions(props){
 return (
     <div className="options">
         <AddBoard func ={props.addfunc}/>
-        <EditBoard />
+        <EditBoard func = {props.editFunc} project={props.projectName}/>
         <DeleteBoard deleteFunc={props.deleteBoardFunc} project={props.projectName}/>
     </div>
 )
