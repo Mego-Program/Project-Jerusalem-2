@@ -7,10 +7,10 @@ export default defineConfig({
   plugins: [
     react(),
     federation({
-      name: 'project',
+      name: 'AppProjects',
       filename: 'remoteEntry.js',
       exposes: {
-        './AppProjects': './src/App.jsx', // Adjust this path to your App component
+        './AppProjects': './src/AppProjects.jsx', // Adjust this path to your App component
       },
       shared: ['react', 'react-dom' /* other shared dependencies */],
     }),
