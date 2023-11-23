@@ -3,9 +3,13 @@ import './modal.css'
 import MultipleSelect from './choosePerson';
 import TextField from '@mui/material/TextField';
 
-export default function Modal1({ isOpen, onClose ,func}) {
+
+
+export default function ModalEdit({ isOpen, onClose ,func,personsExsist}) {
   const [inputText, setInputText] = useState('');
   const [selected,setSelected]=React.useState([])
+  const [selectedRemove,setSelectedRemove]=React.useState([])
+  
 
   const overlayStyle = {
     position: 'fixed',
@@ -39,14 +43,18 @@ export default function Modal1({ isOpen, onClose ,func}) {
   };
 
   const getTextAndNames = () => {
-    func(inputText,selected)
+    func(inputText,selected,selectedRemove)
     setInputText('')
     onClose()
     
   };
 function handleChoose(listPerson){
-    setSelected(listPerson)
+    setSelected([...listPerson])
 }
+function handleChoose1(listPerson){
+    setSelectedRemove([...listPerson])
+}
+
 
 
   return isOpen ? (
@@ -57,17 +65,18 @@ function handleChoose(listPerson){
      onChange={handleInputChange} value={inputText}
      InputLabelProps={{
         style: {
-          color: 'white', 
+          color: 'white', // Set the placeholder text color
         },
       }} sx={{background:'#343476', width:'49vw',borderRadius:'8px','& input': {
         color: 'white', 
       },
       }} /> 
-  <div>
-      <MultipleSelect choosePersones={handleChoose}/>
+      <div className='selestP'>
+      <MultipleSelect choosePersones={handleChoose} personsExsist={personsExsist} />
+      <MultipleSelect choosePersones={handleChoose1} personsExsist={personsExsist}  remove={true}/>
       </div>
       <div className='btns' >
-      <button onClick={getTextAndNames}>Create</button>
+      <button onClick={getTextAndNames}>Change</button>
       <button onClick={()=>{setInputText('');onClose()}} style={{marginLeft:'3vw'}}>Cancel</button>
       </div>
     </div>
