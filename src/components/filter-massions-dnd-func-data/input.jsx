@@ -4,6 +4,7 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import './input.css';
+import { Paper } from "@mui/material";
 
 
 
@@ -13,7 +14,7 @@ const customStyles = {
     svg: { color: 'white' },
     fieldset: { border: 'none' },
     maxHeight: '5.17vh', 
-    width: '24vw',
+    width: '100%',
     background: '#121231',
     color: 'white',
 
@@ -43,9 +44,9 @@ export default function Inp(props) {
   };
 
   return (
-    <div className='div-filter' style={{ minHeight: '6.12vh' }}>
+    <Paper className='div-filter' style={{ minHeight: '6.12vh', background:'none' }}>
       <p style={{ color: 'white' }}>{props.name}</p>
-      <FormControl sx={{ mr: 2, ml: 0, width: 352, mt: 0 }}>
+      <FormControl sx={{ width:'100%'}}>
         <Select
           displayEmpty
           value={filterName}
@@ -74,6 +75,6 @@ export default function Inp(props) {
           ))}
         </Select>
       </FormControl>
-    </div>
+    </Paper>
   );
 }

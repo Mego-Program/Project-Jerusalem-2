@@ -1,3 +1,10 @@
+#root{
+    float: right;
+height: 75vh;
+width: 80vw;
+}
+
 body{
     background-color: #21213E;
+    
 }

@@ -6,7 +6,6 @@ function AddTaskButton(props) {
   const [taskDetails, setTaskDetails] = useState({
     header: '',
     content: '',
-    deadline: '',
     category: '',
     milestone: '',
     issueType: ''
@@ -21,7 +20,6 @@ function AddTaskButton(props) {
     setTaskDetails({
       header: '',
       content: '',
-      deadline: '',
       category: '',
       milestone: '',
       issueType: ''
@@ -38,8 +36,8 @@ function AddTaskButton(props) {
 
   const handleAddTask = () => {
     
-    const { header, content, deadline, category, milestone, issueType } = taskDetails;
-    if ([header, content, deadline, category, milestone, issueType].some(field => field.trim() === '')) {
+    const { header, content, category, milestone, issueType } = taskDetails;
+    if ([header, content,category, milestone, issueType].some(field => field.trim() === '')) {
       alert('All fields must be filled!');
       return;
     }
@@ -73,16 +71,6 @@ function AddTaskButton(props) {
             type="text"
             fullWidth
             value={taskDetails.content}
-            onChange={handleInputChange}
-          />
-          <TextField
-            margin="dense"
-            name="deadline"
-            label="Deadline"
-            type="date"
-            fullWidth
-            InputLabelProps={{ shrink: true }}
-            value={taskDetails.deadline}
             onChange={handleInputChange}
           />
           <TextField

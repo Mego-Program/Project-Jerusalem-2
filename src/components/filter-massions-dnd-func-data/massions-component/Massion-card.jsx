@@ -6,6 +6,7 @@ import AssigneeSelector from "../change assigne/ChangeAsignee";
 import DateSelector from "../due-date/DatePicker";
 import './massion-card.css'
 import axios from "axios";
+import {Box} from '@mui/material'
 import DeleteMission from "./deleteMission";
 
 
@@ -23,6 +24,7 @@ export default function MassionCard(props) {
 
 
   return (
+<Box sx={{borderRight:'solid 10px #21213E',borderLeft:'solid 10px #21213E',borderRadius:'5px'}}>
     <div className="mission-card" ref={drag}>
   <div className="left-content">
     <AssigneeSelector names={props.names} missionId={props.missionId} funcChange={props.funcChange} />
@@ -42,6 +44,7 @@ export default function MassionCard(props) {
     <DeleteMission deleteFunc={props.deleteFunc} id={props.missionId}/>
   </div>
 </div>
+</Box>
 
   );
 }

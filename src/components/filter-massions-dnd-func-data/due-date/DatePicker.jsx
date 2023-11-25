@@ -49,7 +49,7 @@ function DateSelector(props) {
 
   return (
     <div>
-      <p onClick={openDatePicker} style={{cursor:'pointer'}}>{selectedDate?(dayjs(selectedDate).format('MMMM DD, YYYY')):props.date}</p>
+      <p onClick={openDatePicker} style={{cursor:'pointer'}}>{selectedDate?(dayjs(selectedDate).format('MMMM DD, YYYY')):props.date?props.date:'deadline'}</p>
       {isDatePickerOpen && (
         <Modal
           open={isDatePickerOpen}
@@ -73,7 +73,8 @@ function DateSelector(props) {
               <DatePicker
                 sx={{ background: 'rgb(16, 16, 95)', borderRadius: '8px', color: 'white',"& .MuiInputLabel-root": {
                   color: 'white', 
-                },".muiInputLabel":{color:'white'}
+                },".muiInputLabel":{color:'white'},'& input': {
+                  color: 'white'}
                 }}
                 label={props.date}
                 value={selectedDate} 

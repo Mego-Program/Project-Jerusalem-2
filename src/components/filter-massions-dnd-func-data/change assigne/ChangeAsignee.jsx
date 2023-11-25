@@ -49,7 +49,7 @@ const AssigneeSelector = (props) => {
   return (
     <ThemeProvider theme={theme}>
       <div >
-        <Avatar style={{cursor:'pointer'}} onClick={handleOpen} src={props.src} alt='not found'></Avatar>
+        <Avatar sx={{border: '2px solid #F6C927',background:'#3685B1',cursor:'pointer',color:'#21213E'}} onClick={handleOpen} src={props.src} alt='not found'></Avatar>
         <Modal
           open={isOpen}
           onClose={handleClose}
@@ -81,7 +81,7 @@ const AssigneeSelector = (props) => {
               {names.map((person,i) => (
                 // when the names list will be object remined to add fields to person
                 <ListItem key={i} button onClick={(e)=>{props.funcChange(person,props.missionId);handleClose()}}>
-                  <Avatar sx={{ mr: 3, cursor:'pointer'  }} />
+                  <Avatar sx={{background:'#3685B1',border: '2px solid #F6C927', mr: 3, cursor:'pointer' ,color:'#21213E' }} />
                   <ListItemText primary={person.name} style={{ color: 'white' }} />
                 </ListItem>
               ))}

@@ -146,8 +146,10 @@ const newdata = DataFiltered.map((itemInData) => {
 async function addTask(data){
   try{
   const response = await axios.post(`${serverBaseUrl}missions/${props.collection}`,data)
+  if (response.data==='create project first') {
+    alert(response.data)
+  }
 }catch(error){console.log('error while add new task:',error);}
-// setRerender(data)
 fetchData()
   }
   async function fetchData(){
