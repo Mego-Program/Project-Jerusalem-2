@@ -73,7 +73,7 @@ const BorderFilter =({ onProjectChange ,listProjects,newboard}) => {
       </div>
       <div style={{ display: 'flex', alignItems: 'center', order: 2 }}>
         <span style={{ color: '#FFFFFF' ,fontFamily:'Poppins',
-fontSize: '23px',
+fontSize: '5vh',
 fontWeight: '600',
 lineHeight: '35px',
 letterSpacing: '0em'}}>Choose Board</span>

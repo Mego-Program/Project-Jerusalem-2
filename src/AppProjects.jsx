@@ -91,8 +91,10 @@ function AppProjects() {
   }
 
   async function addBoard(name,names) {
+    if(name===''){alert('please enter name');return}
     try {
-      const response = await axios.post(`${serverBaseUrl}projects/`, { name,names })   
+      const response = await axios.post(`${serverBaseUrl}projects/`, { name,names }) 
+      console.log(response.data);  
       setAddedBoard(name)
       setCurrentProject(name)
       fetchData()
