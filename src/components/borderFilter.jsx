@@ -68,7 +68,7 @@ const BorderFilter =({ onProjectChange ,listProjects,newboard}) => {
 
   return (
     <div style={borderFilterStyles}>
-      <div style={displayStyles}>
+      <div style={displayStyles} className='proj_name'>
          {selectedProject}
       </div>
       <div style={{ display: 'flex', alignItems: 'center', order: 2 }}>
@@ -85,7 +85,7 @@ letterSpacing: '0em'}}>Choose Board</span>
           />
         </div>
         <Select
-        
+        className='drop_board'
         value={selectedProject}
           open={Boolean(anchorEl)}
           onClose={() => setAnchorEl(null)}
