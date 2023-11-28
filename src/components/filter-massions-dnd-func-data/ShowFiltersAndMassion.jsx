@@ -80,7 +80,7 @@ function filterInput(filt) {
 
 
 
-async function updatefieldsE(id, field, update) {
+async function updatefields(id, field, update) {
   const url = `${serverBaseUrl}missions/${props.collection}/${field}`;
 
   try {
@@ -148,10 +148,10 @@ return (
       </div>
 
     <div className='div-massions status-columns'>
-        <Show   datafiltered={filterStatus(DataFiltered, 'Not Started')} cat={'Not Started'} names={names} addTask ={addTask} deleteFunc={deleteFunc} updateTaskFunc={updatefieldsE}/>
-        <Show  datafiltered={filterStatus(DataFiltered, 'In Progress')} cat={'In Progress'}   names={names} addTask ={addTask} deleteFunc={deleteFunc} updateTaskFunc={updatefieldsE}/>
-        <Show  datafiltered={filterStatus(DataFiltered, 'Completed')} cat={'Completed'}  names={names} addTask ={addTask} deleteFunc={deleteFunc} updateTaskFunc={updatefieldsE}/>
-        <Show  datafiltered={filterStatus(DataFiltered, 'Close')} cat={'Close'}  names={names} addTask ={addTask} deleteFunc={deleteFunc} updateTaskFunc={updatefieldsE}/>
+        <Show   datafiltered={filterStatus(DataFiltered, 'Not Started')} cat={'Not Started'} names={names} addTask ={addTask} deleteFunc={deleteFunc} updateTaskFunc={updatefields}/>
+        <Show  datafiltered={filterStatus(DataFiltered, 'In Progress')} cat={'In Progress'}   names={names} addTask ={addTask} deleteFunc={deleteFunc} updateTaskFunc={updatefields}/>
+        <Show  datafiltered={filterStatus(DataFiltered, 'Completed')} cat={'Completed'}  names={names} addTask ={addTask} deleteFunc={deleteFunc} updateTaskFunc={updatefields}/>
+        <Show  datafiltered={filterStatus(DataFiltered, 'Close')} cat={'Close'}  names={names} addTask ={addTask} deleteFunc={deleteFunc} updateTaskFunc={updatefields}/>
       </div>
  
 </div>

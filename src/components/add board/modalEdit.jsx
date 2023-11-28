@@ -6,7 +6,6 @@ import TextField from '@mui/material/TextField';
 
 
 export default function ModalEdit({ isOpen, onClose ,func,personsExsist,projectName}) {
-  console.log(projectName);
   const [inputText, setInputText] = useState('');
   const [selected,setSelected]=React.useState([])
   const [selectedRemove,setSelectedRemove]=React.useState([])
