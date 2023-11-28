@@ -9,7 +9,6 @@ import './datePicker.css'
 import Typography from '@mui/material/Typography';
 import styled from '@emotion/styled';
 import dayjs from 'dayjs'; 
-import { DesktopDatePicker } from '@mui/x-date-pickers';
 
 function DateSelector(props) {
   const [isDatePickerOpen, setIsDatePickerOpen] = React.useState(false);

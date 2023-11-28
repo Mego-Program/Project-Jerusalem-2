@@ -4,7 +4,6 @@ import EditIcon from '@mui/icons-material/Edit';
 import { Login } from '@mui/icons-material';
 
 function EditTask(props) {
-    console.log(props.TaskDetails);
   const [open, setOpen] = useState(false);
   const [taskDetails, setTaskDetails] = useState({
     header: '',

@@ -94,7 +94,6 @@ function AppProjects() {
     if(name===''){alert('please enter name');return}
     try {
       const response = await axios.post(`${serverBaseUrl}projects/`, { name,names }) 
-      console.log(response.data);  
       setAddedBoard(name)
       setCurrentProject(name)
       fetchData()
@@ -115,7 +114,6 @@ function AppProjects() {
       setCurrentProject(input)}
       else{setAddedBoard(projectName);setCurrentProject(projectName)}
       fetchData()
-      console.log(response.data);
     }catch(error){console.log('error while edit error',error);}
   }
 
