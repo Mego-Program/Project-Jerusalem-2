@@ -17,10 +17,11 @@ const borderFilterStyles = {
 };
 
 const displayStyles = {
+  marginLeft:'5vw',
   fontFamily: 'Poppins',
-  fontWeight: 600,
-  fontSize: '23px',
-  lineHeight: '34.5px',
+  fontWeight: 900,
+  fontSize: '5vh',
+  lineHeight: '4vh',
   color: '#FFFFFF', 
 };
 
@@ -71,7 +72,11 @@ const BorderFilter =({ onProjectChange ,listProjects,newboard}) => {
          {selectedProject}
       </div>
       <div style={{ display: 'flex', alignItems: 'center', order: 2 }}>
-        <span style={{ color: '#FFFFFF' }}>Board</span>
+        <span style={{ color: '#FFFFFF' ,fontFamily:'Poppins',
+fontSize: '5vh',
+fontWeight: '600',
+lineHeight: '35px',
+letterSpacing: '0em'}}>Choose Board</span>
         <div style={iconCircleStyles}>
           <FilterListIcon
             className="filter-icon"
@@ -80,16 +85,19 @@ const BorderFilter =({ onProjectChange ,listProjects,newboard}) => {
           />
         </div>
         <Select
+        
+        value={selectedProject}
           open={Boolean(anchorEl)}
           onClose={() => setAnchorEl(null)}
-          value={selectedProject}
           onChange={handleProjectSelectionChange}
+          
           sx={selectStyles}
           anchorel={anchorEl}
           MenuProps={{ PaperProps: { style: dropdownMenuStyles } }}
+          renderValue={()=>null}
         >
           {projects.map((project) => (
-            <MenuItem key={project} value={project}>
+            <MenuItem  key={project} value={project}>
               {project}
             </MenuItem>
           ))}

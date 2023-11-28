@@ -5,7 +5,8 @@ import TextField from '@mui/material/TextField';
 
 
 
-export default function ModalEdit({ isOpen, onClose ,func,personsExsist}) {
+export default function ModalEdit({ isOpen, onClose ,func,personsExsist,projectName}) {
+  console.log(projectName);
   const [inputText, setInputText] = useState('');
   const [selected,setSelected]=React.useState([])
   const [selectedRemove,setSelectedRemove]=React.useState([])
@@ -61,11 +62,11 @@ function handleChoose1(listPerson){
 
     <div style={overlayStyle}>
     <div style={modalStyle}>
-    <TextField id="outlined-basic" label="Project name" variant="outlined" placeholder='Project name'  
+    <TextField id="outlined-basic" label="Project name" variant="outlined" placeholder={projectName? projectName:'Project name'}
      onChange={handleInputChange} value={inputText}
      InputLabelProps={{
         style: {
-          color: 'white', // Set the placeholder text color
+          color: 'white',
         },
       }} sx={{background:'#343476', width:'49vw',borderRadius:'8px','& input': {
         color: 'white', 

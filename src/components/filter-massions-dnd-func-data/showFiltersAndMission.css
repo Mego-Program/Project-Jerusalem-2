@@ -1,0 +1,17 @@
+.filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  
+   .filter-item {
+    flex: 1 0 auto; /* Flexible item, grow as needed, shrink when necessary */
+  box-sizing: border-box; /* Include padding and border in the width */
+  max-width: calc(25% - 10px);
+  } 
+  
+
+
+
+
+  
