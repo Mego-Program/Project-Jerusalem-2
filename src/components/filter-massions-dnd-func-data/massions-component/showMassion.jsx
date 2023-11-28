@@ -21,7 +21,7 @@ export default function Show(props) {
     accept: "MASSION",
     drop: (item) => {
       
-      props.func(item.id, props.cat);
+      props.updateTaskFunc(item.id,'status', props.cat);
     },collect: (monitor) => ({
       isOver: !!monitor.isOver(),
     }),
@@ -61,7 +61,7 @@ export default function Show(props) {
       <div className="mission-cont" style={{width:'100%'}}>
       {data.map((prop) => (
         <div key={prop._id} className={`massion ${prop.name + prop._id}`} style={{padding:'8px'}} >
-          <MassionCard obj={prop} names={props.names} missionId={prop._id} funcChange={props.funcChange} DueDate={props.dueDate} deleteFunc={props.deleteFunc}/>
+          <MassionCard obj={prop} names={props.names} missionId={prop._id} funcChange={props.funcChange} DueDate={props.dueDate} deleteFunc={props.deleteFunc}updateTaskFunc={props.updateTaskFunc}/>
         </div>
         
       ))}

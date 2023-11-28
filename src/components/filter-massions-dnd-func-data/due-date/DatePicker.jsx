@@ -9,6 +9,7 @@ import './datePicker.css'
 import Typography from '@mui/material/Typography';
 import styled from '@emotion/styled';
 import dayjs from 'dayjs'; 
+import { DesktopDatePicker } from '@mui/x-date-pickers';
 
 function DateSelector(props) {
   const [isDatePickerOpen, setIsDatePickerOpen] = React.useState(false);
@@ -35,7 +36,7 @@ function DateSelector(props) {
   const handleDateChange = (date) => {
     if (isdatevalid(date)) {
       setSelectedDate((prevDate) => {
-        props.DueDate(dayjs(date).format('MMMM DD, YYYY'), props.id);
+        props.updateTaskFunc(props.id,'deadline',dayjs(date).format('MMMM DD, YYYY'));
         closeDatePicker();
         return dayjs(date);
       });
@@ -71,7 +72,7 @@ function DateSelector(props) {
           >
             <LocalizationProvider dateAdapter={AdapterDayjs}>
               <DatePicker
-                sx={{ background: 'rgb(16, 16, 95)', borderRadius: '8px', color: 'white',"& .MuiInputLabel-root": {
+                sx={{background: 'rgb(16, 16, 95)', borderRadius: '8px', color: 'white',"& .MuiInputLabel-root": {
                   color: 'white', 
                 },".muiInputLabel":{color:'white'},'& input': {
                   color: 'white'}
@@ -83,8 +84,13 @@ function DateSelector(props) {
                   if(isdatevalid(date)){
                   handleDateChange(date)}
                 }}
-                
-                
+                slotProps={{
+                  desktopPaper:{sx:{backgroundColor:'rgb(16, 16, 95)',color:'white','& Button':{color:'white'},'& span':{color:'white'} }},
+                                  
+            
+                  
+              }}
+
               />
             </LocalizationProvider>
           </Box>

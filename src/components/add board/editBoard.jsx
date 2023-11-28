@@ -50,6 +50,6 @@ export default function EditBoard(props){
 
     return(<div>
         <p style={{fontSize:'large', color:'#36B176', display: 'inline', whiteSpace: 'nowrap',cursor:'pointer'}} onClick={edit} ><EditIcon />   Edit board </p>
-      <ModalEdit isOpen={isModalOpen} onClose={closeModal} func={handleEditBoard} personsExsist={personsExsist}/>
+      <ModalEdit isOpen={isModalOpen} onClose={closeModal} func={handleEditBoard} personsExsist={personsExsist} projectName={props.project}/>
         </div>)
 }

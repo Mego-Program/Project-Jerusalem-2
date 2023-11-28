@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
 import { Button, Dialog, DialogActions, DialogContent, DialogTitle, TextField } from '@mui/material';
-import PostAddIcon from '@mui/icons-material/PostAdd';
-function AddTaskButton(props) {
+import EditIcon from '@mui/icons-material/Edit';
+import { Login } from '@mui/icons-material';
+
+function EditTask(props) {
+    console.log(props.TaskDetails);
   const [open, setOpen] = useState(false);
   const [taskDetails, setTaskDetails] = useState({
     header: '',
@@ -35,28 +38,20 @@ function AddTaskButton(props) {
   };
 
   const handleAddTask = () => {
-    
-    const { header, content, category, milestone, issueType } = taskDetails;
-    if ([header, content,category, milestone, issueType].some(field => field.trim() === '')) {
-      alert('All fields must be filled!');
-      return;
-    }
-    props.func(taskDetails)
+        for (const key in taskDetails) {if(taskDetails[key]!==''){
+        props.updateTaskFunc(props.id,key,taskDetails[key])}}
     handleClose();
   };
 
   return (
-    <div style={{ display: 'flex', alignItems: 'center', color: 'green', cursor: 'pointer' }}>
-      <PostAddIcon variant="contained" onClick={handleClickOpen} sx={{ color: 'green', ml: '10px', mr: '5px', cursor: 'pointer' }}/>
-      <p style={{ margin: 0, verticalAlign: 'middle' }} onClick={handleClickOpen}>
-        Add Task
-      </p>
-      
+    <div >
+      <EditIcon  variant="contained" onClick={handleClickOpen} sx={{ cursor: 'pointer' }}/>
       <Dialog open={open} onClose={handleClose}>
-        <DialogTitle>Add New Task</DialogTitle>
+        <DialogTitle>Edit Task</DialogTitle>
         <DialogContent>
           <TextField
             autoFocus
+            placeholder={props.TaskDetails.header}
             margin="dense"
             name="header"
             label="header"
@@ -66,6 +61,7 @@ function AddTaskButton(props) {
             onChange={handleInputChange}
           />
           <TextField
+          placeholder={props.TaskDetails.content}
             margin="dense"
             name="content"
             label="Content"
@@ -75,6 +71,7 @@ function AddTaskButton(props) {
             onChange={handleInputChange}
           />
           <TextField
+          placeholder={props.TaskDetails.category}
             margin="dense"
             name="category"
             label="Category"
@@ -84,6 +81,7 @@ function AddTaskButton(props) {
             onChange={handleInputChange}
           />
           <TextField
+            placeholder={props.TaskDetails.milestone}
             margin="dense"
             name="milestone"
             label="Milestone"
@@ -93,6 +91,7 @@ function AddTaskButton(props) {
             onChange={handleInputChange}
           />
           <TextField
+          placeholder={props.TaskDetails.issueType}
             margin="dense"
             name="issueType"
             label="Issue Type"
@@ -111,4 +110,4 @@ function AddTaskButton(props) {
   );
 }
 
-export default AddTaskButton;
+export default EditTask
