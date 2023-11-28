@@ -56,7 +56,6 @@ function AppProjects() {
     try {
       const response = await axios.get(`${serverBaseUrl}projects/listofprojects`);
       setListBoards(response.data);
-      
     } catch (error) {
       console.log('List not loading:', error);
     }
@@ -64,12 +63,13 @@ function AppProjects() {
 
   async function fetchData() {
     if(currentProject==='no project found'){
-      return(alert('creat new first project'))
+      alert('creat new first project')
+      setCurrentData([])
+      return
     }
     try {
       const response = await axios.get(`${serverBaseUrl}missions/${currentProject}`);
       setCurrentData(response.data);
-      
       
     } catch (error) {
       console.error('Error fetching project data:', error);
@@ -91,8 +91,10 @@ function AppProjects() {
   }
 
   async function addBoard(name,names) {
+    if(name===''){alert('please enter name');return}
     try {
-      const response = await axios.post(`${serverBaseUrl}projects/`, { name,names })   
+      const response = await axios.post(`${serverBaseUrl}projects/`, { name,names }) 
+      console.log(response.data);  
       setAddedBoard(name)
       setCurrentProject(name)
       fetchData()
@@ -129,16 +131,13 @@ function AppProjects() {
         console.log(err);
       }
     
-    
-    
-    
   }
   
 
 
   
   return (
-    <div>
+    <div >
       <BorderFilter onProjectChange={fetchProjectData} listProjects={listBoards} newboard={addedBoard} />
 
       <BoardOptions addfunc={addBoard} editFunc={editBoard} deleteBoardFunc={deleteBoard} projectName={currentProject} />

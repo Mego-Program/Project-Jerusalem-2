@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
 import { Button, Dialog, DialogActions, DialogContent, DialogTitle, TextField } from '@mui/material';
-
+import PostAddIcon from '@mui/icons-material/PostAdd';
 function AddTaskButton(props) {
   const [open, setOpen] = useState(false);
   const [taskDetails, setTaskDetails] = useState({
     header: '',
     content: '',
-    deadline: '',
     category: '',
     milestone: '',
     issueType: ''
@@ -21,7 +20,6 @@ function AddTaskButton(props) {
     setTaskDetails({
       header: '',
       content: '',
-      deadline: '',
       category: '',
       milestone: '',
       issueType: ''
@@ -38,8 +36,8 @@ function AddTaskButton(props) {
 
   const handleAddTask = () => {
     
-    const { header, content, deadline, category, milestone, issueType } = taskDetails;
-    if ([header, content, deadline, category, milestone, issueType].some(field => field.trim() === '')) {
+    const { header, content, category, milestone, issueType } = taskDetails;
+    if ([header, content,category, milestone, issueType].some(field => field.trim() === '')) {
       alert('All fields must be filled!');
       return;
     }
@@ -48,10 +46,12 @@ function AddTaskButton(props) {
   };
 
   return (
-    <div>
-      <Button variant="contained" onClick={handleClickOpen}>
+    <div style={{ display: 'flex', alignItems: 'center', color: 'green', cursor: 'pointer' }}>
+      <PostAddIcon variant="contained" onClick={handleClickOpen} sx={{ color: 'green', ml: '10px', mr: '5px', cursor: 'pointer' }}/>
+      <p style={{ margin: 0, verticalAlign: 'middle' }} onClick={handleClickOpen}>
         Add Task
-      </Button>
+      </p>
+      
       <Dialog open={open} onClose={handleClose}>
         <DialogTitle>Add New Task</DialogTitle>
         <DialogContent>
@@ -65,7 +65,6 @@ function AddTaskButton(props) {
             value={taskDetails.header}
             onChange={handleInputChange}
           />
-          {/* Additional fields */}
           <TextField
             margin="dense"
             name="content"
@@ -73,16 +72,6 @@ function AddTaskButton(props) {
             type="text"
             fullWidth
             value={taskDetails.content}
-            onChange={handleInputChange}
-          />
-          <TextField
-            margin="dense"
-            name="deadline"
-            label="Deadline"
-            type="date"
-            fullWidth
-            InputLabelProps={{ shrink: true }}
-            value={taskDetails.deadline}
             onChange={handleInputChange}
           />
           <TextField

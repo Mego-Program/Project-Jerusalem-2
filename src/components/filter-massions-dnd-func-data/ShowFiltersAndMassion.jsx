@@ -78,17 +78,26 @@ function filterInput(filt) {
 }
 
 
-async function updatefields(id, field, update) {
+
+
+async function updatefieldsE(id, field, update) {
   const url = `${serverBaseUrl}missions/${props.collection}/${field}`;
 
   try {
     const response = await axios.put(url, { id, update })
-   if (response.status!==200){console.log('server error to updae try again');}
-
+   if (response.status!==200){console.log('server error to updae try again'); return;}
+   const newdata = DataFiltered.map((itemInData) => {
+    if (itemInData._id === id) {
+      itemInData[field] = update;
+    }
+    return itemInData; 
+  });
+  setDataFiltered(newdata);
   } catch (error) {
     console.log('Error while updating:', error);
 
   }
+  
 }
 
 
@@ -102,52 +111,20 @@ setDataFiltered((prev)=>prev=newdata);
 }
 
 
-function changeAssignee(name,id1){
-  updatefields(id1,'assignee',name)
-  const newdata = DataFiltered.map((itemInData) => {
-    if (itemInData._id === id1) {
-      itemInData.assignee = name;
-    }
-    return itemInData; 
-  });
-  setDataFiltered(newdata);
-
-}
-
 
 function filterStatus(data, DivStatus) {
     return data.filter((itm) => itm.status === DivStatus);
   }
 
-  function updateDND(id1, stat) {
-    updatefields(id1,'status',stat)
-    const newdata = DataFiltered.map((itemInData) => {
-      if (itemInData._id === id1) {
-        itemInData.status = stat;
-      }
-      return itemInData; 
-    });
-    setDataFiltered(newdata)
+
  
-    filterInput(obFilter)
-
-  }
-
-  function dueDate(date,id1){
-    updatefields(id1,'deadline',date)
-const newdata = DataFiltered.map((itemInData) => {
-      if (itemInData._id === id1) {
-        itemInData.deadline = date;
-      }
-      return itemInData; 
-    });
-    setDataFiltered(newdata);
-  }
 async function addTask(data){
   try{
   const response = await axios.post(`${serverBaseUrl}missions/${props.collection}`,data)
+  if (response.data==='create project first') {
+    alert(response.data)
+  }
 }catch(error){console.log('error while add new task:',error);}
-// setRerender(data)
 fetchData()
   }
   async function fetchData(){
@@ -171,10 +148,10 @@ return (
       </div>
 
     <div className='div-massions status-columns'>
-        <Show  func={updateDND} datafiltered={filterStatus(DataFiltered, 'Not Started')} cat={'Not Started'} names={names} funcChange={changeAssignee} dueDate={dueDate} addTask ={addTask} deleteFunc={deleteFunc}/>
-        <Show  func={updateDND}datafiltered={filterStatus(DataFiltered, 'In Progress')} cat={'In Progress'}   names={names} funcChange={changeAssignee} dueDate={dueDate} addTask ={addTask} deleteFunc={deleteFunc}/>
-        <Show func={updateDND} datafiltered={filterStatus(DataFiltered, 'Completed')} cat={'Completed'}  names={names} funcChange={changeAssignee} dueDate={dueDate} addTask ={addTask} deleteFunc={deleteFunc}/>
-        <Show func={updateDND} datafiltered={filterStatus(DataFiltered, 'Close')} cat={'Close'}  names={names} funcChange={changeAssignee} dueDate={dueDate} addTask ={addTask} deleteFunc={deleteFunc}/>
+        <Show   datafiltered={filterStatus(DataFiltered, 'Not Started')} cat={'Not Started'} names={names} addTask ={addTask} deleteFunc={deleteFunc} updateTaskFunc={updatefieldsE}/>
+        <Show  datafiltered={filterStatus(DataFiltered, 'In Progress')} cat={'In Progress'}   names={names} addTask ={addTask} deleteFunc={deleteFunc} updateTaskFunc={updatefieldsE}/>
+        <Show  datafiltered={filterStatus(DataFiltered, 'Completed')} cat={'Completed'}  names={names} addTask ={addTask} deleteFunc={deleteFunc} updateTaskFunc={updatefieldsE}/>
+        <Show  datafiltered={filterStatus(DataFiltered, 'Close')} cat={'Close'}  names={names} addTask ={addTask} deleteFunc={deleteFunc} updateTaskFunc={updatefieldsE}/>
       </div>
  
 </div>
