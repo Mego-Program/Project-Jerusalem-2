@@ -103,7 +103,7 @@ async function updatefields(id, field, update) {
 
 async function deleteFunc(id){
   try{
-const respone = await axios.delete(`${serverBaseUrl}missions/${props.collection}`,{id})
+const respone = await axios.delete(`${serverBaseUrl}missions/${props.collection}`,{data:{id}})
   }catch(error){console.log('error while delete mission:',error);}
   const newdata = DataFiltered.filter((itemInData) => {return itemInData._id!==id})
 setDataFiltered((prev)=>prev=newdata);
