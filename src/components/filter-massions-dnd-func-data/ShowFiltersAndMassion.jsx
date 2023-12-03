@@ -55,10 +55,9 @@ function resetFilters() {
 
 function handleObFilter(input,type){
   obFilter[type]=input
-  const saveFilter = obFilter
+
   if(input===''){
-setDataFiltered(fetchData())
-obFilter = saveFilter
+
 filterInput(obFilter)
   }
   else{
@@ -68,7 +67,7 @@ filterInput(obFilter)
 
 function filterInput(filt) {
   setDataFiltered(
-      DataFiltered.filter((itm) => 
+      props.projectData.filter((itm) => 
           (filt['category'] ? itm['category'].includes(filt['category']) : true) &&
           (filt['milestone'] ? itm['milestone'].includes(filt['milestone']) : true) &&
           (filt['issue_type'] ? itm['issue_type'].includes(filt['issue_type']) : true) &&
@@ -126,11 +125,13 @@ async function addTask(data){
   }
 }catch(error){console.log('error while add new task:',error);}
 fetchData()
+resetFilters()
   }
   async function fetchData(){
   try {
     const response = await axios.get(`${serverBaseUrl}missions/${props.collection}`);
     setDataFiltered(response.data)
+    return response.data
   } catch (error) {
     console.error('Error fetching project data:', error);
   }}
