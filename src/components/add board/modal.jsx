@@ -2,10 +2,13 @@ import React, { useState } from 'react';
 import './modal.css'
 import MultipleSelect from './choosePerson';
 import TextField from '@mui/material/TextField';
+import MultipleSelectSpec from './chooseSpecs';
 
 export default function Modal1({ isOpen, onClose ,func}) {
   const [inputText, setInputText] = useState('');
   const [selected,setSelected]=React.useState([])
+  const [selectedSpec,setSelectedSpec]=React.useState([])
+
 
   const overlayStyle = {
     position: 'fixed',
@@ -39,13 +42,16 @@ export default function Modal1({ isOpen, onClose ,func}) {
   };
 
   const getTextAndNames = () => {
-    func(inputText,selected)
+    func(inputText,selected,selectedSpec)
     setInputText('')
     onClose()
     
   };
 function handleChoose(listPerson){
     setSelected(listPerson)
+}
+function handleChooseSpec(listSpec){
+  setSelectedSpec(listSpec)
 }
 
 
@@ -65,6 +71,7 @@ function handleChoose(listPerson){
       }} /> 
   <div>
       <MultipleSelect choosePersones={handleChoose}/>
+    <MultipleSelectSpec chooseSpecs={handleChooseSpec}/>
       </div>
       <div className='btns' >
       <button onClick={getTextAndNames}>Create</button>
