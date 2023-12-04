@@ -8,6 +8,7 @@ import axios from 'axios';
 import BoardOptions from './components/add board/boardOptions';
 import { userNameAtom,atomUrl } from './userNameAtom';
 import {useAtom} from 'jotai'
+import fakeToken from './fakeToken';
 
 function AppProjects() {
  const [userName,setUserName]= useAtom(userNameAtom)
@@ -90,7 +91,9 @@ function AppProjects() {
       const response = await axios.post(`${url}projects/`, { name,names ,specs},{
          headers: {
         'Content-Type': 'application/json',
-        Authorization: localStorage.getItem('token'),
+        // Authorization: localStorage.getItem('token'),
+        Authorization:fakeToken //change it to the previous line when there is real token
+
       },}) 
       console.log(response.userInCharge);
       setAddedBoard(name)

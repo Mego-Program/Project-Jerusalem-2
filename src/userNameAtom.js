@@ -1,5 +1,6 @@
 import {atom} from 'jotai'
 import axios from 'axios'
+import fakeToken from './fakeToken';
 
     let serverBaseUrl;
     let userName
@@ -16,7 +17,9 @@ import axios from 'axios'
     const res = await axios.get(`${serverBaseUrl}projects/userName`,{
         headers: {
             'Content-Type': 'application/json',
-            Authorization: localStorage.getItem('token'),
+            // Authorization: localStorage.getItem('token'),
+            Authorization:fakeToken //change it to the previous line when there is real token
+
           },
     })
 return res.data
