@@ -25,10 +25,13 @@ export default function MassionCard(props) {
 
 
   return (
-<Box sx={{borderRight:'solid 10px #21213E',borderLeft:'solid 10px #21213E',borderRadius:'5px'}}>
+    // choose color for the spec missions
+<Box sx={props.isSpec?{borderRight:'solid 10px #36B176',borderLeft:'solid 10px #36B176',borderRadius:'5px'}:{
+  borderRight:'solid 10px #21213E',borderLeft:'solid 10px #21213E',borderRadius:'5px'
+}}>
     <div className="mission-card" ref={drag}>
   <div className="left-content">
-    <AssigneeSelector names={props.names} missionId={props.missionId} updateTaskFunc={props.updateTaskFunc} />
+    <AssigneeSelector name = {props.obj.assignee} names={props.names} missionId={props.missionId} updateTaskFunc={props.updateTaskFunc} />
   </div>
   <div className="text">
     <div className="header">

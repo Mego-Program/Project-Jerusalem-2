@@ -6,26 +6,19 @@ import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 import axios from 'axios';
 import BoardOptions from './components/add board/boardOptions';
-
+import { userNameAtom,atomUrl } from './userNameAtom';
+import {useAtom} from 'jotai'
+import fakeToken from './fakeToken';
 
 function AppProjects() {
-
-  
-  
+ const [userName,setUserName]= useAtom(userNameAtom)
+ const [url,setUrl] = useAtom(atomUrl)
   const [listBoards,setListBoards]=useState(null)
   const [currentProject,setCurrentProject]=useState(null)
   const [currentData, setCurrentData] = useState(null);
   const [addedBoard,setAddedBoard] = useState(null)
 
-  let serverBaseUrl;
 
-  if (process.env.NODE_ENV === 'development') {
-    
-    serverBaseUrl = 'http://localhost:3000/';
-  } else {
-    
-    serverBaseUrl = 'https://project-jerusalem-2-server.vercel.app/';
-  }
 
   useEffect(() => {
     if (addedBoard !== null) {
@@ -52,11 +45,13 @@ function AppProjects() {
   }, [currentProject]);
   
   const getDataBoards = async () => {
+    
     console.log('Wait for the data to load');
     try {
-      const response = await axios.get(`${serverBaseUrl}projects/listofprojects`);
+      const response = await axios.get(`${url}projects/listofprojects/`,{params:{userName}});
       setListBoards(response.data);
     } catch (error) {
+      if(error.response.data.auth===false){console.log('login first')}
       console.log('List not loading:', error);
     }
   };
@@ -68,7 +63,7 @@ function AppProjects() {
       return
     }
     try {
-      const response = await axios.get(`${serverBaseUrl}missions/${currentProject}`);
+      const response = await axios.get(`${url}missions/${currentProject}`);
       setCurrentData(response.data);
       
     } catch (error) {
@@ -90,10 +85,17 @@ function AppProjects() {
     }
   }
 
-  async function addBoard(name,names) {
+  async function addBoard(name,names,specs) {
     if(name===''){alert('please enter name');return}
     try {
-      const response = await axios.post(`${serverBaseUrl}projects/`, { name,names }) 
+      const response = await axios.post(`${url}projects/`, { name,names ,specs},{
+         headers: {
+        'Content-Type': 'application/json',
+        // Authorization: localStorage.getItem('token'),
+        Authorization:fakeToken //change it to the previous line when there is real token
+
+      },}) 
+      console.log(response.userInCharge);
       setAddedBoard(name)
       setCurrentProject(name)
       fetchData()
@@ -104,29 +106,29 @@ function AppProjects() {
     }
   }
 
-  async function editBoard(input,namesToAdd,namesToRemove,projectName){
+  async function editBoard(input,namesToAdd,namesToRemove,projectName,specsToAdd,specsToRemove){
     if (!input&&namesToAdd.length===0&&namesToRemove.length===0){return}
     try{
-      const response = await axios.put(`${serverBaseUrl}projects/`,{input,namesToAdd,namesToRemove,projectName})
+      const response = await axios.put(`${url}projects/`,{input,namesToAdd,namesToRemove,projectName,specsToAdd,specsToRemove,userName})
       setAddedBoard('')
       if(input!==''){
       setAddedBoard(input)
       setCurrentProject(input)}
       else{setAddedBoard(projectName);setCurrentProject(projectName)}
       fetchData()
-    }catch(error){console.log('error while edit error',error);}
+    }catch(error){console.log('error while edit error',error);if(error.message.includes('403')){alert('no promissions to edit')}}
   }
 
   async function deleteBoard(projectName) {
 
       try {
         console.log('deleting');
-        const response = await axios.delete(`${serverBaseUrl}projects/`, {
-          params: { projectName },
+        const response = await axios.delete(`${url}projects/`, {
+          params: { projectName,userName },
         });
         setAddedBoard(listBoards[0]!==projectName?listBoards[0]:listBoards[1])
-      } catch (err) {
-        console.log(err);
+      } catch (error) {
+        console.log(error);if(error.message.includes('403')){alert('no promissions to delete')};
       }
     
   }

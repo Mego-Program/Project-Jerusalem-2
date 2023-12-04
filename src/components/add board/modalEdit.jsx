@@ -2,13 +2,16 @@ import React, { useState } from 'react';
 import './modal.css'
 import MultipleSelect from './choosePerson';
 import TextField from '@mui/material/TextField';
+import MultipleSelectSpec from './chooseSpecs';
 
 
 
-export default function ModalEdit({ isOpen, onClose ,func,personsExsist,projectName}) {
+export default function ModalEdit({ isOpen, onClose ,func,personsExsist,projectName,specExist}) {
   const [inputText, setInputText] = useState('');
   const [selected,setSelected]=React.useState([])
   const [selectedRemove,setSelectedRemove]=React.useState([])
+  const [selectedSpec,setSelectedSpec]=React.useState([])
+  const [selectedRemoveSpec,setSelectedRemoveSpec]=React.useState([])
   
 
   const overlayStyle = {
@@ -33,7 +36,7 @@ export default function ModalEdit({ isOpen, onClose ,func,personsExsist,projectN
     flexDirection: 'column',
     alignItems: 'center',
     width:'50vw',
-    height:'35vh',
+    height:'80vh',
     borderRadius:'10px',
     justifyContent:'space-between',
   };
@@ -43,7 +46,7 @@ export default function ModalEdit({ isOpen, onClose ,func,personsExsist,projectN
   };
 
   const getTextAndNames = () => {
-    func(inputText,selected,selectedRemove)
+    func(inputText,selected,selectedRemove,selectedSpec,selectedRemoveSpec)
     setInputText('')
     onClose()
     
@@ -54,6 +57,15 @@ function handleChoose(listPerson){
 function handleChoose1(listPerson){
     setSelectedRemove([...listPerson])
 }
+function handleChooseSpec(listSpec){
+  setSelectedSpec([...listSpec])
+}
+function handleChooseSpec1(listSpec){
+  setSelectedRemoveSpec([...listSpec])
+}
+
+
+
 
 
 
@@ -71,10 +83,12 @@ function handleChoose1(listPerson){
         color: 'white', 
       },
       }} /> 
-      <div className='selestP'>
+      
       <MultipleSelect choosePersones={handleChoose} personsExsist={personsExsist} />
       <MultipleSelect choosePersones={handleChoose1} personsExsist={personsExsist}  remove={true}/>
-      </div>
+      <MultipleSelectSpec chooseSpecs={handleChooseSpec} specExist={specExist}/>
+      <MultipleSelectSpec chooseSpecs={handleChooseSpec1}  specExist={specExist} remove={true}/>
+    
       <div className='btns' >
       <button onClick={getTextAndNames}>Change</button>
       <button onClick={()=>{setInputText('');onClose()}} style={{marginLeft:'3vw'}}>Cancel</button>

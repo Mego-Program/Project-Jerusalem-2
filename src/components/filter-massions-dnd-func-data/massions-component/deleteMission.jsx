@@ -51,14 +51,14 @@ export default function DeleteMission(props) {
   }
 
   return  (
-    <div >
+    <div className='delete_btn'>
       <DeleteTwoToneIcon onClick={handleClickOpen}  style={{cursor:'pointer'}}/>
       {isOpen ? (
       <Dialog open={open} onClose={handleClose} sx={overlayStyle}>
-      <div style={modalStyle}>
+      <div style={modalStyle} className='confirm'>
         <DialogTitle>Delete Mission</DialogTitle>
         <DialogContent >
-          <p>Are you sure you want to delete this mission?</p>
+          <p >Are you sure you want to delete this mission?</p>
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose} sx={{color:'white'}}>

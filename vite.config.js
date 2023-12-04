@@ -7,12 +7,12 @@ export default defineConfig({
   plugins: [
     react(),
     federation({
-      name: 'project',
+      name: 'AppProjects',
       filename: 'remoteEntry.js',
       exposes: {
-        './AppProjects': '../Project-Jerusalem-2/src/AppProjects.jsx', // Adjust this path to your App component
+        './AppProjects': './src/AppProjects', // Adjust this path to your App component
       },
-      shared: ['react', 'react-dom', 'react-router-dom', 'react-dnd', 'axios', /* other shared dependencies */],
+      shared: ['react', 'react-dom' /* other shared dependencies */],
     }),
   ],
   // ... other configurations
