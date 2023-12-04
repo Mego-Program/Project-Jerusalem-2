@@ -48,7 +48,7 @@ function AddTaskButton(props) {
   return (
     <div style={{ display: 'flex', alignItems: 'center', color: 'green', cursor: 'pointer' }}>
       <PostAddIcon variant="contained" onClick={handleClickOpen} sx={{ color: 'green', ml: '10px', mr: '5px', cursor: 'pointer' }}/>
-      <p style={{ margin: 0, verticalAlign: 'middle' }} onClick={handleClickOpen}>
+      <p className='text_button' style={{ margin: 0, verticalAlign: 'middle' }} onClick={handleClickOpen}>
         Add Task
       </p>
       

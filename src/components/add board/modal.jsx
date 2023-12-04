@@ -2,10 +2,14 @@ import React, { useState } from 'react';
 import './modal.css'
 import MultipleSelect from './choosePerson';
 import TextField from '@mui/material/TextField';
+import MultipleSelectSpec from './chooseSpecs';
+import {Container} from '@mui/material'
 
 export default function Modal1({ isOpen, onClose ,func}) {
   const [inputText, setInputText] = useState('');
   const [selected,setSelected]=React.useState([])
+  const [selectedSpec,setSelectedSpec]=React.useState([])
+
 
   const overlayStyle = {
     position: 'fixed',
@@ -29,7 +33,7 @@ export default function Modal1({ isOpen, onClose ,func}) {
     flexDirection: 'column',
     alignItems: 'center',
     width:'50vw',
-    height:'35vh',
+    height:'50vh',
     borderRadius:'10px',
     justifyContent:'space-between',
   };
@@ -39,21 +43,19 @@ export default function Modal1({ isOpen, onClose ,func}) {
   };
 
   const getTextAndNames = () => {
-    if (inputText && inputText.trim() !== "") {
-      if (/^[a-zA-Z0-9]+$/.test(inputText)) {
-        func(inputText, selected);
-        setInputText('');
-        onClose();
-      } else {
-        alert("The project name can only contain letters and numbers");
-      }
-    } else {
-      alert("The board name cannot be empty!");
-    }
+
+    func(inputText,selected,selectedSpec)
+    setInputText('')
+    onClose()
+    
+
   };
   
 function handleChoose(listPerson){
     setSelected(listPerson)
+}
+function handleChooseSpec(listSpec){
+  setSelectedSpec(listSpec)
 }
 
 
@@ -61,6 +63,7 @@ function handleChoose(listPerson){
 
     <div style={overlayStyle}>
     <div style={modalStyle}>
+      <Container sx={modalStyle}>
     <TextField id="outlined-basic" label="Project name" variant="outlined" placeholder='Project name'  
      onChange={handleInputChange} value={inputText}
      InputLabelProps={{
@@ -71,13 +74,15 @@ function handleChoose(listPerson){
         color: 'white', 
       },
       }} /> 
-  <div>
+ 
       <MultipleSelect choosePersones={handleChoose}/>
-      </div>
+    <MultipleSelectSpec chooseSpecs={handleChooseSpec}/>
+     
       <div className='btns' >
       <button onClick={getTextAndNames}>Create</button>
       <button onClick={()=>{setInputText('');onClose()}} style={{marginLeft:'3vw'}}>Cancel</button>
       </div>
+      </Container>
     </div>
  
   </div>
