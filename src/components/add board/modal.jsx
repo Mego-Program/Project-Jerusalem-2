@@ -43,11 +43,14 @@ export default function Modal1({ isOpen, onClose ,func}) {
   };
 
   const getTextAndNames = () => {
+
     func(inputText,selected,selectedSpec)
     setInputText('')
     onClose()
     
+
   };
+  
 function handleChoose(listPerson){
     setSelected(listPerson)
 }
