@@ -31,7 +31,7 @@ export default function MassionCard(props) {
 }}>
     <div className="mission-card" ref={drag}>
   <div className="left-content">
-    <AssigneeSelector names={props.names} missionId={props.missionId} updateTaskFunc={props.updateTaskFunc} />
+    <AssigneeSelector name = {props.obj.assignee} names={props.names} missionId={props.missionId} updateTaskFunc={props.updateTaskFunc} />
   </div>
   <div className="text">
     <div className="header">

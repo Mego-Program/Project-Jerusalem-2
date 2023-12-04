@@ -3,6 +3,7 @@ import './modal.css'
 import MultipleSelect from './choosePerson';
 import TextField from '@mui/material/TextField';
 import MultipleSelectSpec from './chooseSpecs';
+import {Container} from '@mui/material'
 
 export default function Modal1({ isOpen, onClose ,func}) {
   const [inputText, setInputText] = useState('');
@@ -32,7 +33,7 @@ export default function Modal1({ isOpen, onClose ,func}) {
     flexDirection: 'column',
     alignItems: 'center',
     width:'50vw',
-    height:'35vh',
+    height:'50vh',
     borderRadius:'10px',
     justifyContent:'space-between',
   };
@@ -59,6 +60,7 @@ function handleChooseSpec(listSpec){
 
     <div style={overlayStyle}>
     <div style={modalStyle}>
+      <Container sx={modalStyle}>
     <TextField id="outlined-basic" label="Project name" variant="outlined" placeholder='Project name'  
      onChange={handleInputChange} value={inputText}
      InputLabelProps={{
@@ -69,14 +71,15 @@ function handleChooseSpec(listSpec){
         color: 'white', 
       },
       }} /> 
-  <div>
+ 
       <MultipleSelect choosePersones={handleChoose}/>
     <MultipleSelectSpec chooseSpecs={handleChooseSpec}/>
-      </div>
+     
       <div className='btns' >
       <button onClick={getTextAndNames}>Create</button>
       <button onClick={()=>{setInputText('');onClose()}} style={{marginLeft:'3vw'}}>Cancel</button>
       </div>
+      </Container>
     </div>
  
   </div>

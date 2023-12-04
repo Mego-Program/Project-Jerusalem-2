@@ -36,7 +36,7 @@ export default function ModalEdit({ isOpen, onClose ,func,personsExsist,projectN
     flexDirection: 'column',
     alignItems: 'center',
     width:'50vw',
-    height:'60vh',
+    height:'80vh',
     borderRadius:'10px',
     justifyContent:'space-between',
   };
@@ -83,12 +83,12 @@ function handleChooseSpec1(listSpec){
         color: 'white', 
       },
       }} /> 
-      <div className='selestP'>
+      
       <MultipleSelect choosePersones={handleChoose} personsExsist={personsExsist} />
       <MultipleSelect choosePersones={handleChoose1} personsExsist={personsExsist}  remove={true}/>
       <MultipleSelectSpec chooseSpecs={handleChooseSpec} specExist={specExist}/>
       <MultipleSelectSpec chooseSpecs={handleChooseSpec1}  specExist={specExist} remove={true}/>
-      </div>
+    
       <div className='btns' >
       <button onClick={getTextAndNames}>Change</button>
       <button onClick={()=>{setInputText('');onClose()}} style={{marginLeft:'3vw'}}>Cancel</button>

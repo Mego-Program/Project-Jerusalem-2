@@ -7,24 +7,20 @@ import CheckBoxIcon from '@mui/icons-material/CheckBox';
 import './choosePerson.css';
 import { Avatar, Box, Typography } from '@mui/material';
 import axios from 'axios';
-
-let serverBaseUrl;
-
-if (process.env.NODE_ENV === 'development') {
-  serverBaseUrl = 'http://localhost:3000/';
-} else {
-  serverBaseUrl = 'https://project-jerusalem-2-server.vercel.app/';
-}
+import { atomUrl } from '../../userNameAtom';
+import {useAtom} from 'jotai'
 
 const icon = <CheckBoxOutlineBlankIcon fontSize="small" />;
 const checkedIcon = <CheckBoxIcon fontSize="small" />;
 
 export default function MultipleSelectSpec({ chooseSpecs, specExist ,remove}) {
   const [options, setOptions] = React.useState([]);
+const [url,setUrl] = useAtom(atomUrl)
+
   React.useEffect(() => {
     async function fetchData(){
         try {
-          const response = await axios.get(`${serverBaseUrl}spec/getspecs`);
+          const response = await axios.get(`${url}spec/getspecs`);
           setOptions(response.data)
         } catch (err) {
           console.log('error try to get names:', { err });
@@ -43,7 +39,9 @@ export default function MultipleSelectSpec({ chooseSpecs, specExist ,remove}) {
   return (
     <Autocomplete
     
-    sx={{mb:'3px'}}
+    sx={{mb:'3px','& input': {
+      color: 'white', 
+    },}}
       multiple
       id="checkboxes-tags-demo"
       options={remove?specExist:options}

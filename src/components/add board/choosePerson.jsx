@@ -7,24 +7,21 @@ import CheckBoxIcon from '@mui/icons-material/CheckBox';
 import './choosePerson.css';
 import { Avatar, Box, Typography } from '@mui/material';
 import axios from 'axios';
+import {atomUrl} from '../../userNameAtom';
+import {useAtom} from 'jotai'
 
-let serverBaseUrl;
 
-if (process.env.NODE_ENV === 'development') {
-  serverBaseUrl = 'http://localhost:3000/';
-} else {
-  serverBaseUrl = 'https://project-jerusalem-2-server.vercel.app/';
-}
 
 const icon = <CheckBoxOutlineBlankIcon fontSize="small" />;
 const checkedIcon = <CheckBoxIcon fontSize="small" />;
 
 export default function MultipleSelect({ choosePersones, personsExsist ,remove}) {
   const [options, setOptions] = React.useState([]);
+  const [url,setUrl]= useAtom(atomUrl)
   React.useEffect(() => {
     async function fetchData() {
       try {
-        const response = await axios.get(`${serverBaseUrl}projects/allNames`)
+        const response = await axios.get(`${url}projects/allNames`)
         setOptions(response.data);
       } catch (err) {
         console.log('Error getting names', err);
@@ -39,16 +36,18 @@ export default function MultipleSelect({ choosePersones, personsExsist ,remove})
 
 
   const isOptionEqualToValue = (option, value) => personsExsist.some(
-    (person) => person.pic === option.pic && person.name === option.name)
+    (person) => person.userName === option.userName)
   return (
     <Autocomplete
     
-    sx={{mb:'3px'}}
+    sx={{mb:'3px','& input': {
+      color: 'white', 
+    },}}
       multiple
       id="checkboxes-tags-demo"
       options={remove?personsExsist:options}
       disableCloseOnSelect
-      getOptionLabel={(option) => option.name}
+      getOptionLabel={(option) =>  `${option.firstName} ${option.lastName} (${option.userName})`}
       
       getOptionDisabled={personsExsist&&!remove?isOptionEqualToValue:null}
       renderOption={(props, option) => (
@@ -59,12 +58,12 @@ export default function MultipleSelect({ choosePersones, personsExsist ,remove})
             checkedIcon={checkedIcon}
             style={{ marginRight: 8 }}
             checked={personsExsist&&!remove?personsExsist.some(
-              (person) => person.pic === option.pic && person.name === option.name
+              (person) => person.userName === option.userName
             ):option.selected}
           />
           <Box display="flex" alignItems="center">
-            <Avatar src={option.pic} alt={option.name} sx={{ mr: 1, height: '5vh', width: '5vh' }} />
-            <Typography variant="body2">{option.name}</Typography>
+            <Avatar src={option.pic} alt={option.lastName} sx={{ mr: 1, height: '5vh', width: '5vh' }} />
+            <Typography variant="body2">{`${option.firstName} ${option.lastName}`}</Typography>
           </Box>
         </li>
       )}
