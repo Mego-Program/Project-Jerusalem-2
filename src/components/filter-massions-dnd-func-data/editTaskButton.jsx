@@ -10,7 +10,7 @@ function EditTask(props) {
     content: '',
     category: '',
     milestone: '',
-    issueType: ''
+    issue_type: ''
   });
 
   const handleClickOpen = () => {
@@ -24,7 +24,7 @@ function EditTask(props) {
       content: '',
       category: '',
       milestone: '',
-      issueType: ''
+      issue_type: ''
     });
   };
 
@@ -92,7 +92,7 @@ function EditTask(props) {
           <TextField
           placeholder={props.TaskDetails.issueType}
             margin="dense"
-            name="issueType"
+            name="issue_type"
             label="Issue Type"
             type="text"
             fullWidth

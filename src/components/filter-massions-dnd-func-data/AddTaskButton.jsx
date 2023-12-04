@@ -8,7 +8,7 @@ function AddTaskButton(props) {
     content: '',
     category: '',
     milestone: '',
-    issueType: ''
+    issue_type: ''
   });
 
   const handleClickOpen = () => {
@@ -22,7 +22,7 @@ function AddTaskButton(props) {
       content: '',
       category: '',
       milestone: '',
-      issueType: ''
+      issue_type: ''
     });
   };
 
@@ -36,8 +36,8 @@ function AddTaskButton(props) {
 
   const handleAddTask = () => {
     
-    const { header, content, category, milestone, issueType } = taskDetails;
-    if ([header, content,category, milestone, issueType].some(field => field.trim() === '')) {
+    const { header, content, category, milestone, issue_type } = taskDetails;
+    if ([header, content,category, milestone, issue_type].some(field => field.trim() === '')) {
       alert('All fields must be filled!');
       return;
     }
@@ -48,7 +48,7 @@ function AddTaskButton(props) {
   return (
     <div style={{ display: 'flex', alignItems: 'center', color: 'green', cursor: 'pointer' }}>
       <PostAddIcon variant="contained" onClick={handleClickOpen} sx={{ color: 'green', ml: '10px', mr: '5px', cursor: 'pointer' }}/>
-      <p style={{ margin: 0, verticalAlign: 'middle' }} onClick={handleClickOpen}>
+      <p className='text_button' style={{ margin: 0, verticalAlign: 'middle' }} onClick={handleClickOpen}>
         Add Task
       </p>
       
@@ -94,11 +94,11 @@ function AddTaskButton(props) {
           />
           <TextField
             margin="dense"
-            name="issueType"
+            name="issue_type"
             label="Issue Type"
             type="text"
             fullWidth
-            value={taskDetails.issueType}
+            value={taskDetails.issue_type}
             onChange={handleInputChange}
           />
         </DialogContent>
