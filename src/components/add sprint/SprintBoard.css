@@ -8,6 +8,9 @@
     align-items: center;
     justify-content: space-between;
     margin-bottom: 20px;
+    color: chartreuse;
+    font-size: xx-large;
+    font:1500,bold;
   }
   
   .task-selector {
@@ -19,4 +22,12 @@
     flex-wrap: wrap;
     gap: 10px;
   }
+  .status-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: flex-start;
+    gap: 20px; /* Adjust the gap as needed */
+}
+
   

@@ -14,10 +14,11 @@
 .modal input[type="text"], .modal input[type="date"] {
     display: block;
     background-color: #21213E;
+    color: white;
     margin-bottom: 10px;
     width: 100%;
     padding: 8px;
-    color:'#FFFFF'
+    
     
 }
 
@@ -34,3 +35,12 @@
 .modal button:last-child {
     background-color: #dc3545;
 }
+
+
+
+.project-select-label {
+    color: white;
+    background-color:#21213E ;
+    
+}
+

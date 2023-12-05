@@ -25,13 +25,12 @@ const Options = {
   'issue_type':[...(new Set(props.projectData.map((item)=>item.issue_type)))],
 }
 useEffect(() => {
-    setDataFiltered(props.projectData);
-    getNames();
-    resetFilters();
-    if (names.length === 0) {
-      getNames();
-    }
+  setDataFiltered(props.projectData);
+  console.log("DataFiltered updated:", props.projectData);
+  getNames();
+  resetFilters();
 }, [props.projectData]);
+
 
 
 async function getNames() {
@@ -147,12 +146,12 @@ return (
         <div className='filter-item'> <Inp key={`4-${dummyState}`} func={handleObFilter} func1={filterInput} type={'assignee'} filters={obFilter} lstOptions={names.map((name)=>name.name)} name={'Assignee'} /></div>
       </div>
 
-    <div className='div-massions status-columns'>
-        <Show   datafiltered={filterStatus(DataFiltered, 'Not Started')} cat={'Not Started'} names={names} addTask ={addTask} deleteFunc={deleteFunc} updateTaskFunc={updatefieldsE}/>
-        <Show  datafiltered={filterStatus(DataFiltered, 'In Progress')} cat={'In Progress'}   names={names} addTask ={addTask} deleteFunc={deleteFunc} updateTaskFunc={updatefieldsE}/>
-        <Show  datafiltered={filterStatus(DataFiltered, 'Completed')} cat={'Completed'}  names={names} addTask ={addTask} deleteFunc={deleteFunc} updateTaskFunc={updatefieldsE}/>
-        <Show  datafiltered={filterStatus(DataFiltered, 'Close')} cat={'Close'}  names={names} addTask ={addTask} deleteFunc={deleteFunc} updateTaskFunc={updatefieldsE}/>
-      </div>
+      <div className='div-massions status-columns'>
+            <Show datafiltered={filterStatus(DataFiltered, 'Not Started')} cat={'Not Started'} names={names} addTask={addTask} deleteFunc={deleteFunc} updateTaskFunc={updatefieldsE} showEndDate={true}/>
+            <Show datafiltered={filterStatus(DataFiltered, 'In Progress')} cat={'In Progress'} names={names} addTask={addTask} deleteFunc={deleteFunc} updateTaskFunc={updatefieldsE} showEndDate={true}/>
+            <Show datafiltered={filterStatus(DataFiltered, 'Completed')} cat={'Completed'} names={names} addTask={addTask} deleteFunc={deleteFunc} updateTaskFunc={updatefieldsE} showEndDate={true}/>
+            <Show datafiltered={filterStatus(DataFiltered, 'Close')} cat={'Close'} names={names} addTask={addTask} deleteFunc={deleteFunc} updateTaskFunc={updatefieldsE} showEndDate={true}/>
+        </div>
  
 </div>
   );
