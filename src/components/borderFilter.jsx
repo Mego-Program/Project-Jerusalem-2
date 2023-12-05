@@ -102,6 +102,8 @@ const BorderFilter = ({ onProjectChange, listProjects = [], listSprints = [], ne
     <div style={borderFilterStyles}>
       <div style={displayStyles}>
         {selectedItem}
+      <div style={displayStyles} className='proj_name'>
+         {selectedProject}
       </div>
       <div style={{ display: 'flex', alignItems: 'center', order: 2 }}>
         <span style={selectLabelStyles}>Choose Board or Sprint</span>
@@ -113,6 +115,8 @@ const BorderFilter = ({ onProjectChange, listProjects = [], listSprints = [], ne
         </div>
         <Select
           value={selectedItem}
+        className='drop_board'
+        value={selectedProject}
           open={Boolean(anchorEl)}
           onClose={() => setAnchorEl(null)}
           onChange={handleSelectionChange}

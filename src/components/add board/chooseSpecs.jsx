@@ -7,36 +7,35 @@ import CheckBoxIcon from '@mui/icons-material/CheckBox';
 import './choosePerson.css';
 import { Avatar, Box, Typography } from '@mui/material';
 import axios from 'axios';
-import {atomUrl} from '../../userNameAtom';
+import { atomUrl } from '../../userNameAtom';
 import {useAtom} from 'jotai'
-
-
 
 const icon = <CheckBoxOutlineBlankIcon fontSize="small" />;
 const checkedIcon = <CheckBoxIcon fontSize="small" />;
 
-export default function MultipleSelect({ choosePersones, personsExsist ,remove}) {
+export default function MultipleSelectSpec({ chooseSpecs, specExist ,remove}) {
   const [options, setOptions] = React.useState([]);
-  const [url,setUrl]= useAtom(atomUrl)
+const [url,setUrl] = useAtom(atomUrl)
+
   React.useEffect(() => {
-    async function fetchData() {
-      try {
-        const response = await axios.get(`${url}projects/allNames`)
-        setOptions(response.data);
-      } catch (err) {
-        console.log('Error getting names', err);
-      }
+    async function fetchData(){
+        try {
+          const response = await axios.get(`${url}spec/getspecs`);
+          setOptions(response.data)
+        } catch (err) {
+          console.log('error try to get names:', { err });
+        }
     }
     fetchData();
   }, []);
 
   function handleCheck(event, value) {
-    choosePersones(value);
+    chooseSpecs(value);
   }
 
 
-  const isOptionEqualToValue = (option, value) => personsExsist.some(
-    (person) => person.userName === option.userName)
+  const isOptionEqualToValue = (option, value) => specExist.some(
+    (spec) => spec._id===option._id)
   return (
     <Autocomplete
     
@@ -45,11 +44,11 @@ export default function MultipleSelect({ choosePersones, personsExsist ,remove})
     },}}
       multiple
       id="checkboxes-tags-demo"
-      options={remove?personsExsist:options}
+      options={remove?specExist:options}
       disableCloseOnSelect
-      getOptionLabel={(option) =>  `${option.firstName} ${option.lastName} (${option.userName})`}
+      getOptionLabel={(option) => option.title}
       
-      getOptionDisabled={personsExsist&&!remove?isOptionEqualToValue:null}
+      getOptionDisabled={specExist&&!remove?isOptionEqualToValue:null}
       renderOption={(props, option) => (
         <li {...props}>
           <Checkbox
@@ -57,20 +56,19 @@ export default function MultipleSelect({ choosePersones, personsExsist ,remove})
             icon={icon}
             checkedIcon={checkedIcon}
             style={{ marginRight: 8 }}
-            checked={personsExsist&&!remove?personsExsist.some(
-              (person) => person.userName === option.userName
+            checked={specExist&&!remove?specExist.some(
+                (spec) => spec._id===option._id
             ):option.selected}
           />
           <Box display="flex" alignItems="center">
-            <Avatar src={option.pic} alt={option.lastName} sx={{ mr: 1, height: '5vh', width: '5vh' }} />
-            <Typography variant="body2">{`${option.firstName} ${option.lastName}`}</Typography>
+            <Typography variant="body2">{option.title}</Typography>
           </Box>
         </li>
       )}
       onChange={handleCheck}
       style={{ width: '49vw', background: '#343476', color: 'white',borderRadius:'8px' }}
       renderInput={(params) => (
-        <TextField {...params} label={remove?'Remove Names':'Add Names'} placeholder="search for name" style={{ color: 'white' ,}} InputLabelProps={{style: {color: 'white'}}}/>
+        <TextField {...params} label={remove?'Remove Specs':'Connect more Specs'} placeholder="search for spec" style={{ color: 'white' ,}} InputLabelProps={{style: {color: 'white'}}}/>
       )}
     />
   );

@@ -3,18 +3,16 @@ import './showFiltersAndMission.css'
 import axios from 'axios';
 import Inp from './input';
 import Show from './massions-component/showMassion'
+import {useAtom} from 'jotai'
+import { atomUrl } from '../../userNameAtom';
 
 
-let serverBaseUrl
-if (process.env.NODE_ENV === 'development') {
-  serverBaseUrl = 'http://localhost:3000/';
-} else {
 
-  serverBaseUrl = 'https://project-jerusalem-2-server.vercel.app/';
-}
+
 let obFilter = {'category':'', 'milestone':'','issue_type':'','assignee':''}
 
 export default function DivFilters(props){
+ const [url,setUrl] = useAtom(atomUrl)
   
 const [DataFiltered,setDataFiltered]=useState([...props.projectData])
 const [names,setNames] = useState([])
@@ -35,7 +33,7 @@ useEffect(() => {
 
 async function getNames() {
   try {
-    const response = await axios.get(`${serverBaseUrl}projects/names/${props.collection}`);
+    const response = await axios.get(`${url}projects/names/${props.collection}`);
     setNames(response.data);
     
   } catch (err) {
@@ -54,10 +52,9 @@ function resetFilters() {
 
 function handleObFilter(input,type){
   obFilter[type]=input
-  const saveFilter = obFilter
+
   if(input===''){
-setDataFiltered(fetchData())
-obFilter = saveFilter
+
 filterInput(obFilter)
   }
   else{
@@ -67,7 +64,7 @@ filterInput(obFilter)
 
 function filterInput(filt) {
   setDataFiltered(
-      DataFiltered.filter((itm) => 
+      props.projectData.filter((itm) => 
           (filt['category'] ? itm['category'].includes(filt['category']) : true) &&
           (filt['milestone'] ? itm['milestone'].includes(filt['milestone']) : true) &&
           (filt['issue_type'] ? itm['issue_type'].includes(filt['issue_type']) : true) &&
@@ -79,11 +76,11 @@ function filterInput(filt) {
 
 
 
-async function updatefieldsE(id, field, update) {
-  const url = `${serverBaseUrl}missions/${props.collection}/${field}`;
+async function updatefields(id, field, update) {
+  const url1 = `${url}missions/${props.collection}/${field}`;
 
   try {
-    const response = await axios.put(url, { id, update })
+    const response = await axios.put(url1, { id, update })
    if (response.status!==200){console.log('server error to updae try again'); return;}
    const newdata = DataFiltered.map((itemInData) => {
     if (itemInData._id === id) {
@@ -102,7 +99,7 @@ async function updatefieldsE(id, field, update) {
 
 async function deleteFunc(id){
   try{
-const respone = await axios.delete(`${serverBaseUrl}missions/${props.collection}`,{id})
+const respone = await axios.delete(`${url}missions/${props.collection}`,{data:{id}})
   }catch(error){console.log('error while delete mission:',error);}
   const newdata = DataFiltered.filter((itemInData) => {return itemInData._id!==id})
 setDataFiltered((prev)=>prev=newdata);
@@ -119,17 +116,19 @@ function filterStatus(data, DivStatus) {
  
 async function addTask(data){
   try{
-  const response = await axios.post(`${serverBaseUrl}missions/${props.collection}`,data)
+  const response = await axios.post(`${url}missions/${props.collection}`,data)
   if (response.data==='create project first') {
     alert(response.data)
   }
 }catch(error){console.log('error while add new task:',error);}
 fetchData()
+resetFilters()
   }
   async function fetchData(){
   try {
-    const response = await axios.get(`${serverBaseUrl}missions/${props.collection}`);
+    const response = await axios.get(`${url}missions/${props.collection}`);
     setDataFiltered(response.data)
+    return response.data
   } catch (error) {
     console.error('Error fetching project data:', error);
   }}
@@ -152,6 +151,12 @@ return (
             <Show datafiltered={filterStatus(DataFiltered, 'Completed')} cat={'Completed'} names={names} addTask={addTask} deleteFunc={deleteFunc} updateTaskFunc={updatefieldsE} showEndDate={true}/>
             <Show datafiltered={filterStatus(DataFiltered, 'Close')} cat={'Close'} names={names} addTask={addTask} deleteFunc={deleteFunc} updateTaskFunc={updatefieldsE} showEndDate={true}/>
         </div>
+    <div className='div-massions status-columns'>
+        <Show   datafiltered={filterStatus(DataFiltered, 'Not Started')} cat={'Not Started'} names={names} addTask ={addTask} deleteFunc={deleteFunc} updateTaskFunc={updatefields}/>
+        <Show  datafiltered={filterStatus(DataFiltered, 'In Progress')} cat={'In Progress'}   names={names} addTask ={addTask} deleteFunc={deleteFunc} updateTaskFunc={updatefields}/>
+        <Show  datafiltered={filterStatus(DataFiltered, 'Completed')} cat={'Completed'}  names={names} addTask ={addTask} deleteFunc={deleteFunc} updateTaskFunc={updatefields}/>
+        <Show  datafiltered={filterStatus(DataFiltered, 'Close')} cat={'Close'}  names={names} addTask ={addTask} deleteFunc={deleteFunc} updateTaskFunc={updatefields}/>
+      </div>
  
 </div>
   );

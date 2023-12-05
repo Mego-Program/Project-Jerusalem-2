@@ -1,0 +1,5 @@
+
+const fakeToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwidXNlck5hbWUiOiJMaWx5IiwiaWF0IjoxNTE2MjM5MDIyfQ.ISGU0s9Hfr4w95eNAu5nMGs0jabYo71VORuZqhlxmng'
+
+
+export default fakeToken 

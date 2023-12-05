@@ -35,8 +35,8 @@ export default function AddBoard(props) {
     
     setModalOpen(true);
   };
-  function handleNewBoard(input,names){
-    props.func(input,names)
+  function handleNewBoard(input,names,specs){
+    props.func(input,names,specs)
   }
 
   const closeModal = () => {
