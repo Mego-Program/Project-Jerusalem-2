@@ -6,7 +6,7 @@ import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 import axios from 'axios';
 import BoardOptions from './components/add board/boardOptions';
-import { userNameAtom,atomUrl } from './userNameAtom';
+import { userNameAtom,atomUrl } from './Atoms';
 import {useAtom} from 'jotai'
 import fakeToken from './fakeToken';
 
@@ -48,7 +48,7 @@ function AppProjects() {
     
     console.log('Wait for the data to load');
     try {
-      const response = await axios.get(`${url}projects/listofprojects/`,{params:{userName}});
+      const response = await axios.post(`${url}projects/listofprojects/`,{userName});
       setListBoards(response.data);
     } catch (error) {
       if(error.response.data.auth===false){console.log('login first')}

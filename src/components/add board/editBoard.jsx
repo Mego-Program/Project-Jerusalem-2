@@ -2,7 +2,7 @@ import EditIcon from '@mui/icons-material/Edit';
 import ModalEdit from './modalEdit';
 import { useEffect, useState } from 'react';
 import axios from 'axios'
-import { atomUrl } from '../../userNameAtom';
+import { atomUrl } from '../../Atoms';
 import {useAtom} from 'jotai'
 
 

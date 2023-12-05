@@ -7,7 +7,7 @@ import CheckBoxIcon from '@mui/icons-material/CheckBox';
 import './choosePerson.css';
 import { Avatar, Box, Typography } from '@mui/material';
 import axios from 'axios';
-import {atomUrl} from '../../userNameAtom';
+import {atomUrl} from '../../Atoms';
 import {useAtom} from 'jotai'
 
 

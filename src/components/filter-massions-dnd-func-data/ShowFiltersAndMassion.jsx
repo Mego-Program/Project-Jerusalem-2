@@ -4,7 +4,7 @@ import axios from 'axios';
 import Inp from './input';
 import Show from './massions-component/showMassion'
 import {useAtom} from 'jotai'
-import { atomUrl } from '../../userNameAtom';
+import { atomUrl } from '../../Atoms';
 
 
 
