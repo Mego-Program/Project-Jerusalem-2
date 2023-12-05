@@ -1,28 +1,20 @@
-import React, { useEffect ,useState} from "react";
-import Avatar from "@mui/material/Avatar";
-import { DndProvider, useDrag } from "react-dnd";
-import { colors } from "@mui/material";
+import React from "react";
+import { Box } from '@mui/material';
+import { useDrag } from "react-dnd"; // Import useDrag here
 import AssigneeSelector from "../change assigne/ChangeAsignee";
 import DateSelector from "../due-date/DatePicker";
-import './massion-card.css'
-import axios from "axios";
-import {Box} from '@mui/material'
-import DeleteMission from "./deleteMission";
+import './massion-card.css';
 import EditTask from "../editTaskButton";
-
-
+import DeleteMission from "./deleteMission";
 
 export default function MassionCard(props) {
-  
-
-  const [{ isDraging }, drag] = useDrag(() => ({
+  const [{ isDragging }, drag] = useDrag(() => ({
     type: "MASSION",
-    item: { massion: props.obj.status, id: props.missionId},
+    item: { massion: props.obj.status, id: props.missionId },
     collect: (monitor) => ({
-      isDraging: !!monitor.isDragging(),
+      isDragging: !!monitor.isDragging(),
     }),
   }));
-
 
   return (
     // choose color for the spec missions
