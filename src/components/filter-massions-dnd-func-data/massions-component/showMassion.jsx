@@ -7,10 +7,7 @@ import AddTaskButton from "../AddTaskButton";
 
 export default function Show(props) {
   
-  {
-    console.log("Props in Show", props);
-    // rest of your code
-  }
+
   const data = props.datafiltered;
   
   
@@ -23,12 +20,10 @@ export default function Show(props) {
   const [{ isOver }, drop] = useDrop({
     accept: "MASSION",
     drop: (item) => {
-      console.log("Dropped item:", item);
-      console.log("New status:", props.cat);
+      
       props.updateTaskFunc(item.id,'status', props.cat);
     },collect: (monitor) => ({
       isOver: !!monitor.isOver(),
-      
     }),
   });
 
@@ -64,21 +59,13 @@ export default function Show(props) {
 
       </div>
       <div className="mission-cont" style={{width:'100%'}}>
-                {props.datafiltered.map((prop) => (
-                    <div key={prop._id} className={`massion ${prop.name + prop._id}`} style={{padding:'8px'}} >
-                        <MassionCard 
-                            obj={prop} 
-                            names={props.names} 
-                            missionId={prop._id} 
-                            funcChange={props.funcChange} 
-                            DueDate={props.dueDate} 
-                            deleteFunc={props.deleteFunc}
-                            updateTaskFunc={props.updateTaskFunc} 
-                            showEndDate={props.showEndDate}
-                        />
-                    </div>
-                ))}
-            </div>
-        </Paper>
-    );
+      {data.map((prop) => (
+        <div key={prop._id} className={`massion ${prop.name + prop._id}`} style={{padding:'8px'}} >
+          <MassionCard obj={prop} names={props.names} missionId={prop._id} funcChange={props.funcChange} DueDate={props.dueDate} deleteFunc={props.deleteFunc}updateTaskFunc={props.updateTaskFunc}/>
+        </div>
+        
+      ))}
+      </div>
+    </Paper>
+  );
 }

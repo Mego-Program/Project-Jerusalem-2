@@ -25,7 +25,6 @@
     "jotai": "^2.6.0",
 
     "grid": "^4.10.8",
-    "mongose": "^0.0.2-security",
 
     "react": "^18.2.0",
     "react-dnd": "^16.0.1",
