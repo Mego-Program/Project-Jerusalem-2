@@ -1,12 +1,12 @@
-import React, { useState, useEffect } from 'react';
-import { Select, MenuItem, ListSubheader } from '@mui/material';
+import React, { useEffect,useState } from 'react';
+import { Select, MenuItem } from '@mui/material';
 import FilterListIcon from '@mui/icons-material/FilterList';
 import './borderFilter.css';
 
 const borderFilterStyles = {
   width: '100%',
-  marginTop: '10vh',
-  marginBottom: '5vh',
+  marginTop:'10vh',
+  marginBottom:'5vh',
   height: '70px',
   background: '#121231', 
   boxShadow: '0px 20px 70px rgba(86, 89, 146, 0.1)',
@@ -17,7 +17,7 @@ const borderFilterStyles = {
 };
 
 const displayStyles = {
-  marginLeft: '5vw',
+  marginLeft:'5vw',
   fontFamily: 'Poppins',
   fontWeight: 900,
   fontSize: '5vh',
@@ -43,88 +43,64 @@ const iconCircleStyles = {
   borderRadius: '50%', 
 };
 
-const selectLabelStyles = {
-  // Define your styles here, for example:
-  color: '#FFFFFF',
-  fontFamily: 'Poppins',
-  fontSize: '5vh',
-  fontWeight: '600',
-  lineHeight: '35px',
-  letterSpacing: '0em',
-};
 
 
-const BorderFilter = ({ onProjectChange, listProjects = [], listSprints = [], newboard }) => {
-  const [selectedItem, setSelectedItem] = useState(newboard || (listProjects.length > 0 ? listProjects[0] : ''));
 
+const BorderFilter =({ onProjectChange ,listProjects,newboard}) => {
+  const projects =listProjects
+  let currentProject=listProjects[0]
+  const [selectedProject, setSelectedProject] = useState(currentProject);
   useEffect(() => {
-    if (newboard && newboard !== selectedItem) {
-      setSelectedItem(newboard);
-    }
-  }, [newboard, selectedItem]);
-
-  const handleSelectionChange = (event) => {
-    const selected = event.target.value;
-    console.log("border selected:", selected)
-    setSelectedItem(selected);
-    onProjectChange(selected);
-  };
+    if(newboard!==null&&newboard!==selectedProject){
+    setSelectedProject(newboard)}
+  },[newboard])
 
   const [anchorEl, setAnchorEl] = useState(null);
   const dropdownMenuStyles = {
     backgroundColor: '#121231',
   };
 
-  const renderMenuItems = () => {
-    const items = [];
-
-    listProjects.forEach(project => {
-      items.push(
-        <MenuItem key={project} value={project}>
-          {project}
-        </MenuItem>
-      );
-
-      const sprintsForProject = listSprints.filter(sprint => sprint.boardName === project);
-      sprintsForProject.forEach(sprint => {
-        items.push(
-          <MenuItem key={`${project}-${sprint.sprintName}`} value={`${project}-${sprint.sprintName}`} style={{ paddingLeft: '20px' }}>
-            {"-- " + sprint.sprintName}
-          </MenuItem>
-        );
-      });
-    });
-
-    return items;
+  const handleProjectSelectionChange = (event) => {
+    const newSelectedProject = event.target.value;
+    setSelectedProject(newSelectedProject);
+    onProjectChange(newSelectedProject); 
   };
 
   return (
     <div style={borderFilterStyles}>
-      <div style={displayStyles}>
-        {selectedItem}
       <div style={displayStyles} className='proj_name'>
          {selectedProject}
       </div>
       <div style={{ display: 'flex', alignItems: 'center', order: 2 }}>
-        <span style={selectLabelStyles}>Choose Board or Sprint</span>
+        <span style={{ color: '#FFFFFF' ,fontFamily:'Poppins',
+fontSize: '5vh',
+fontWeight: '600',
+lineHeight: '35px',
+letterSpacing: '0em'}}>Choose Board</span>
         <div style={iconCircleStyles}>
           <FilterListIcon
             className="filter-icon"
             onClick={(e) => setAnchorEl(e.currentTarget)}
+            style={{ ...selectStyles, cursor: 'pointer' }}
           />
         </div>
         <Select
-          value={selectedItem}
         className='drop_board'
         value={selectedProject}
           open={Boolean(anchorEl)}
           onClose={() => setAnchorEl(null)}
-          onChange={handleSelectionChange}
+          onChange={handleProjectSelectionChange}
+          
           sx={selectStyles}
+          anchorel={anchorEl}
           MenuProps={{ PaperProps: { style: dropdownMenuStyles } }}
-          renderValue={() => null}
+          renderValue={()=>null}
         >
-          {renderMenuItems()}
+          {projects.map((project) => (
+            <MenuItem  key={project} value={project}>
+              {project}
+            </MenuItem>
+          ))}
         </Select>
       </div>
     </div>
