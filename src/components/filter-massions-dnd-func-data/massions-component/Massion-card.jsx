@@ -14,7 +14,6 @@ import EditTask from "../editTaskButton";
 
 export default function MassionCard(props) {
   
-
   const [{ isDraging }, drag] = useDrag(() => ({
     type: "MASSION",
     item: { massion: props.obj.status, id: props.missionId},
@@ -26,7 +25,7 @@ export default function MassionCard(props) {
 
   return (
     // choose color for the spec missions
-<Box sx={props.isSpec?{borderRight:'solid 10px #36B176',borderLeft:'solid 10px #36B176',borderRadius:'5px'}:{
+<Box sx={props.obj.isSpec?{borderRight:'solid 10px #36B176',borderLeft:'solid 10px #36B176',borderRadius:'5px'}:{
   borderRight:'solid 10px #21213E',borderLeft:'solid 10px #21213E',borderRadius:'5px'
 }}>
     <div className="mission-card" ref={drag}>

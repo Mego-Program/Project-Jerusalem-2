@@ -88,14 +88,8 @@ function AppProjects() {
   async function addBoard(name,names,specs) {
     if(name===''){alert('please enter name');return}
     try {
-      const response = await axios.post(`${url}projects/`, { name,names ,specs},{
-         headers: {
-        'Content-Type': 'application/json',
-        // Authorization: localStorage.getItem('token'),
-        Authorization:fakeToken //change it to the previous line when there is real token
-
-      },}) 
-      console.log(response.userInCharge);
+      const response = await axios.post(`${url}projects/`, { name,names ,specs,userName})
+        if(response.status==403){alert('login first');return}
       setAddedBoard(name)
       setCurrentProject(name)
       fetchData()
@@ -107,7 +101,8 @@ function AppProjects() {
   }
 
   async function editBoard(input,namesToAdd,namesToRemove,projectName,specsToAdd,specsToRemove){
-    if (!input&&namesToAdd.length===0&&namesToRemove.length===0){return}
+    if (!input&&namesToAdd.length===0&&namesToRemove.length===0
+      &&specsToAdd===0&&specsToRemove===0){return}
     try{
       const response = await axios.put(`${url}projects/`,{input,namesToAdd,namesToRemove,projectName,specsToAdd,specsToRemove,userName})
       setAddedBoard('')

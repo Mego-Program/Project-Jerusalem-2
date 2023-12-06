@@ -69,7 +69,7 @@ function filterInput(filt) {
           (filt['category'] ? itm['category'].includes(filt['category']) : true) &&
           (filt['milestone'] ? itm['milestone'].includes(filt['milestone']) : true) &&
           (filt['issue_type'] ? itm['issue_type'].includes(filt['issue_type']) : true) &&
-          (filt['assignee'] ? itm['assignee']['name'].includes(filt['assignee']) : true)
+          (filt['assignee'] ? `${itm['assignee']['firstName']} ${itm['assignee']['lastName']}`.includes(filt['assignee']) : true)
       )
   );
 }
@@ -143,7 +143,7 @@ return (
         <Inp key={`1-${dummyState}`} func={handleObFilter} func1={filterInput} type={'category'} filters={obFilter} lstOptions={Options.category} name={'Category'} /></div>
         <div className='filter-item'><Inp key={`2-${dummyState}`} func={handleObFilter} func1={filterInput} type={'milestone'} filters={obFilter} lstOptions={Options.milestone} name={'Milestone'} /></div>
         <div className='filter-item'> <Inp key={`3-${dummyState}`} func={handleObFilter} func1={filterInput} type={'issue_type'} filters={obFilter} lstOptions={Options.issue_type} name={'Issue Type'} /></div>
-        <div className='filter-item'> <Inp key={`4-${dummyState}`} func={handleObFilter} func1={filterInput} type={'assignee'} filters={obFilter} lstOptions={names.map((name)=>name.name)} name={'Assignee'} /></div>
+        <div className='filter-item'> <Inp key={`4-${dummyState}`} func={handleObFilter} func1={filterInput} type={'assignee'} filters={obFilter} lstOptions={names.map((name)=>`${name.firstName} ${name.lastName}`)} name={'Assignee'} /></div>
       </div>
 
     <div className='div-massions status-columns'>
