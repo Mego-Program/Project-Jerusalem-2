@@ -13,7 +13,6 @@ import EditTask from "../editTaskButton";
 
 
 export default function MassionCard(props) {
-  
   const [{ isDraging }, drag] = useDrag(() => ({
     type: "MASSION",
     item: { massion: props.obj.status, id: props.missionId},
@@ -39,9 +38,10 @@ export default function MassionCard(props) {
     <div className="content" >
       <p>{props.obj.content}</p>
     </div>
+    {!props.obj.isSprint?
   <div className="date">
     <DateSelector date={props.obj.deadline} updateTaskFunc={props.updateTaskFunc} id={props.missionId}/>
-  </div>
+  </div>:null}
   </div>
   <div className="delete" >
     <EditTask updateTaskFunc={props.updateTaskFunc} id={props.missionId} TaskDetails={props.obj}/>

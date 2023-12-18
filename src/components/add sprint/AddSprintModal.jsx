@@ -26,7 +26,6 @@ function AddSprintModal({ isOpen, onClose, projectNames, addSprint}) {
             return projectNames.find(project => project.header=== value);
         }).filter(project => project !== undefined);
         setSelectedProjects(newSelectedProjects);
-        console.log(selectedProjects);
     };
     
     const convertDateToISO = (dateStr) => {
