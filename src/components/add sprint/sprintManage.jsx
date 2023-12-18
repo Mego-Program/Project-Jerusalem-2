@@ -4,7 +4,7 @@ import AddSprintModal from './AddSprintModal';
 import SprintBoard from './SprintBoard';
 
 
-function SprintManager({ currentProject,  parentBoardTasks, addBoard}) {
+function SprintManager({ currentProject,  parentBoardTasks, addSprint}) {
     const [isSprintActive, setIsSprintActive] = useState(false);
     const [activeSprintDetails, setActiveSprintDetails] = useState(null);
     const [sprints, setSprints] = useState([]);
@@ -78,7 +78,7 @@ function SprintManager({ currentProject,  parentBoardTasks, addBoard}) {
                     onClose={() => setIsAddSprintModalOpen(false)}
                     onSprintAdded={handleSprintAdded}
                     projectNames={parentBoardTasks || []}
-                    addBoard={addBoard}
+                    addSprint={addSprint}
                 />
             )}
             <SprintBoard sprintDetails={activeSprintDetails} />
