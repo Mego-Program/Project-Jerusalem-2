@@ -3,28 +3,30 @@ import { FormControl, InputLabel, Select, MenuItem, Button, TextField, Chip } fr
 import axios from 'axios'; // Import axios
 import './AddSprintModal.css';
 
-function AddSprintModal({ isOpen, onClose, projectNames, addBoard }) {
+function AddSprintModal({ isOpen, onClose, projectNames, addSprint}) {
     const [sprintName, setSprintName] = useState('');
     const [endDate, setEndDate] = useState('');
     const [selectedProjects, setSelectedProjects] = useState([]);
 
     const handleAddSprint = () => {
         const formattedEndDate = convertDateToISO(endDate);
+        const list = selectedProjects.map((itm)=>itm._id)
         const sprintData = {
             sprintName, 
             endDate: formattedEndDate, 
-            selectedProjects
+            list
         };
-    addBoard (sprintName, null, null, endDate)
-   console.log(sprintData);
+    addSprint(sprintName,endDate,list)
+    onClose()
+   
     };
 
     const handleProjectChange = (event) => {
         const newSelectedProjects = event.target.value.map(value => {
-            return projectNames.find(project => project.header === value);
+            return projectNames.find(project => project.header=== value);
         }).filter(project => project !== undefined);
-
         setSelectedProjects(newSelectedProjects);
+        console.log(selectedProjects);
     };
     
     const convertDateToISO = (dateStr) => {

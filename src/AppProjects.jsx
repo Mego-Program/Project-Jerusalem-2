@@ -82,6 +82,24 @@ function AppProjects() {
             console.error('Error fetching project data:', error);
         }
     }
+    async function addSprint(name, endDate,list) {
+        console.log(list);
+        if(name === '') {alert('Please enter name'); return}
+        try {
+            const response = await axios.post(`${url}sprints/`, { name,currentProject,userName,endDate})
+            if(response.status === 403) {alert('Login first'); return}
+        } catch (error) {
+            console.error('Error adding new project:', error);
+            return
+        }
+        try{
+            const response = await axios.put(`${url}sprints/`,{list})
+
+        }catch(error){console.log('error try add missions to sprint',error);}
+        setAddedBoard(name)
+            setCurrentProject(name)
+            fetchData()
+    }
 
     async function addBoard(name, names, specs, endDate) {
         if(name === '') {alert('Please enter name'); return}
@@ -136,7 +154,7 @@ function AppProjects() {
             <BorderFilter onProjectChange={fetchProjectData} listProjects={listBoards} newboard={addedBoard} />
             <BoardOptions addfunc={addBoard} editFunc={editBoard} deleteBoardFunc={deleteBoard} projectName={currentProject} />
             <DndProvider backend={HTML5Backend}>
-                <SprintManager currentProject={currentProject} parentBoardTasks={currentData} addBoard={addBoard}/>
+                <SprintManager currentProject={currentProject} parentBoardTasks={currentData} addSprint={addSprint}/>
                 <DivFilters projectData={currentData} collection={currentProject}/>
             </DndProvider>
         </div>
