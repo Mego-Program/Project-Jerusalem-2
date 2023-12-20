@@ -5,6 +5,9 @@ import Inp from './input';
 import Show from './massions-component/showMassion'
 import {useAtom} from 'jotai'
 import { atomUrl } from '../../Atoms';
+import SelectSprint from './showSprint';
+import {Box,Typography} from '@mui/material'
+import SprintComponent from './sprintComp';
 
 
 
@@ -13,7 +16,7 @@ let obFilter = {'category':'', 'milestone':'','issue_type':'','assignee':''}
 
 export default function DivFilters(props){
  const [url,setUrl] = useAtom(atomUrl)
-  
+  const [isSprint,setIsSprint] = useState('')
 const [DataFiltered,setDataFiltered]=useState([...props.projectData])
 const [names,setNames] = useState([])
 const [dummyState, setDummyState] = useState(false);
@@ -22,10 +25,12 @@ const Options = {
   'milestone':[...(new Set (props.projectData.map((item)=>item.milestone)))],
   'issue_type':[...(new Set(props.projectData.map((item)=>item.issue_type)))],
 }
+
 useEffect(() => {
     setDataFiltered(props.projectData);
     getNames();
     resetFilters();
+    setIsSprint('')
     if (names.length === 0) {
       getNames();
     }
@@ -46,7 +51,7 @@ async function getNames() {
 
 
 function resetFilters() {
-  obFilter = { 'category': '', 'milestone': '', 'issue_type': '', 'assignee': '' };
+  obFilter = {'sprints':'', 'category': '', 'milestone': '', 'issue_type': '', 'assignee': '' };
   
   setDummyState((prev) => !prev);
 }
@@ -66,6 +71,7 @@ filterInput(obFilter)
 function filterInput(filt) {
   setDataFiltered(
       props.projectData.filter((itm) => 
+        (filt['sprints'] ? itm['isSprint']?itm['isSprint'].includes(filt['sprints']) : false:true) &&
           (filt['category'] ? itm['category'].includes(filt['category']) : true) &&
           (filt['milestone'] ? itm['milestone'].includes(filt['milestone']) : true) &&
           (filt['issue_type'] ? itm['issue_type'].includes(filt['issue_type']) : true) &&
@@ -74,6 +80,16 @@ function filterInput(filt) {
   );
 }
 
+function showSprints(sprintName){
+  setIsSprint(sprintName)
+  console.log(isSprint);
+  handleObFilter(sprintName,'sprints')
+}
+function showBoard(){
+  setIsSprint('')
+  handleObFilter('','sprints')
+  setDummyState((prev) => !prev);
+}
 
 
 
@@ -137,7 +153,7 @@ resetFilters()
 
 return (
     <div>
-
+<SelectSprint key={`6-${dummyState}`}  showSprint={showSprints} currentProject={props.collection} regularBoard={showBoard}/>
     <div className='filters'>
       <div className='filter-item'>
         <Inp key={`1-${dummyState}`} func={handleObFilter} func1={filterInput} type={'category'} filters={obFilter} lstOptions={Options.category} name={'Category'} /></div>
@@ -145,6 +161,7 @@ return (
         <div className='filter-item'> <Inp key={`3-${dummyState}`} func={handleObFilter} func1={filterInput} type={'issue_type'} filters={obFilter} lstOptions={Options.issue_type} name={'Issue Type'} /></div>
         <div className='filter-item'> <Inp key={`4-${dummyState}`} func={handleObFilter} func1={filterInput} type={'assignee'} filters={obFilter} lstOptions={names.map((name)=>`${name.firstName} ${name.lastName}`)} name={'Assignee'} /></div>
       </div>
+      {!(isSprint==='') && <SprintComponent sprintName={isSprint} projectName={props.collection} />}
 
     <div className='div-massions status-columns'>
         <Show   datafiltered={filterStatus(DataFiltered, 'Not Started')} cat={'Not Started'} names={names} addTask ={addTask} deleteFunc={deleteFunc} updateTaskFunc={updatefields}/>
