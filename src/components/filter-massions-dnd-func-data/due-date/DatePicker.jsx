@@ -35,7 +35,7 @@ function DateSelector(props) {
   const handleDateChange = (date) => {
     if (isdatevalid(date)) {
       setSelectedDate((prevDate) => {
-        props.updateTaskFunc(props.id,'deadline',dayjs(date).format('MMMM DD, YYYY'));
+        props.Func(props.id,'deadline',dayjs(date).format('MMMM DD, YYYY'));
         closeDatePicker();
         return dayjs(date);
       });
@@ -78,6 +78,7 @@ function DateSelector(props) {
                 }}
                 label={props.date}
                 value={selectedDate} 
+                
                 shouldDisableDate={(date)=>!isdatevalid(date)}
                 onChange={(date) => {
                   if(isdatevalid(date)){
@@ -89,6 +90,7 @@ function DateSelector(props) {
             
                   
               }}
+              
 
               />
             </LocalizationProvider>

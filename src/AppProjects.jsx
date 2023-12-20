@@ -7,7 +7,7 @@ import { HTML5Backend } from 'react-dnd-html5-backend';
 import axios from 'axios';
 import { userNameAtom, atomUrl } from './Atoms';
 import { useAtom } from 'jotai';
-import SprintManager from './components/add sprint/sprintManage'; // Import SprintManager
+
 import './App.css';
 
 function AppProjects() {
@@ -114,6 +114,20 @@ function AppProjects() {
             throw error;
         }
     }
+    async function addSprint(input,missions,projectName,endDate){
+        const data = {
+            name:input,
+            missions:missions,
+            currentProject:projectName,
+            userName:userName,
+            endDate:endDate
+        }
+        try{
+            const response = await axios.post(`${url}sprints/`,data) 
+            console.log(response);
+            setCurrentProject(currentProject)
+        }catch(err){console.log('error try add sprint:',err);}
+    }
 
     async function editBoard(input, namesToAdd, namesToRemove, projectName, specsToAdd, specsToRemove) {
         if (!input && namesToAdd.length === 0 && namesToRemove.length === 0 && specsToAdd === 0 && specsToRemove === 0) {return}
@@ -139,6 +153,7 @@ function AppProjects() {
             console.log('Deleting');
             const response = await axios.delete(`${url}projects/`, { params: { projectName, userName } });
             setAddedBoard(listBoards[0] !== projectName ? listBoards[0] : listBoards[1])
+            
         } catch (error) {
             console.log(error);
             if(error.message.includes('403')) {alert('No permissions to delete')};
@@ -152,10 +167,9 @@ function AppProjects() {
     return (
         <div>
             <BorderFilter onProjectChange={fetchProjectData} listProjects={listBoards} newboard={addedBoard} />
-            <BoardOptions addfunc={addBoard} editFunc={editBoard} deleteBoardFunc={deleteBoard} projectName={currentProject} />
+            <BoardOptions addfunc={addBoard} addSprint={addSprint} editFunc={editBoard} deleteBoardFunc={deleteBoard} projectName={currentProject} />
             <DndProvider backend={HTML5Backend}>
-                <SprintManager currentProject={currentProject} parentBoardTasks={currentData} addSprint={addSprint}/>
-                <DivFilters projectData={currentData} collection={currentProject}/>
+                 <DivFilters projectData={currentData} collection={currentProject}/>
             </DndProvider>
         </div>
        );

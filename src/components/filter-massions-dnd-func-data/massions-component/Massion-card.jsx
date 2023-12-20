@@ -1,5 +1,5 @@
 import React, { useEffect ,useState} from "react";
-import Avatar from "@mui/material/Avatar";
+import {Avatar,Typography} from "@mui/material";
 import { DndProvider, useDrag } from "react-dnd";
 import { colors } from "@mui/material";
 import AssigneeSelector from "../change assigne/ChangeAsignee";
@@ -38,10 +38,10 @@ export default function MassionCard(props) {
     <div className="content" >
       <p>{props.obj.content}</p>
     </div>
-    {!props.obj.isSprint?
+    {!props.obj.isSprint||props.obj.isSprint==='false'?
   <div className="date">
-    <DateSelector date={props.obj.deadline} updateTaskFunc={props.updateTaskFunc} id={props.missionId}/>
-  </div>:null}
+    <DateSelector date={props.obj.deadline} Func={props.updateTaskFunc} id={props.missionId}/>
+  </div>:<Typography color={'white'}>{props.obj.isSprint}</Typography>}
   </div>
   <div className="delete" >
     <EditTask updateTaskFunc={props.updateTaskFunc} id={props.missionId} TaskDetails={props.obj}/>

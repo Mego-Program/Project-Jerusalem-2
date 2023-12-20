@@ -1,0 +1,27 @@
+.sprint-container {
+    color: white;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    border-radius: 25px;
+    position: relative;
+    overflow: hidden;
+    animation: flowingColor 5s infinite linear; /* Adjust the duration and timing function as needed */
+  }
+  
+  @keyframes flowingColor {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+  
+  .sprint-container:hover {
+    animation-play-state: paused; /* Pause the animation on hover if needed */
+  }
+  
