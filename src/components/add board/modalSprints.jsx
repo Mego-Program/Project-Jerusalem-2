@@ -3,7 +3,7 @@ import './modal.css'
 import MultipleSelect from './choosePerson';
 import TextField from '@mui/material/TextField';
 import MultipleSelectSpec from './chooseSpecs';
-import {Container,Box,Typography} from '@mui/material'
+import {Container,Box,Typography,Button} from '@mui/material'
 import MultipleSelectMission from './chooseMission';
 import DateSelector from '../filter-massions-dnd-func-data/due-date/DatePicker';
 
@@ -34,10 +34,11 @@ export default function ModalSprint({ isOpen, onClose ,func,currentProject}) {
     display:'flex',
     flexDirection: 'column',
     alignItems: 'center',
-    width:'50vw',
+    width:'55vw',
     height:'50vh',
     borderRadius:'10px',
     justifyContent:'space-between',
+    overflow:'auto'
   };
 
 function dateFunc(a,b,date){
@@ -77,13 +78,13 @@ function handleChoose(listPerson){
       }} /> 
  
       <MultipleSelectMission chooseMissions={handleChoose} currentProject={currentProject}/>
-     <Box display={'flex'} sx={{ width: '49vw', background: '#343476', color: 'white',borderRadius:'8px' }}>
-      <Typography variant='h6' color={'white'}marginLeft={2} marginTop={1} marginRight={20}>deadline</Typography>
+     <Box alignContent={'space-around'} display={'flex'} justifyContent={'space-around'} sx={{ width: '49vw', background: '#343476', color: 'white',borderRadius:'8px' }}>
+      <Typography ml={-15} variant='h6' color={'white'} marginTop={1} >deadline</Typography>
      <DateSelector Func = {dateFunc} date={endDate}></DateSelector>
      </Box>
       <div className='btns' >
-      <button onClick={getTextAndNames}>Create</button>
-      <button onClick={()=>{setInputText('');onClose()}} style={{marginLeft:'3vw'}}>Cancel</button>
+      <Button onClick={getTextAndNames}>Create</Button>
+      <Button onClick={()=>{setInputText('');onClose()}} style={{marginLeft:'3vw'}}>Cancel</Button>
       </div>
       </Container>
     </div>

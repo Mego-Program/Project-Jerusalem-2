@@ -3,6 +3,7 @@ import './modal.css'
 import MultipleSelect from './choosePerson';
 import TextField from '@mui/material/TextField';
 import MultipleSelectSpec from './chooseSpecs';
+import {Container,Button} from '@mui/material'
 
 
 
@@ -35,10 +36,11 @@ export default function ModalEdit({ isOpen, onClose ,func,personsExsist,projectN
     display:'flex',
     flexDirection: 'column',
     alignItems: 'center',
-    width:'50vw',
+    width:'55vw',
     height:'80vh',
     borderRadius:'10px',
     justifyContent:'space-between',
+    overflow:'auto'
   };
 
   const handleInputChange = (event) => {
@@ -73,6 +75,7 @@ function handleChooseSpec1(listSpec){
 
     <div style={overlayStyle}>
     <div style={modalStyle}>
+      <Container sx={modalStyle}>
     <TextField id="outlined-basic" label="Project name" variant="outlined" placeholder={projectName? projectName:'Project name'}
      onChange={handleInputChange} value={inputText}
      InputLabelProps={{
@@ -90,9 +93,10 @@ function handleChooseSpec1(listSpec){
       <MultipleSelectSpec chooseSpecs={handleChooseSpec1}  specExist={specExist} remove={true}/>
     
       <div className='btns' >
-      <button onClick={getTextAndNames}>Change</button>
-      <button onClick={()=>{setInputText('');onClose()}} style={{marginLeft:'3vw'}}>Cancel</button>
+      <Button onClick={getTextAndNames}>Change</Button>
+      <Button onClick={()=>{setInputText('');onClose()}} style={{marginLeft:'3vw'}}>Cancel</Button>
       </div>
+      </Container>
     </div>
  
   </div>

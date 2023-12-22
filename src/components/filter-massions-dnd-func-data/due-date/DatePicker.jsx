@@ -3,10 +3,10 @@ import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
-import Modal from '@mui/material/Modal';
+import {Modal,Typography} from '@mui/material';
 import Box from '@mui/material/Box';
 import './datePicker.css'
-import Typography from '@mui/material/Typography';
+
 import styled from '@emotion/styled';
 import dayjs from 'dayjs'; 
 
@@ -49,7 +49,7 @@ function DateSelector(props) {
 
   return (
     <div>
-      <p onClick={openDatePicker} style={{cursor:'pointer'}}>{selectedDate?(dayjs(selectedDate).format('MMMM DD, YYYY')):props.date?props.date:'deadline'}</p>
+      <Typography onClick={openDatePicker} style={{cursor:'pointer'}}>{selectedDate?(dayjs(selectedDate).format('MMMM DD, YYYY')):props.date?props.date:'no deadline'}</Typography>
       {isDatePickerOpen && (
         <Modal
           open={isDatePickerOpen}

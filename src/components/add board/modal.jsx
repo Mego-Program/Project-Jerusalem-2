@@ -3,7 +3,7 @@ import './modal.css'
 import MultipleSelect from './choosePerson';
 import TextField from '@mui/material/TextField';
 import MultipleSelectSpec from './chooseSpecs';
-import {Container} from '@mui/material'
+import {Container,Button} from '@mui/material'
 
 export default function Modal1({ isOpen, onClose ,func}) {
   const [inputText, setInputText] = useState('');
@@ -32,10 +32,11 @@ export default function Modal1({ isOpen, onClose ,func}) {
     display:'flex',
     flexDirection: 'column',
     alignItems: 'center',
-    width:'50vw',
+    width:'55vw',
     height:'50vh',
     borderRadius:'10px',
     justifyContent:'space-between',
+    overfllow:'auto'
   };
 
   const handleInputChange = (event) => {
@@ -79,8 +80,8 @@ function handleChooseSpec(listSpec){
     <MultipleSelectSpec chooseSpecs={handleChooseSpec}/>
      
       <div className='btns' >
-      <button onClick={getTextAndNames}>Create</button>
-      <button onClick={()=>{setInputText('');onClose()}} style={{marginLeft:'3vw'}}>Cancel</button>
+      <Button onClick={getTextAndNames}>Create</Button>
+      <Button onClick={()=>{setInputText('');onClose()}} style={{marginLeft:'3vw'}}>Cancel</Button>
       </div>
       </Container>
     </div>
