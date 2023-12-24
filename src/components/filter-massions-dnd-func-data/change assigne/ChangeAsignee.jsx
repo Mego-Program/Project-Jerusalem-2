@@ -48,7 +48,7 @@ const AssigneeSelector = (props) => {
   });
   return (
     <ThemeProvider theme={theme}>
-      <div >
+      <div style={{marginBottom:20}}>
         <Avatar sx={{border: '2px solid #F6C927',background:'#3685B1',cursor:'pointer',color:'#21213E'}} onClick={handleOpen} src={props.name.pic} alt='not found'></Avatar>
         <Modal
           open={isOpen}

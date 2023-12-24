@@ -24,7 +24,7 @@ function SprintComponent({ sprintName, projectName }) {
 
         if (isMounted) {
           setEndDate(endDateAsDate);
-          setRemainingTime("Calculating..."); // Reset remainingTime when sprintName changes
+          setRemainingTime("Calculating...");
         }
       } catch (e) {
         console.log("error try get date:", e);
@@ -57,9 +57,9 @@ function SprintComponent({ sprintName, projectName }) {
       );
       const seconds = Math.floor((timeDifference % (1000 * 60)) / 1000);
       if (!showMinutes&&days!==0) {
-        setRemainingTime(`${days}d`);
+        setRemainingTime(`${days} days`);
       } else {
-        setRemainingTime(`${days}d ${hours}h ${minutes}m ${seconds}s`);
+        setRemainingTime(`${days} days ${hours} hours ${minutes} minutos ${seconds}s`);
       }
 
       if (timeDifference <= 0) {
@@ -76,6 +76,7 @@ function SprintComponent({ sprintName, projectName }) {
 
   return (
     <Box 
+    width={'50%'}
     padding={1} 
     mt={5}
     sx={{color:'white', display: "flex", alignItems: "center", cursor: "pointer",  backgroundColor:'#343476', borderRadius:25}}>

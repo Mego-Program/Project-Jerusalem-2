@@ -161,7 +161,11 @@ return (
         <div className='filter-item'> <Inp key={`3-${dummyState}`} func={handleObFilter} func1={filterInput} type={'issue_type'} filters={obFilter} lstOptions={Options.issue_type} name={'Issue Type'} /></div>
         <div className='filter-item'> <Inp key={`4-${dummyState}`} func={handleObFilter} func1={filterInput} type={'assignee'} filters={obFilter} lstOptions={names.map((name)=>`${name.firstName} ${name.lastName}`)} name={'Assignee'} /></div>
       </div>
-      {!(isSprint==='') && <SprintComponent sprintName={isSprint} projectName={props.collection} />}
+      {!(isSprint==='') && 
+      <Box display={'flex'} justifyContent={'center'}>
+      <SprintComponent sprintName={isSprint} projectName={props.collection} />
+      </Box>
+      }
 
     <div className='div-massions status-columns'>
         <Show   datafiltered={filterStatus(DataFiltered, 'Not Started')} cat={'Not Started'} names={names} addTask ={addTask} deleteFunc={deleteFunc} updateTaskFunc={updatefields}/>
