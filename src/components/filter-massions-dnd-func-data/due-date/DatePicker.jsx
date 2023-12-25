@@ -48,7 +48,7 @@ function DateSelector(props) {
   const corruntDay=()=>dayjs()
 
   return (
-    <div>
+    <Box>
       <Typography color={'white'} onClick={openDatePicker} style={{fontSize:'13px',cursor:'pointer'}}>{selectedDate?(dayjs(selectedDate).format('MMMM DD, YYYY')):props.date?props.date:'no deadline'}</Typography>
       {isDatePickerOpen && (
         <Modal
@@ -99,7 +99,7 @@ function DateSelector(props) {
       )}
         
       
-    </div>
+    </Box>
   );
 }
 
