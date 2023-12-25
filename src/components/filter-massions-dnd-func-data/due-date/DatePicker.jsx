@@ -49,7 +49,7 @@ function DateSelector(props) {
 
   return (
     <div>
-      <Typography onClick={openDatePicker} style={{cursor:'pointer'}}>{selectedDate?(dayjs(selectedDate).format('MMMM DD, YYYY')):props.date?props.date:'no deadline'}</Typography>
+      <Typography color={'white'} onClick={openDatePicker} style={{fontSize:'13px',cursor:'pointer'}}>{selectedDate?(dayjs(selectedDate).format('MMMM DD, YYYY')):props.date?props.date:'no deadline'}</Typography>
       {isDatePickerOpen && (
         <Modal
           open={isDatePickerOpen}
