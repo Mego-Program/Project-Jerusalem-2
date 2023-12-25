@@ -10,12 +10,11 @@ export default defineConfig({
       name: 'AppProjects',
       filename: 'remoteEntry.js',
       exposes: {
-        './AppProjects': './src/AppProjects', // Adjust this path to your App component
+        './AppProjects': './src/AppProjects', 
       },
-      shared: ['react', 'react-dom' /* other shared dependencies */],
+      shared: ['react', 'react-dom'],
     }),
   ],
-  // ... other configurations
   build: {
     modulePreload: false,
     target: "esnext",

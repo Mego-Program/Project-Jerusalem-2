@@ -38,6 +38,7 @@ useEffect(() => {
 
 
 async function getNames() {
+  if(props.collection==='no project found'){return}
   try {
     const response = await axios.get(`${url}projects/names/${props.collection}`);
     setNames(response.data);

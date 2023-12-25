@@ -38,6 +38,7 @@ export default function SelectSprint({currentProject,showSprint,regularBoard}) {
   const [url,setUrl] = useAtom(atomUrl)
 
   React.useEffect(()=>{
+    if(currentProject==='no project found'){return}
   async function getSprints() {
     try{
         const response = await axios.get(`${url}sprints/${currentProject}`)

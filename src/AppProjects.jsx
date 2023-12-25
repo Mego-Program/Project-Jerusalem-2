@@ -17,7 +17,7 @@ function AppProjects() {
     const [currentProject, setCurrentProject] = useState(null);
     const [currentData, setCurrentData] = useState(null);
     const [addedBoard, setAddedBoard] = useState(null);
-
+console.log(currentProject);
     useEffect(() => {
         if (addedBoard !== null) {
             fetchProjectData(addedBoard);
@@ -46,7 +46,7 @@ function AppProjects() {
     const [dataSprint, setDataSprint] = useState([]);
 
     useEffect(() => {
-        setDataSprint(currentData); // Or some subset/filter of currentData
+        setDataSprint(currentData); 
     }, [currentData]);
 
     const getDataBoards = async () => {
@@ -83,6 +83,10 @@ function AppProjects() {
         }
     }
     async function addSprint(name, endDate,list) {
+        if (currentProject === 'no project found') {
+            alert('Create a new project first');
+            return;
+        }
         console.log(list);
         if(name === '') {alert('Please enter name'); return}
         try {
@@ -115,6 +119,10 @@ function AppProjects() {
         }
     }
     async function addSprint(input,missions,projectName,endDate){
+        if (currentProject === 'no project found') {
+            alert('Create a new project first');
+            return;
+        }
         const data = {
             name:input,
             missions:missions,
@@ -130,6 +138,10 @@ function AppProjects() {
     }
 
     async function editBoard(input, namesToAdd, namesToRemove, projectName, specsToAdd, specsToRemove) {
+        if (currentProject === 'no project found') {
+            alert('Create a new project first');
+            return;
+        }
         if (!input && namesToAdd.length === 0 && namesToRemove.length === 0 && specsToAdd === 0 && specsToRemove === 0) {return}
         try {
         const response = await axios.put(`${url}projects/`, {input, namesToAdd, namesToRemove, projectName, specsToAdd, specsToRemove, userName})
@@ -149,6 +161,11 @@ function AppProjects() {
     }
 
     async function deleteBoard(projectName) {
+        
+        if (currentProject === 'no project found') {
+            alert('Create a new project first');
+            return;
+        }
         try {
             console.log('Deleting');
             const response = await axios.delete(`${url}projects/`, { params: { projectName, userName } });

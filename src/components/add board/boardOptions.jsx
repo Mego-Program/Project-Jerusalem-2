@@ -14,11 +14,11 @@ return (
  background:'none', boxShadow:'none', maxWidth:'100vw' }}>
     
         <AddBoard func ={props.addfunc}/>
-        <AddSprint currentProject={props.projectName} func={props.addSprint}/>
+        {props.projectName!=='no project found'&&<AddSprint currentProject={props.projectName} func={props.addSprint}/>}
         
-        <EditBoard func = {props.editFunc} project={props.projectName}/>
-        <div className="a">
-        <DeleteBoard deleteFunc={props.deleteBoardFunc} project={props.projectName}/></div>
-    </Container>
+        {props.projectName!=='no project found'&&<EditBoard func = {props.editFunc} project={props.projectName}/>}
+        
+        {props.projectName!=='no project found'&&<DeleteBoard deleteFunc={props.deleteBoardFunc} project={props.projectName}/>}
+  </Container>
 )
 }

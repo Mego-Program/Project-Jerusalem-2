@@ -62,7 +62,7 @@ export default function MultipleSelect({ choosePersones, personsExsist ,remove})
             ):option.selected}
           />
           <Box display="flex" alignItems="center">
-            <Avatar src={option.pic} alt={option.lastName} sx={{ mr: 1, height: '5vh', width: '5vh' }} />
+            <Avatar src={option.img} alt={option.lastName} sx={{ mr: 1, height: '5vh', width: '5vh' }} />
             <Typography variant="body2">{`${option.firstName} ${option.lastName}`}</Typography>
           </Box>
         </li>
