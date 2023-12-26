@@ -15,9 +15,11 @@ function AppProjects() {
     const [url, setUrl] = useAtom(atomUrl);
     const [listBoards, setListBoards] = useState(null);
     const [currentProject, setCurrentProject] = useState(null);
-    const [currentData, setCurrentData] = useState(null);
+    const [currentData, setCurrentData] = useState([]);
     const [addedBoard, setAddedBoard] = useState(null);
-console.log(currentProject);
+    const [dataSprint, setDataSprint] = useState([]);
+
+
     useEffect(() => {
         if (addedBoard !== null) {
             fetchProjectData(addedBoard);
@@ -43,7 +45,7 @@ console.log(currentProject);
             fetchData();
         }
     }, [currentProject]);
-    const [dataSprint, setDataSprint] = useState([]);
+  
 
     useEffect(() => {
         setDataSprint(currentData); 
@@ -67,7 +69,7 @@ console.log(currentProject);
             return
         }
         try {
-            const response = await axios.get(`${url}missions/${currentProject}`);
+            const response = await axios.get(`${url}missions/${currentProject}`,);
             setCurrentData(response.data);
         } catch (error) {
             console.error('Error fetching project data:', error);

@@ -78,9 +78,11 @@ function handleChoose(listPerson){
       }} /> 
  
       <MultipleSelectMission chooseMissions={handleChoose} currentProject={currentProject}/>
-     <Box alignContent={'space-around'} display={'flex'} justifyContent={'space-around'} sx={{ width: '49vw', background: '#343476', color: 'white',borderRadius:'8px' }}>
-      <Typography ml={-15} variant='h6' color={'white'} marginTop={1} >deadline</Typography>
-     <DateSelector Func = {dateFunc} date={endDate}></DateSelector>
+     <Box alignContent={'space-around'} display={'flex'} justifyContent={'space-around'}
+     paddingTop={1} paddingBottom={1} sx={{width: '49vw', background: '#343476', color: 'white',borderRadius:'8px' }}>
+      <Typography ml={1} variant='h6' color={'white'}  >deadline</Typography>
+      <Typography ml={'auto'} mr={1} mt={'auto'} mb={'auto'}>
+     <DateSelector Func = {dateFunc} date={endDate}></DateSelector></Typography>
      </Box>
       <div className='btns' >
       <Button onClick={getTextAndNames}>Create</Button>
