@@ -7,7 +7,7 @@ import '../massions-component/showMassion.css';
 
 
 const AssigneeSelector = (props) => {
-  console.log(props.name);
+
 
 
     const names = props.names

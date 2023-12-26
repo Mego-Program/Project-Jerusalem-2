@@ -19,7 +19,7 @@ function AppProjects() {
     const [addedBoard, setAddedBoard] = useState(null);
     const [dataSprint, setDataSprint] = useState([]);
 
-console.log(currentProject);
+
     useEffect(() => {
         if (addedBoard !== null) {
             fetchProjectData(addedBoard);
