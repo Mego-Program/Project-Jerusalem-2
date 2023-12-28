@@ -6,8 +6,9 @@ import Show from './massions-component/showMassion'
 import {useAtom} from 'jotai'
 import { atomUrl } from '../../Atoms';
 import SelectSprint from './showSprint';
-import {Box,Typography} from '@mui/material'
+import {Box,Collapse} from '@mui/material'
 import SprintComponent from './sprintComp';
+import AlertUp from '../AlertComponent';
 
 
 
@@ -20,6 +21,9 @@ export default function DivFilters(props){
 const [DataFiltered,setDataFiltered]=useState([...props.projectData])
 const [names,setNames] = useState([])
 const [dummyState, setDummyState] = useState(false);
+const [raisAlert, setRaisAlert] = useState(false);
+const[type,setType] = useState('warning')
+
 const Options = {
   'category':[...(new Set(props.projectData.map((item)=>item.category)))],
   'milestone':[...(new Set (props.projectData.map((item)=>item.milestone)))],
@@ -82,11 +86,15 @@ function filterInput(filt) {
 }
 
 function showSprints(sprintName){
+ if(props.collection==='no project found')
+ {setRaisAlert('create board first')}
   setIsSprint(sprintName)
   console.log(isSprint);
   handleObFilter(sprintName,'sprints')
 }
 function showBoard(){
+  if(props.collection==='no project found')
+ {setRaisAlert('create board first')}
   setIsSprint('')
   handleObFilter('','sprints')
   setDummyState((prev) => !prev);
@@ -133,10 +141,12 @@ function filterStatus(data, DivStatus) {
 
  
 async function addTask(data){
+  if(props.collection==='no project found')
+ {setRaisAlert('create bord first')}
   try{
   const response = await axios.post(`${url}missions/${props.collection}`,data)
   if (response.data==='create project first') {
-    alert(response.data)
+    setRaisAlert('create board first')
   }
 }catch(error){console.log('error while add new task:',error);}
 fetchData()
@@ -154,6 +164,9 @@ resetFilters()
 
 return (
     <div>
+      <Collapse in={raisAlert}><AlertUp
+       type={type} text={raisAlert}
+       onClose={()=>setRaisAlert(false)}/></Collapse>
 <SelectSprint key={`6-${dummyState}`}  showSprint={showSprints} currentProject={props.collection} regularBoard={showBoard}/>
     <div className='filters'>
       <div className='filter-item'>
