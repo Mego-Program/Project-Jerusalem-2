@@ -10,12 +10,14 @@ import axios from 'axios';
 import { atomUrl } from '../../Atoms';
 import {useAtom} from 'jotai'
 
+
 const icon = <CheckBoxOutlineBlankIcon fontSize="small" />;
 const checkedIcon = <CheckBoxIcon fontSize="small" />;
 
 export default function MultipleSelectSpec({ chooseSpecs, specExist ,remove}) {
   const [options, setOptions] = React.useState([]);
 const [url,setUrl] = useAtom(atomUrl)
+const [load,setLoad]=React.useState(true)
 
   React.useEffect(() => {
     async function fetchData(){
@@ -25,6 +27,7 @@ const [url,setUrl] = useAtom(atomUrl)
         } catch (err) {
           console.log('error try to get names:', { err });
         }
+        finally{setLoad(false)}
     }
     fetchData();
   }, []);
@@ -50,7 +53,10 @@ const [url,setUrl] = useAtom(atomUrl)
       
       getOptionDisabled={specExist&&!remove?isOptionEqualToValue:null}
       renderOption={(props, option) => (
+  
         <li {...props}>
+          
+          
           <Checkbox
           
             icon={icon}
@@ -60,9 +66,12 @@ const [url,setUrl] = useAtom(atomUrl)
                 (spec) => spec._id===option._id
             ):option.selected}
           />
+          
+          
           <Box display="flex" alignItems="center">
             <Typography variant="body2">{option.title}</Typography>
           </Box>
+          
         </li>
       )}
       onChange={handleCheck}
@@ -70,6 +79,8 @@ const [url,setUrl] = useAtom(atomUrl)
       renderInput={(params) => (
         <TextField {...params} label={remove?'Remove Specs':'Connect more Specs'} placeholder="search for spec" style={{ color: 'white' ,}} InputLabelProps={{style: {color: 'white'}}}/>
       )}
+      loading={load}
+      loadingText={'loading specs...'}
     />
   );
 }
