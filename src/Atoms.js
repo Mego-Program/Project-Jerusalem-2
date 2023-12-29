@@ -3,10 +3,9 @@ import axios from 'axios'
 
 async function tryReach(){
   try{
-const res = await axios.get('https://localhost:3000/missions/a')
+const res = await axios.get('http://localhost:3000/missions/a')
 const ret = await res.data
-console.log('res:',ret);
-return Array.isArray(ret)
+return true
   }catch(e){return false}
 }
 
