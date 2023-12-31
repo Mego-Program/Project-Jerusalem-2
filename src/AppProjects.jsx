@@ -21,7 +21,7 @@ function AppProjects() {
   const [currentData, setCurrentData] = useState([]);
   const [addedBoard, setAddedBoard] = useState(null);
   const [dataSprint, setDataSprint] = useState([]);
-  const [raisAlert, setRaisAlert] = useState(false);
+  const [raisAlert, setRaisAlert] = useState('');
   const[type,setType] = useState('warning')
 
   useEffect(() => {
@@ -164,7 +164,6 @@ function AppProjects() {
     };
     try {
       const response = await axios.post(`${url}sprints/`, data);
-      console.log(response);
       setCurrentProject(currentProject);
     } catch (err) {
       console.log("error try add sprint:", err);
@@ -214,13 +213,12 @@ function AppProjects() {
     } catch (error) {
       console.log("Error while editing:", error);
       if (error.message.includes("403")) {
-        alert("No permissions to edit");
+        setRaisAlert('you dont have the premission to delete this board');
       }
     }
   }
 
   async function deleteBoard(projectName) {
-    setRaisAlert('create first board');
     if (currentProject === "no project found") {
       return;
     }
@@ -235,7 +233,7 @@ function AppProjects() {
     } catch (error) {
       console.log(error);
       if (error.message.includes("403")) {
-        alert("No permissions to delete");
+        setRaisAlert('you dont have the premission to delete this board');
       }
     }
   }
@@ -246,9 +244,9 @@ function AppProjects() {
 
   return (
     <div>
-      <Collapse in={raisAlert}><AlertUp
+      <Collapse in={raisAlert!==''}><AlertUp
        type={type} text={raisAlert}
-       onClose={()=>setRaisAlert(false)}/></Collapse>
+       onClose={()=>setRaisAlert('')}/></Collapse>
       <BorderFilter
         onProjectChange={fetchProjectData}
         listProjects={listBoards}
